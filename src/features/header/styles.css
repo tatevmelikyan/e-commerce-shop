@@ -1,0 +1,12 @@
+.brand-logo a{
+    color: black;
+    text-decoration: none;
+    font-size: xx-large;
+    font-family: emoji;
+    letter-spacing: 10px;
+}
+
+.brand-logo {
+    display: flex;
+    justify-content: center;
+}

@@ -1,6 +1,8 @@
 import React from 'react'
 import NavContainer from '../navContainer/navContainer'
-import { homePageRouteLink } from '../../routeLinks'
+import './styles.css'
+
+
 import { Link } from 'react-router-dom'
 
 const Header = () => {
@@ -8,7 +10,7 @@ const Header = () => {
   return (
     <header>
         <div className="brand-logo">
-          <Link to={homePageRouteLink}>ALIAS</Link>
+          <Link to='/'>ALIAS</Link>
         </div>
         <NavContainer />
     </header>

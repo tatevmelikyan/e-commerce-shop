@@ -1,8 +1,10 @@
 import React from 'react'
+import './styles.css'
+
 
 const CustomerNav = () => {
   return (
-    <div>CustomerNav</div>
+    <div className='customer-nav'>CustomerNav</div>
   )
 }
 
