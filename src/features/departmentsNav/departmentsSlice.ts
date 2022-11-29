@@ -1,8 +1,10 @@
 import { RootState } from '../../app/store';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import type { PayloadAction } from '@reduxjs/toolkit'
+import axios from 'axios'
 
-interface departmentsState {
+
+
+interface DepartmentsState {
     departments: {
         id: string,
         name: string
@@ -16,14 +18,16 @@ interface departmentsState {
     departments: [],
     status: 'idle',
     error: null
-  } as departmentsState
+  } as DepartmentsState
 
+
+  const DEPARTMENTS_URL = 'http://localhost:4000/departments'
 
   export const fetchDepartments = createAsyncThunk(
-    'departments/fetchAllDepartmentsStatus', 
+    'departments/fetchAllDepartments', 
     async () => {
-        const response = await fetch('http://localhost:4000/departments').then(res => res.json())
-        return response
+        const response = await axios.get(DEPARTMENTS_URL)        
+        return response.data
     }
   )
 
@@ -51,4 +55,6 @@ const departmentsSlice = createSlice({
 
 export default departmentsSlice.reducer
 
-export const departmentsSelector = (state: RootState) => state.departments.departments
+export const selectAllDepartments = (state: RootState) => state.departments.departments
+export const selectDepartmentsStatus = (state: RootState) => state.departments.status
+export const selectDepartmentsError = (state: RootState) => state.departments.error

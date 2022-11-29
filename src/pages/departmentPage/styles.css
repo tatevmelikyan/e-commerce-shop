@@ -1,0 +1,41 @@
+.subDepartment {
+    width: 80%;
+}
+
+.subDepartment-name {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.categories-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 20px;
+}
+
+
+/* .department-page {
+display: flex;
+justify-content: center;
+flex-wrap: wrap;
+} */
+
+.department-page h2 {
+ text-transform: capitalize;
+}
+
+.category:hover {
+    box-shadow: -7px 10px 20px 3px #d4d3d3;
+    border-radius: 8px;
+}
+
+.category img {
+    vertical-align: middle;
+    max-width: 100%;
+    min-height: 400px;
+}
+
+.category a {
+    text-decoration: none;
+    color: black;
+}

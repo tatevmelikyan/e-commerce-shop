@@ -32,6 +32,7 @@
         "react/react-in-jsx-scope": "off",
         "camelcase": "error",
         "quotes": ["error", "single"],
-        "@typescript-eslint/ban-ts-comment": "off"
+        "@typescript-eslint/ban-ts-comment": "off",
+        "eqeqeq": "error"
     }
 }
