@@ -1,0 +1,125 @@
+.footerContainer{
+    margin: 0 auto;
+    margin-top: 50px;
+    text-align: left;
+    width: 100%;
+    clear: both;
+    background-color: #e6e3de;
+    padding-top: 30px;
+}
+.footer{
+    text-align: left;
+    margin: 0 auto;
+    width: 990px;
+    height: auto;
+    position: relative;
+    padding: 0 8px 20px 8px;
+}
+.footer-bottom{
+    display: inline-block;
+    width: 990px;
+}
+.footer-column{
+    padding-left: 10px;
+    float: left;
+    font-size: 11.4px;
+    letter-spacing: 0px;
+    cursor: pointer;
+}
+
+.footerContainer .footer ul {
+    list-style: none;
+}
+.footerContainer .footer .footer-heading{
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 28px;
+    margin-top: 24px;
+    text-transform: uppercase;
+}
+.footerContainer .footer .footer-bottom p {
+    display: flex;
+    font-size: 10px;
+    font-weight: 400;
+    justify-content: center;
+    line-height: 10px;
+}
+
+.footerContainer .footer .footer-column{
+    padding-left: 91px;
+    float: left;
+    font-size: 15px;
+    letter-spacing: 0px;
+}
+.footerContainer .footer .footer-li {
+    width: 100%;
+    margin-top: 24px;
+    margin-bottom: 26px;
+    overflow: hidden;
+    padding-bottom: 0;
+    text-align: right;
+}
+.footerContainer .footer .subscribe {
+    overflow: hidden;
+    padding: 0;
+}
+.footerContainer .footer .email{
+    float: left;
+    display: inline;
+}
+.footerContainer ul .subscribe .email input {
+    -webkit-appearance: none;
+    border-radius: 0;
+    box-shadow: none;
+    border: 1px solid #cecece;
+    color: #010101;
+    height: 38px;
+    padding: 0 0 0 10px;
+    width: 233px;
+}
+.footerContainer ul .subscribe .submit {
+    background-color: #010101;
+    border: none;
+    color: #fff;
+    display: inline;
+    float: left;
+    font-size: 15px;
+    font-weight: 400;
+    height: 40px;
+    padding: 0;
+    text-transform: uppercase;
+    width: 93px;
+}
+.footerContainer .footer h3{
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    line-height: 14px;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+}
+.footerContainer .footer .social-icons{
+    margin-bottom: 20px;
+}
+.footerContainer .footer .social-icons h3 {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    line-height: 14px;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+}
+.footerContainer .footer .social-icons ul {
+    display: flex;
+    justify-content: space-between;
+    width: 245px;
+}
+.footerContainer .footer .social-icons ul li {
+    border-bottom: 0;
+    display: inline-block;
+}
+.footerContainer .footer .social-icons ul li .media-icon {
+    font-size: 30px;
+    color: black
+    ;
+}
