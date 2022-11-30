@@ -2,7 +2,7 @@
     text-align: center;
 }
 
-ul {
+.departments-list {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -12,11 +12,11 @@ ul {
     border: 1px solid rgb(215, 215, 215)
   }
   
-  li {
+  .department-list-item {
     float: left;
   }
   
-  li a {
+  .department-list-item a {
     display: block;
     color: rgb(0, 0, 0);
     text-align: center;
@@ -24,8 +24,7 @@ ul {
     text-decoration: none;
   }
 
-  li a {
-    color: #010101;
+  .department-list-item a {
     font-size: 14px;
     font-weight: 400;
     letter-spacing: 0.2px;
@@ -33,6 +32,6 @@ ul {
 }
   
   
-  li a:hover {
+  .department-list-item a:hover {
     border-bottom: 2px solid rgb(215, 215, 215);
   }

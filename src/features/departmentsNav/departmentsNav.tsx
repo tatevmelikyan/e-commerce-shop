@@ -25,7 +25,7 @@ const DepartmentsNav = () => {
    return (
    <li 
     key={department.id}
-    className="list-item-department">
+    className="department-list-item">
       <Link to={`/${department.id}`}>{department.name}</Link>
       </li>
       )
