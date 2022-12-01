@@ -32,7 +32,7 @@ const DepartmentPage: React.FC = () => {
         key={subDepartment.id}
         className='subDepartment'
       >
-        <span className='subDepartment-name'>{subDepartment.name}</span>
+        <h2 className='subDepartment-name'>{subDepartment.name}</h2>
         <div className='categories-container'>
           {subDepartment.categories.map((category) => {
             return (
@@ -58,8 +58,10 @@ const DepartmentPage: React.FC = () => {
 
   return (
     <div className='department-page'>
-      <h2>{departmentId}</h2>
-      {renderedSubDepartments}
+       <h2 className='department-name'>{departmentId}</h2>
+       <div className='content'>
+       {renderedSubDepartments}
+     </div>
     </div>
   )
 }

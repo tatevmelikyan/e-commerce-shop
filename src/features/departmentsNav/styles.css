@@ -40,7 +40,11 @@
   border-bottom: 2px solid #010101;
 }
 
-.department-list-item:hover .active {
-  border-bottom: 2px solid rgb(238, 237, 237);
+.department-list-item .active:hover {
+  border-bottom: 2px solid rgb(190, 189, 189);
+}
+
+.department-list-item:hover:has(.active)  {
+  border-bottom: 2px solid transparent;
 }
   

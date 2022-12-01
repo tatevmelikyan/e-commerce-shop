@@ -11,7 +11,7 @@ const Layout = ({ children }: LayoutProps) => {
   return (
     <div className='App-wrapper'>
       <Header />
-      <div className='content'>{children}</div>
+      <div className='all-content'>{children}</div>
       <Footer />
     </div>
   )
