@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import LoadingPage from '../../pages/loadingPage/loadingPage'
 import { selectAllDepartments, fetchDepartments, selectDepartmentsStatus, selectDepartmentsError } from './departmentsSlice'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import './styles.css'
 
 
@@ -26,7 +26,7 @@ const DepartmentsNav = () => {
    <li 
     key={department.id}
     className="department-list-item">
-      <Link to={`/${department.id}`}>{department.name}</Link>
+      <NavLink to={`/${department.id}`}>{department.name}</NavLink>
       </li>
       )
   })

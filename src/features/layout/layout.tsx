@@ -1,6 +1,8 @@
 import React from 'react'
 import Footer from '../footer/footer'
 import Header from '../header/header'
+import './styles.css'
+
 
 interface LayoutProps {
     children: React.ReactNode;
@@ -9,11 +11,13 @@ interface LayoutProps {
 
 const Layout = ({ children }: LayoutProps) => {
   return (
-    <>
+    <div className='App-wrapper'>
       <Header />
+      <div className="content">
       {children}
+      </div>
       <Footer />
-    </>
+    </div>
   )
 }
 
