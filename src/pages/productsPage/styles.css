@@ -1,0 +1,37 @@
+.products-container{
+    /* display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 20px; */
+    padding-top: 50px;
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.product {
+width: 400px;
+}
+.product p {
+    padding: 5px;
+}
+
+.product:hover {
+    box-shadow: -7px 10px 20px 3px #d4d3d3;
+    border-radius: 8px;
+}
+
+.product img {
+    vertical-align: middle;
+    max-width: 100%;
+    min-height: 400px;
+}
+
+.product a {
+    text-decoration: none;
+    color: black;
+}
+.product-title{
+    font-weight: bold;
+    text-transform: uppercase;
+}
