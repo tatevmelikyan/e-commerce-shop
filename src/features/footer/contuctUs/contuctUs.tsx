@@ -1,15 +1,15 @@
 import React from 'react'
 
-const ContuctUs:React.FC = () => {
+const ContuctUs: React.FC = () => {
   return (
-     <ul className='footer-column'>
+    <ul className='footer-column'>
       <li className='footer-heading'>Contact Us</li>
       <li>+ (374) 74 374 374</li>
       <li>Mon - Fri: 8AM - midnight</li>
       <li>Sat: 8AM - 8PM</li>
       <li>Sun: 9AM - 6PM</li>
       <li>All times Eastern</li>
-     </ul>
+    </ul>
   )
 }
 
