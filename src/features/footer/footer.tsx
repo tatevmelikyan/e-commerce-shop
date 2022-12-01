@@ -1,6 +1,6 @@
 import React from 'react'
 import './styles.css'
-import ContuctUs from './contuctUs/contuctUs'
+import ContactUs from './contuctUs/contuctUs'
 import Follows from './follows/follows'
 import { Link } from 'react-router-dom'
 const Footer: React.FC = () => {
@@ -10,13 +10,13 @@ const Footer: React.FC = () => {
         <ul className='footer-column'>
           <li className='footer-heading'>About US</li>
           <li>
-          <Link to='/about' >Our Story </Link>
+            <Link to='/about'>Our Story </Link>
           </li>
           <li>
             <Link to='/location'>Location</Link>
           </li>
         </ul>
-        <ContuctUs />
+        <ContactUs />
         <Follows />
         <div className='footer-bottom'>
           <p>© 2022 ALIAS, Inc. All Rights Reserved.</p>

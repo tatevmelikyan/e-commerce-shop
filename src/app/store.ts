@@ -6,12 +6,10 @@ export const store = configureStore({
   reducer: {
     departments: departmentsReducer,
     subDepartments: subDepartmentsReducer,
-    products: categoriesReducer
+    products: categoriesReducer,
   },
 })
-
 
 export type RootState = ReturnType<typeof store.getState>
 
 export type AppDispatch = typeof store.dispatch
-

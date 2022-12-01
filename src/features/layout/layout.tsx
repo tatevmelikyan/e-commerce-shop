@@ -3,19 +3,15 @@ import Footer from '../footer/footer'
 import Header from '../header/header'
 import './styles.css'
 
-
 interface LayoutProps {
-    children: React.ReactNode;
+  children: React.ReactNode
 }
-
 
 const Layout = ({ children }: LayoutProps) => {
   return (
     <div className='App-wrapper'>
       <Header />
-      <div className="content">
-      {children}
-      </div>
+      <div className='content'>{children}</div>
       <Footer />
     </div>
   )

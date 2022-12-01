@@ -4,8 +4,14 @@
     top: 0;
     z-index: 1000;
     width: 100%;
+    backdrop-filter: blur(32px);
+    transition: 1s;
+}
+
+.sticky-header:hover {
     background-color: white;
 }
+
 
 .brand-logo a {
     color: black;
