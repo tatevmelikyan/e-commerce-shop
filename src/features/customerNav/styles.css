@@ -22,3 +22,13 @@
 .customer-nav a {
 color: black;
 }
+
+
+.cart-link {
+    position: relative;
+}
+
+.cart-dropdown  {
+   position: absolute;
+   background-color: white;
+}
