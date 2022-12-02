@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 import departmentsReducer from '../features/departmentsNav/departmentsSlice'
-import subDepartmentsReducer from '../pages/departmentPage/departmentPageSlice'
-import categoriesReducer from '../pages/productsPage/productsPageSlice'
+import subDepartmentsReducer from '../pages/department/departmentPageSlice'
+import categoriesReducer from '../pages/products/productsPageSlice'
 export const store = configureStore({
   reducer: {
     departments: departmentsReducer,

@@ -1,0 +1,24 @@
+.customer-nav {
+    width: 130px;
+    text-align: center;
+}
+
+.customer-nav ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+}
+
+.customer-nav ul li {
+    font-size: 20px;
+}
+
+.customer-nav ul li:last-child {
+    font-size: 25px;
+}
+
+.customer-nav a {
+color: black;
+}

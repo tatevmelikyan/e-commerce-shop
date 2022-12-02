@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
-import LoadingPage from '../../pages/loadingPage/loadingPage'
+import LoadingPage from '../../pages/loading/loadingPage'
 import {
   selectAllDepartments,
   fetchDepartments,
@@ -43,7 +43,7 @@ const DepartmentsNav = () => {
     content = <div>{error}</div>
   }
 
-  return <div className='departments-nav'>{content}</div>
+  return <nav className='departments-nav'>{content}</nav>
 }
 
 export default DepartmentsNav
