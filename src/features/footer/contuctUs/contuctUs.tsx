@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ContuctUs: React.FC = () => {
+const ContactUs: React.FC = () => {
   return (
     <ul className='footer-column'>
       <li className='footer-heading'>Contact Us</li>
@@ -13,4 +13,4 @@ const ContuctUs: React.FC = () => {
   )
 }
 
-export default ContuctUs
+export default ContactUs

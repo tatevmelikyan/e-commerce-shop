@@ -1,12 +1,41 @@
-.brand-logo a{
+.sticky-header {
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    backdrop-filter: blur(32px);
+    transition: 1s;
+}
+
+.sticky-header:hover {
+    background-color: white;
+}
+
+
+.brand-logo a {
     color: black;
     text-decoration: none;
-    font-size: xx-large;
+    font-size: 40px;
     font-family: emoji;
     letter-spacing: 10px;
 }
 
-.brand-logo {
+
+.logo-nav {
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    padding-top: 10px;
+}
+
+
+.brand-logo {
+    align-self: center;
+}
+
+
+.customer-nav-container {
+   align-self: flex-end;
+   margin-right: 50px;
 }
