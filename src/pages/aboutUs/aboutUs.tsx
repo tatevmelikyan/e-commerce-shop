@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const AboutUs = () => {
+const AboutUs = () => {
   return (
     <div>
       This shop was creare by the group of students that were trying to do a project for getting a
@@ -8,3 +8,5 @@ export const AboutUs = () => {
     </div>
   )
 }
+
+export default AboutUs
