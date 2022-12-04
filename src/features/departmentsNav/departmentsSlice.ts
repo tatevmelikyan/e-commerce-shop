@@ -1,12 +1,12 @@
 import { RootState } from '../../app/store'
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import axios from 'axios'
 import { getAllDepartments } from '../../firebase/queries'
 
 interface DepartmentsState {
   departments: {
     id: string
     name: string
+    imageUrl: string
   }[]
   status: 'idle' | 'loading' | 'succeeded' | 'failed'
   error: null | undefined | string
@@ -18,13 +18,10 @@ const initialState = {
   error: null,
 } as DepartmentsState
 
-const DEPARTMENTS_URL = 'http://localhost:4000/departments'
-
-export const fetchDepartments = createAsyncThunk('departments/fetchAllDepartments', async () => {
-  getAllDepartments()
-  const response = await getAllDepartments()
-  return response
-})
+export const fetchDepartments = createAsyncThunk(
+  'departments/fetchAllDepartments',
+  getAllDepartments,
+)
 
 const departmentsSlice = createSlice({
   name: 'departments',
@@ -51,3 +48,5 @@ export default departmentsSlice.reducer
 export const selectAllDepartments = (state: RootState) => state.departments.departments
 export const selectDepartmentsStatus = (state: RootState) => state.departments.status
 export const selectDepartmentsError = (state: RootState) => state.departments.error
+export const selectDepartment = (state: RootState, id: string) =>
+  state.departments.departments.find((department) => department.id === id)

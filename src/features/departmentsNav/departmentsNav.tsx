@@ -18,10 +18,8 @@ const DepartmentsNav = () => {
   const error = useAppSelector(selectDepartmentsError)
 
   useEffect(() => {
-    if (departmentsStatus === 'idle') {
-      dispatch(fetchDepartments())
-    }
-  }, [departmentsStatus, dispatch])
+    dispatch(fetchDepartments())
+  }, [])
 
   const renderedDepartments = departments.map((department) => {
     return (

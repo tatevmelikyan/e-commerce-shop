@@ -1,40 +1,46 @@
+import './styles.css'
 import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import {
-  fetchSubDepartments,
-  selectSubDepartmentsByDepartment,
-  selectSubDepartmentsError,
-  selectSubDepartmentsStatus,
-} from './departmentPageSlice'
+  fetchSubdepartments,
+  selectSubdepartmentsByDepartment,
+  selectSubdepartmentsError,
+  selectSubdepartmentsStatus,
+} from './subdepartmentsSlice'
 
-import { Link } from 'react-router-dom'
-import './styles.css'
+import { selectDepartment } from '../../features/departmentsNav/departmentsSlice'
 
 const DepartmentPage: React.FC = () => {
   const dispatch = useAppDispatch()
 
   const { departmentId } = useParams()
 
-  const subDepartments = useAppSelector(selectSubDepartmentsByDepartment)
-  const subDepartmentsStatus = useAppSelector(selectSubDepartmentsStatus)
-  const error = useAppSelector(selectSubDepartmentsError)
+  const subdepartments = useAppSelector(selectSubdepartmentsByDepartment)
+  const subdepartmentsStatus = useAppSelector(selectSubdepartmentsStatus)
+  const error = useAppSelector(selectSubdepartmentsError)
+  const department = useAppSelector((state) => {
+    if (departmentId) {
+      return selectDepartment(state, departmentId)
+    }
+  })
 
   useEffect(() => {
-    if (subDepartmentsStatus === 'idle' || subDepartmentsStatus === 'succeeded') {
-      dispatch(fetchSubDepartments(departmentId as string))
+    if (departmentId) {
+      dispatch(fetchSubdepartments(departmentId))
     }
-  }, [departmentId, dispatch])
+  }, [departmentId])
 
-  const renderedSubDepartments = subDepartments.map((subDepartment) => {
+  const renderedSubdepartments = subdepartments.map((subdepartment) => {
     return (
       <div
-        key={subDepartment.id}
+        key={subdepartment.id}
         className='subDepartment'
       >
-        <h2 className='subDepartment-name'>{subDepartment.name}</h2>
+        <h2 className='subdepartment-name'>{subdepartment.name}</h2>
         <div className='categories-container'>
-          {subDepartment.categories.map((category) => {
+          {subdepartment.categories.map((category) => {
             return (
               <div
                 key={category.id}
@@ -57,11 +63,18 @@ const DepartmentPage: React.FC = () => {
   })
 
   return (
-    <div className='department-page'>
-       <h2 className='department-name'>{departmentId}</h2>
-       <div className='content'>
-       {renderedSubDepartments}
-     </div>
+    <div className='shop-main-container'>
+      <div className='department-page'>
+        <div className='department-name-container'>
+          <h2 className='department-name'>{department?.name}</h2>
+        </div>
+        <img
+          className='department-image'
+          src={department?.imageUrl}
+          alt={department?.name}
+        />
+        <div className='content'>{renderedSubdepartments}</div>
+      </div>
     </div>
   )
 }
