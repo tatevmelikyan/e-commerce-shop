@@ -3,12 +3,12 @@ import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
-import {
-  fetchSubdepartments,
-  selectSubdepartmentsByDepartment,
-  selectSubdepartmentsError,
-  selectSubdepartmentsStatus,
-} from './subdepartmentsSlice'
+  import {
+    fetchSubdepartments,
+    selectSubdepartmentsByDepartment,
+    selectSubdepartmentsError,
+    selectSubdepartmentsStatus,
+  } from './subdepartmentsSlice'
 
 import { selectDepartment } from '../../features/departmentsNav/departmentsSlice'
 
@@ -80,3 +80,4 @@ const DepartmentPage: React.FC = () => {
 }
 
 export default DepartmentPage
+
