@@ -19,14 +19,13 @@ const ProductsPage = () => {
 
   return (
     <div className='products-container'>
-      {products.map((product) => {
+      {products.map((product) => {        
         return (
           <div
             key={product.id}
             className='product'
           >
             <img
-              key={product.imageUrls[0]}
               src={product.imageUrls[0]}
             />
             <p className='product-title'>{product.title}</p>
