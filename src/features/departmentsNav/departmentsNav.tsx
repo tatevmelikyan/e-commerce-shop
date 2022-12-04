@@ -57,6 +57,16 @@ const DepartmentsNav = () => {
   function ofMouse(){
     setHover(false)
   }
+
+  type nav = {
+    departmentId?:string;
+    id?:string;
+  }
+
+  function navigateFunc(subdep:nav,category:nav){
+    navigate(`/${subdep.departmentId}/${category.id}`)
+    ofMouse()
+  }
   
   const renderedDepartments = departments.map((department) => {
   
@@ -100,7 +110,7 @@ const DepartmentsNav = () => {
             >
          <b>{subdep.name}</b>
           {subdep.categories?.map(category=><div key={category.id}>
-            <p onClick={()=>navigate(`/${subdep.departmentId}/${category.id}`)}>{category.name}</p>
+            <p onClick={()=>navigateFunc(subdep,category)}>{category.name}</p>
           </div>)}
           </div>)
       }
