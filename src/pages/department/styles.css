@@ -2,7 +2,7 @@
     width: 85%;
 }
 
-.subDepartment-name {
+.subdepartment-name {
     font-weight: 400;
     color: #010101;
     margin-bottom: 1.4375rem;
@@ -20,6 +20,7 @@
 
 
 .content {
+    margin-top: 100px;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -27,10 +28,33 @@
     gap: 100px;
 }
 
+
+.shop-main-container {
+    display: flex;
+    justify-content: center;
+}
+
+.department-page {
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.department-page .department-name-container {
+    display: flex;
+    width: 100%;
+}
+
+
 .department-page .department-name {
- padding: 30px 40px;
- text-transform: capitalize;
- padding-left: 7.5%;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+
+.department-page .department-image {
+    width: 100%;
 }
 
 .category:hover .category-image {
@@ -65,6 +89,6 @@
     transition: .2s;
 }
 
-.category:hover a{
+.category:hover a {
     text-decoration: underline;
 }

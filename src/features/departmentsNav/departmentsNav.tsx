@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
-import LoadingPage from '../../pages/department/loading/loadingPage'
+import LoadingPage from '../../pages/loading/loadingPage'
 import {
   selectAllDepartments,
   fetchDepartments,
@@ -38,10 +38,8 @@ const DepartmentsNav = () => {
   const [hover,setHover] = useState(false)
 
   useEffect(() => {
-    if (departmentsStatus === 'idle') {
-      dispatch(fetchDepartments())
-    }
-  }, [departmentsStatus, dispatch])
+    dispatch(fetchDepartments())
+  }, [])
 
 
    function onMouse(e:string){
