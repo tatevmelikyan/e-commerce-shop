@@ -10,14 +10,13 @@ interface Department {
 }
 
 // Gets all Departments from firestore database.
-const getAllDepartments = async (setState: React.Dispatch<React.SetStateAction<Department[]>>) => {
+const getAllDepartments = async () => {
   const docs = await getDocs(collection(db, 'departments'))
+  const departments: Department[] = []
   docs.forEach((doc) => {
-    setState((prev) => [
-      ...prev,
-      { name: doc.data().name, id: doc.id, imageUrl: doc.data().imageUrl },
-    ])
+    departments.push({ name: doc.data().name, id: doc.id, imageUrl: doc.data().imageUrl })
   })
+  return departments
 }
 
 // Gets all categories that have their subDepartmentId field set to provided subdepartment reference.

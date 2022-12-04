@@ -1,6 +1,7 @@
 import { RootState } from '../../app/store'
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
+import { getAllDepartments } from '../../firebase/queries'
 
 interface DepartmentsState {
   departments: {
@@ -20,8 +21,9 @@ const initialState = {
 const DEPARTMENTS_URL = 'http://localhost:4000/departments'
 
 export const fetchDepartments = createAsyncThunk('departments/fetchAllDepartments', async () => {
-  const response = await axios.get(DEPARTMENTS_URL)
-  return response.data
+  getAllDepartments()
+  const response = await getAllDepartments()
+  return response
 })
 
 const departmentsSlice = createSlice({
