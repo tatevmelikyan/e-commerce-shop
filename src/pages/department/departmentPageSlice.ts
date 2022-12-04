@@ -56,7 +56,6 @@ const subDepartmentsSlice = createSlice({
 
 export default subDepartmentsSlice.reducer
 
-export const selectSubDepartmentsByDepartment = (state: RootState) =>
-  state.subDepartments.subDepartments
-export const selectSubDepartmentsStatus = (state: RootState) => state.subDepartments.status
-export const selectSubDepartmentsError = (state: RootState) => state.subDepartments.error
+export const selectSubDepartmentsByDepartment = (state: RootState) =>state.subDepartments.subDepartments;
+export const selectSubDepartmentsStatus = (state: RootState) => state.subDepartments.status;
+export const selectSubDepartmentsError = (state: RootState) => state.subDepartments.error;

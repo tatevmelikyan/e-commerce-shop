@@ -11,10 +11,14 @@ import {
 import { Link } from 'react-router-dom'
 import './styles.css'
 
+
+export let department:string|undefined
+
 const DepartmentPage: React.FC = () => {
   const dispatch = useAppDispatch()
 
   const { departmentId } = useParams()
+  department = departmentId
 
   const subDepartments = useAppSelector(selectSubDepartmentsByDepartment)
   const subDepartmentsStatus = useAppSelector(selectSubDepartmentsStatus)
@@ -26,7 +30,8 @@ const DepartmentPage: React.FC = () => {
     }
   }, [departmentId, dispatch])
 
-  const renderedSubDepartments = subDepartments.map((subDepartment) => {
+  const renderedSubDepartments = subDepartments.map((subDepartment) => {  
+      
     return (
       <div
         key={subDepartment.id}
@@ -34,7 +39,7 @@ const DepartmentPage: React.FC = () => {
       >
         <h2 className='subDepartment-name'>{subDepartment.name}</h2>
         <div className='categories-container'>
-          {subDepartment.categories.map((category) => {
+          {subDepartment.categories.map((category) => {            
             return (
               <div
                 key={category.id}
@@ -67,3 +72,4 @@ const DepartmentPage: React.FC = () => {
 }
 
 export default DepartmentPage
+

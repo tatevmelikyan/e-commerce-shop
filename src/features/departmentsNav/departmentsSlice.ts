@@ -20,7 +20,8 @@ const initialState = {
 const DEPARTMENTS_URL = 'http://localhost:4000/departments'
 
 export const fetchDepartments = createAsyncThunk('departments/fetchAllDepartments', async () => {
-  const response = await axios.get(DEPARTMENTS_URL)
+  const response = await axios.get(DEPARTMENTS_URL)  
+  
   return response.data
 })
 
