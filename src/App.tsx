@@ -11,6 +11,7 @@ import LoginPage from './pages/login/loginPage';
 import AdminPage from './pages/admin/adminPage';
 import FavoritesPage from './pages/favorites/favoritesPage';
 import ShoppingCartPage from './pages/cart/shoppingCartPage';
+import ProductPage from './pages/productPage/productPage';
 
 
 
@@ -29,6 +30,7 @@ function App() {
         <Route path='/account/admin' element={<AdminPage />} />
         <Route path='/favorites' element={<FavoritesPage />}/>
         <Route path='/shoppingcart' element={<ShoppingCartPage />}/>
+        <Route path='/products/:productId' element={<ProductPage/>}/>
       </Routes>
     </Layout>
     </BrowserRouter>

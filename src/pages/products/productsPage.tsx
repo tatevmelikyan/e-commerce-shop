@@ -1,29 +1,34 @@
 import { fetchProducts } from './productsPageSlice'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
-import { useParams } from 'react-router'
+import { useNavigate, useParams } from 'react-router'
 import { useEffect } from 'react'
 
 import './styles.css'
-const ProductsPage = () => {
+const ProductsPage:React.FC = () => {
   const { categoryId } = useParams()
+  const navigate = useNavigate()
   const dispatch = useAppDispatch()
   const products = useAppSelector((state) => state.products.products)
   const productsStatus = useAppSelector((state) => state.products.status)
-  const eror = useAppSelector((state) => state.products.error)
+  const error = useAppSelector((state) => state.products.error)
 
   useEffect(() => {
-    if (productsStatus === 'idle' || productsStatus === 'succeeded') {
+    
       dispatch(fetchProducts(categoryId as string))
-    }
-  }, [productsStatus, dispatch, categoryId])
+    
+  }, [ dispatch, categoryId])  
+
+  
 
   return (
     <div className='products-container'>
-      {products.map((product) => {        
+      {products.map((product) => {  
+        console.log(product)      
         return (
           <div
             key={product.id}
             className='product'
+            onClick={()=> navigate(`/products/${product.id}`)}
           >
             <img
               src={product.imageUrls[0]}
