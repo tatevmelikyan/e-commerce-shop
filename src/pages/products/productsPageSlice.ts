@@ -1,26 +1,18 @@
+import { IProduct } from './../productPage/productPage';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import axios from 'axios'
+import { getProductsByCategory } from '../../firebase/queries'
+import { PayloadAction } from '@reduxjs/toolkit';
 
-export const fetchProducts = createAsyncThunk(
+export const fetchProducts = createAsyncThunk<IProduct[],string>(
   'products/fetchProducts',
-  async (categoryId: string) => {
-    const response = await axios.get(`http://localhost:4000/products?categoryId=${categoryId}`)
-    
-    return response.data
+  async (categoryId) => {
+    const response = await getProductsByCategory(categoryId)    
+    return response
   },
 )
 
 export interface ProductsState {
-  products: {
-    id: string
-    title: string
-    price: number
-    variations: []
-    imageUrls: string[]
-    categoryId: string
-    description: string
-    details: string
-  }[]
+  products: IProduct[]
   status: 'idle' | 'loading' | 'succeeded' | 'failed'
   error: null | undefined | string
 }
@@ -31,7 +23,7 @@ const initialState: ProductsState = {
   error: null,
 }
 
-const subProductSlice = createSlice({
+const productsSlice = createSlice({
   name: 'products',
   initialState,
   reducers: {},
@@ -51,4 +43,4 @@ const subProductSlice = createSlice({
   },
 })
 
-export default subProductSlice.reducer
+export default productsSlice.reducer

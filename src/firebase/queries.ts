@@ -1,3 +1,4 @@
+import { IProduct } from './../pages/productPage/productPage';
 import { collection, doc, getDocs, query, where,getDoc } from 'firebase/firestore'
 import { db } from './config'
 
@@ -55,16 +56,35 @@ const getSubdepartmentsWithCategoriesByDepartment = async (departmentId: string)
   return Promise.all(subdepartments)
 }
 
+
+
+
+
 const getProductById = async (productId:string) => {
   const productRef = doc(db,'products',productId)
   const productSnap = await getDoc(productRef)
   return productSnap.data()
 }
 
-const getProductsByCategory = async (categoryRef:DocumentReference) => {
+const getProductsByCategory = async (categoryId:string) => {
+  const categoryRef = doc(db,'categories',categoryId)
   const qProducts = query(collection(db,'products'), where('categoryId', '==' ,categoryRef)) 
   const qSnapshot = await getDocs(qProducts)
-  return qSnapshot.docs
+   const products:IProduct[] = qSnapshot.docs.map(snap=>{
+    return {
+      id:snap.id,
+      title:snap.data().title,
+      price:snap.data().price,
+      description:snap.data().description,
+      details:snap.data().details,
+      imageUrls:snap.data().imageUrls,
+      inStock:snap.data().inStock,
+      categoryId,
+    }
+  })
+  return products
+
+
 }
 
 export { getAllDepartments, getSubdepartmentsWithCategoriesByDepartment,getProductById,getProductsByCategory }

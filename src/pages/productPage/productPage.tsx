@@ -6,7 +6,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 import { getProductById } from '../../firebase/queries';
 
-interface IProduct {
+export interface IProduct {
     categoryId:string;
     description:string;
     details:string[];
