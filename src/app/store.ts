@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import departmentsReducer from '../features/departmentsNav/departmentsSlice'
 import subdepartmentsReducer from '../pages/department/subdepartmentsSlice'
 import categoriesReducer from '../pages/products/productsPageSlice'
-import ProductPageReducer from '../pages/productPage/productPageSlice'
+
 
 
 export const store = configureStore({
@@ -10,7 +10,6 @@ export const store = configureStore({
     departments: departmentsReducer,
     subdepartments: subdepartmentsReducer,
     products: categoriesReducer,
-    product: ProductPageReducer,
   },
 })
 

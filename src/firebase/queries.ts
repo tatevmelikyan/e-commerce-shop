@@ -1,4 +1,4 @@
-import { collection, doc, getDocs, query, where } from 'firebase/firestore'
+import { collection, doc, getDocs, query, where,getDoc } from 'firebase/firestore'
 import { db } from './config'
 
 import { DocumentReference } from '@firebase/firestore'
@@ -55,4 +55,16 @@ const getSubdepartmentsWithCategoriesByDepartment = async (departmentId: string)
   return Promise.all(subdepartments)
 }
 
-export { getAllDepartments, getSubdepartmentsWithCategoriesByDepartment }
+const getProductById = async (productId:string) => {
+  const productRef = doc(db,'products',productId)
+  const productSnap = await getDoc(productRef)
+  return productSnap.data()
+}
+
+const getProductsByCategory = async (categoryRef:DocumentReference) => {
+  const qProducts = query(collection(db,'products'), where('categoryId', '==' ,categoryRef)) 
+  const qSnapshot = await getDocs(qProducts)
+  return qSnapshot.docs
+}
+
+export { getAllDepartments, getSubdepartmentsWithCategoriesByDepartment,getProductById,getProductsByCategory }

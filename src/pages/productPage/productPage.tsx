@@ -1,53 +1,32 @@
-// import { useEffect } from 'react';
-// import { useParams } from 'react-router'
-// import { useAppDispatch, useAppSelector } from '../../app/hooks';
-// import { fetchProduct } from './productPageSlice';
+
 import './product.css'
-
-// const ProductPage: React.FC = () => {
-//     const {productId} = useParams()
-//   const dispatch = useAppDispatch()
-//   const product = useAppSelector((state) => state.product.product)
-//   const productsStatus = useAppSelector((state) => state.products.status)
-// console.log(product, 'prod');
-
-//   useEffect(() => {
-    
-//       dispatch(fetchProduct(productId as string))
-    
-//   }, [])
-  
-//   return (
-//     <div>
-//                 <img src={product.imageUrls[0]} alt="" />
-//             </div>)
-// }
-
-// export default ProductPage
-
 
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
+import { getProductById } from '../../firebase/queries';
 
 interface IProduct {
     categoryId:string;
     description:string;
-    details:string;
+    details:string[];
     id:string;
     imageUrls:string[];
-    price:{tag: string, numbers: number[]}
+    price:number;
     title:string;
+    inStock:number;
 }
 
 
-const productPage:React.FC = () => {
+const ProductPage:React.FC = () => {
     const{productId} = useParams()
     const [product,setProduct] = useState<IProduct>()
    useEffect( ()=>{
     async function fetch(){
-        const response =await axios.get(`http://localhost:4000/products/${productId}`)
-        setProduct(response.data)
+        if(productId){
+            const response =await getProductById(productId)
+            setProduct(response?.data)
+        }
     }
     fetch()
    },[])
@@ -59,4 +38,4 @@ const productPage:React.FC = () => {
   )
 }
 
-export default productPage
+export default ProductPage

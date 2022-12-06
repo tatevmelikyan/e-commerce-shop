@@ -14,6 +14,7 @@ import LoginPage from './pages/login/loginPage';
 import AdminPage from './pages/admin/adminPage';
 import FavoritesPage from './pages/favorites/favoritesPage';
 import ShoppingCartPage from './pages/cart/shoppingCartPage';
+import ProductPage from './pages/productPage/productPage';
 
 
 
