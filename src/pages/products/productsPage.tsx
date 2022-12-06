@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { useNavigate, useParams } from 'react-router'
 import { useEffect, useState } from 'react'
 import {ImHeart} from 'react-icons/im'
+import { sortByPrice } from './productsPageSlice'
 
 import './styles.css'
 const ProductsPage:React.FC = () => {
@@ -14,46 +15,33 @@ const ProductsPage:React.FC = () => {
   const error = useAppSelector((state) => state.products.error)
 
   const options = [
-    {value: 'Featured', text: 'Featured'},
-    {value: 'Price,low to high', text: 'Price,low to high'},
+    {value: categoryId, text: 'Featured'},
+    {value: 'Price, low to high', text: 'Price, low to high'},
     {value: 'Price, high to low', text: 'Price, high to low'},
   ];
 
 
-  type SortOrder = 'asc' | 'desc'
-  const  [sortOrder,setSortOrder] = useState<SortOrder>()
+  const  [sortOrder,setSortOrder] = useState()
 
   const [selected, setSelected] = useState(options[0].value);
 
-  // useEffect(() => {
-  //   if(selected==='Price,low to high'){
-  //     setSortOrder('asc')
-  //     console.log('in if');
-      
-  //   }else if(selected==='Price, high to low'){
-  //     setSortOrder('desc')
-  //   }
-  // }, [ selected, dispatch])  
-
   const handleChange = (event:React.ChangeEvent<HTMLSelectElement>) => {
+
     setSelected(event.target.value);
+   
   };
 
-
-  
+  useEffect(()=>{
+    dispatch(sortByPrice(selected))
+  },[selected])
 
   useEffect(()=>{
-  
+
       dispatch(fetchProducts({categoryId} as IPayload))
 
   },[dispatch,categoryId])
 
-console.log(selected, 'selected', '');
-
-
-
-  
-
+ 
 
   return (
     <div className='products-container'>
@@ -71,7 +59,7 @@ console.log(selected, 'selected', '');
         </select>
         </label>
         </div>
-      {products.map((product) => { 
+      {products?.map((product) => { 
         return (
           <div
             key={product.id}

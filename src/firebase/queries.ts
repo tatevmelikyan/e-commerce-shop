@@ -62,34 +62,6 @@ const getProductById = async (productId:string) => {
   return productSnap.data()
 }
 
-// const getProductsByCategory = async (categoryId:string,order?:OrderByDirection|undefined) => {
-//   const categoryRef = doc(db,'categories',categoryId)
-//   let qProducts: Query<DocumentData>;
-   
- 
-//   if(order){
-//     console.log(order, 'order');
-    
-//     qProducts = query(collection(db,'products'), where('categoryId', '==' ,categoryRef), orderBy('price','desc'))
-//   }else{
-//     qProducts = query(collection(db,'products'), where('categoryId', '==' ,categoryRef))
-//   }
-//   const qSnapshot = await getDocs(qProducts)
-//   const products:IProduct[] = qSnapshot.docs.map(snap=>{
-//     return {
-//       id:snap.id,
-//       title:snap.data().title,
-//       price:snap.data().price,
-//       description:snap.data().description,
-//       details:snap.data().details,
-//       imageUrls:snap.data().imageUrls,
-//       inStock:snap.data().inStock,
-//       categoryId,
-//     }
-//   })
-//   return products
-  
-// }
 
 let category: DocumentReference<DocumentData> 
 const getProductsByCategory = async (categoryId:string) => {

@@ -1,22 +1,12 @@
-import { OrderByDirection } from '@firebase/firestore';
+import { AppDispatch } from './../../app/store';
+import { useAppDispatch } from './../../app/hooks';
 import { IProduct } from './../productPage/productPage';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { getProductsByCategory } from '../../firebase/queries'
-import { PayloadAction } from '@reduxjs/toolkit';
 
 export interface IPayload {
   categoryId: string;
-  // sortOrder: OrderByDirection | undefined
 }
-
-
-// export const fetchSortedProducts = createAsyncThunk(
-//   'products/fetchSortedProducts',
-//   async (sortOrder: string) => {
-//     const response = await getSortedProductsByCategory(sortOrder)
-//     return response
-//   }
-// )
 
 export const fetchProducts = createAsyncThunk(
   'products/fetchProducts',
@@ -41,7 +31,17 @@ const initialState: ProductsState = {
 const productsSlice = createSlice({
   name: 'products',
   initialState,
-  reducers: {},
+  reducers: {
+    sortByPrice(state,action){
+      if(action.payload==='Price,low to high'){
+        state.products = state.products.sort((a,b)=>a.price-b.price)
+      }else if(action.payload==='Price, high to low'){
+        state.products = state.products.sort((a,b) => b.price - a.price)
+      }else{
+        state.products = state.products.sort((a,b)=>(a.id>b.id)?1:((b.id>a.id)?-1:0))
+      }
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchProducts.pending, (state) => {
@@ -59,3 +59,4 @@ const productsSlice = createSlice({
 })
 
 export default productsSlice.reducer
+export const {sortByPrice} = productsSlice.actions

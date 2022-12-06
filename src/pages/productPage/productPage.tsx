@@ -21,6 +21,7 @@ export interface IProduct {
 const ProductPage:React.FC = () => {
     const{productId} = useParams()
     const [product,setProduct] = useState<IProduct>()
+
    useEffect( ()=>{
     async function fetch(){
         if(productId){
@@ -29,7 +30,7 @@ const ProductPage:React.FC = () => {
         }
     }
     fetch()
-   },[])
+   },[productId])
   return (
     <div >
         <h2>{product?.title}</h2>

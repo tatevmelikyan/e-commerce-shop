@@ -49,6 +49,7 @@
 
 #sort{
     padding: 10px;
+    padding-right: 30px;
     gap: 10px;
     border: 1px solid #e6e3de;
     cursor: pointer;
