@@ -55,4 +55,4 @@ const getSubdepartmentsWithCategoriesByDepartment = async (departmentId: string)
   return Promise.all(subdepartments)
 }
 
-export { getAllDepartments, getSubdepartmentsWithCategoriesByDepartment }
+export { getAllDepartments, getSubdepartmentsWithCategoriesByDepartment, }

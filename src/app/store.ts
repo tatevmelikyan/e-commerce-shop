@@ -3,14 +3,19 @@ import departmentsReducer from '../features/departmentsNav/departmentsSlice'
 import subdepartmentsReducer from '../pages/department/subdepartmentsSlice'
 import categoriesReducer from '../pages/products/productsPageSlice'
 
+import userReducer  from  '../pages/login/userSlices'
 export const store = configureStore({
   reducer: {
     departments: departmentsReducer,
     subdepartments: subdepartmentsReducer,
     products: categoriesReducer,
+     user:userReducer
   }
 })
 
 export type RootState = ReturnType<typeof store.getState>
-
 export type AppDispatch = typeof store.dispatch
+
+
+
+
