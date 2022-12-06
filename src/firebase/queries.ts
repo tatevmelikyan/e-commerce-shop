@@ -1,8 +1,8 @@
 import { IProduct } from './../pages/productPage/productPage';
-import { collection, doc, getDocs, query, where,getDoc } from 'firebase/firestore'
+import { collection, doc, getDocs, query, where,getDoc,orderBy } from 'firebase/firestore'
 import { db } from './config'
 
-import { DocumentReference } from '@firebase/firestore'
+import { DocumentReference,Query,DocumentData,OrderByDirection } from '@firebase/firestore'
 
 interface IDepartment {
   id: string
@@ -56,21 +56,49 @@ const getSubdepartmentsWithCategoriesByDepartment = async (departmentId: string)
   return Promise.all(subdepartments)
 }
 
-
-
-
-
 const getProductById = async (productId:string) => {
   const productRef = doc(db,'products',productId)
   const productSnap = await getDoc(productRef)
   return productSnap.data()
 }
 
+// const getProductsByCategory = async (categoryId:string,order?:OrderByDirection|undefined) => {
+//   const categoryRef = doc(db,'categories',categoryId)
+//   let qProducts: Query<DocumentData>;
+   
+ 
+//   if(order){
+//     console.log(order, 'order');
+    
+//     qProducts = query(collection(db,'products'), where('categoryId', '==' ,categoryRef), orderBy('price','desc'))
+//   }else{
+//     qProducts = query(collection(db,'products'), where('categoryId', '==' ,categoryRef))
+//   }
+//   const qSnapshot = await getDocs(qProducts)
+//   const products:IProduct[] = qSnapshot.docs.map(snap=>{
+//     return {
+//       id:snap.id,
+//       title:snap.data().title,
+//       price:snap.data().price,
+//       description:snap.data().description,
+//       details:snap.data().details,
+//       imageUrls:snap.data().imageUrls,
+//       inStock:snap.data().inStock,
+//       categoryId,
+//     }
+//   })
+//   return products
+  
+// }
+
+let category: DocumentReference<DocumentData> 
 const getProductsByCategory = async (categoryId:string) => {
   const categoryRef = doc(db,'categories',categoryId)
-  const qProducts = query(collection(db,'products'), where('categoryId', '==' ,categoryRef)) 
+  category = categoryRef
+ const qProducts = query(collection(db,'products'), where('categoryId', '==' ,categoryRef))
+
   const qSnapshot = await getDocs(qProducts)
-   const products:IProduct[] = qSnapshot.docs.map(snap=>{
+  const products:IProduct[] = qSnapshot.docs.map(snap=>{
     return {
       id:snap.id,
       title:snap.data().title,
@@ -83,8 +111,35 @@ const getProductsByCategory = async (categoryId:string) => {
     }
   })
   return products
-
-
 }
 
-export { getAllDepartments, getSubdepartmentsWithCategoriesByDepartment,getProductById,getProductsByCategory }
+
+// const getSortedProductsByCategory = async(sortOrder: any) => {
+// const productsRef = collection(db, 'products')
+// const q = query(productsRef, where('categoryId', '==', category), orderBy('price',sortOrder))
+
+
+// const qSnapshot = await getDocs(q)
+// console.log(qSnapshot,'kkkkkkkkkkkkkkkk');
+
+//   const products:IProduct[] = qSnapshot.docs.map(snap=>{
+//     console.log('map');
+    
+//     return {
+//       id:snap.id,
+//       title:snap.data().title,
+//       price:snap.data().price,
+//       description:snap.data().description,
+//       details:snap.data().details,
+//       imageUrls:snap.data().imageUrls,
+//       inStock:snap.data().inStock,
+//       categoryId: category.id,
+//     }
+//   })
+//   console.log(products, 'order products  ::::');
+
+//   return products
+// }
+
+
+export { getAllDepartments, getSubdepartmentsWithCategoriesByDepartment,getProductById,getProductsByCategory, }

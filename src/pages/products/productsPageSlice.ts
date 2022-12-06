@@ -1,11 +1,26 @@
+import { OrderByDirection } from '@firebase/firestore';
 import { IProduct } from './../productPage/productPage';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { getProductsByCategory } from '../../firebase/queries'
 import { PayloadAction } from '@reduxjs/toolkit';
 
-export const fetchProducts = createAsyncThunk<IProduct[],string>(
+export interface IPayload {
+  categoryId: string;
+  // sortOrder: OrderByDirection | undefined
+}
+
+
+// export const fetchSortedProducts = createAsyncThunk(
+//   'products/fetchSortedProducts',
+//   async (sortOrder: string) => {
+//     const response = await getSortedProductsByCategory(sortOrder)
+//     return response
+//   }
+// )
+
+export const fetchProducts = createAsyncThunk(
   'products/fetchProducts',
-  async (categoryId) => {
+  async ({categoryId}: IPayload) => {
     const response = await getProductsByCategory(categoryId)    
     return response
   },

@@ -1,7 +1,7 @@
-import { fetchProducts } from './productsPageSlice'
+import { fetchProducts, IPayload } from './productsPageSlice'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { useNavigate, useParams } from 'react-router'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import {ImHeart} from 'react-icons/im'
 
 import './styles.css'
@@ -13,24 +13,61 @@ const ProductsPage:React.FC = () => {
   const productsStatus = useAppSelector((state) => state.products.status)
   const error = useAppSelector((state) => state.products.error)
 
-  useEffect(() => {
-    
-      dispatch(fetchProducts(categoryId as string))
-    
-  }, [ dispatch, categoryId])  
+  const options = [
+    {value: 'Featured', text: 'Featured'},
+    {value: 'Price,low to high', text: 'Price,low to high'},
+    {value: 'Price, high to low', text: 'Price, high to low'},
+  ];
+
+
+  type SortOrder = 'asc' | 'desc'
+  const  [sortOrder,setSortOrder] = useState<SortOrder>()
+
+  const [selected, setSelected] = useState(options[0].value);
+
+  // useEffect(() => {
+  //   if(selected==='Price,low to high'){
+  //     setSortOrder('asc')
+  //     console.log('in if');
+      
+  //   }else if(selected==='Price, high to low'){
+  //     setSortOrder('desc')
+  //   }
+  // }, [ selected, dispatch])  
+
+  const handleChange = (event:React.ChangeEvent<HTMLSelectElement>) => {
+    setSelected(event.target.value);
+  };
+
 
   
+
+  useEffect(()=>{
   
+      dispatch(fetchProducts({categoryId} as IPayload))
+
+  },[dispatch,categoryId])
+
+console.log(selected, 'selected', '');
+
+
+
+  
+
 
   return (
     <div className='products-container'>
       <div className='sortByPrice'>
         <label htmlFor="sort">
         <span>Sort By </span>
-        <select name="" id="sort" defaultValue='Featured'>
-          <option value="Price,low to high">Price,low to high</option>
-          <option value="Price, high to low">Price, high to low</option>
-          <option value="Featured">Featured</option>
+        <select name="" id="sort" value={selected} onChange={handleChange}>
+         {
+           options.map(option => (
+                      <option key={option.value} value={option.value}>
+                        {option.text}
+                      </option>
+                    ))
+         }
         </select>
         </label>
         </div>
