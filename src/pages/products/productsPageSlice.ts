@@ -1,25 +1,23 @@
+import { AppDispatch } from './../../app/store';
+import { useAppDispatch } from './../../app/hooks';
+import { IProduct } from './../productPage/productPage';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import axios from 'axios'
+import { getProductsByCategory } from '../../firebase/queries'
+
+export interface IPayload {
+  categoryId: string;
+}
 
 export const fetchProducts = createAsyncThunk(
   'products/fetchProducts',
-  async (categoryId: string) => {
-    const response = await axios.get(`http://localhost:4000/products?categoryId=${categoryId}`)
-    return response.data
+  async ({categoryId}: IPayload) => {
+    const response = await getProductsByCategory(categoryId)    
+    return response
   },
 )
 
 export interface ProductsState {
-  products: {
-    id: string
-    title: string
-    price: number
-    variations: []
-    imageUrls: string[]
-    categoryId: string
-    description: string
-    details: string
-  }[]
+  products: IProduct[]
   status: 'idle' | 'loading' | 'succeeded' | 'failed'
   error: null | undefined | string
 }
@@ -30,10 +28,20 @@ const initialState: ProductsState = {
   error: null,
 }
 
-const subProductSlice = createSlice({
+const productsSlice = createSlice({
   name: 'products',
   initialState,
-  reducers: {},
+  reducers: {
+    sortByPrice(state,action){
+      if(action.payload==='Price,low to high'){
+        state.products = state.products.sort((a,b)=>a.price-b.price)
+      }else if(action.payload==='Price, high to low'){
+        state.products = state.products.sort((a,b) => b.price - a.price)
+      }else{
+        state.products = state.products.sort((a,b)=>(a.id>b.id)?1:((b.id>a.id)?-1:0))
+      }
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchProducts.pending, (state) => {
@@ -50,4 +58,5 @@ const subProductSlice = createSlice({
   },
 })
 
-export default subProductSlice.reducer
+export default productsSlice.reducer
+export const {sortByPrice} = productsSlice.actions

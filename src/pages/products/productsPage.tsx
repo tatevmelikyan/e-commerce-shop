@@ -1,35 +1,84 @@
-import { fetchProducts } from './productsPageSlice'
+import { fetchProducts, IPayload } from './productsPageSlice'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
-import { useParams } from 'react-router'
-import { useEffect } from 'react'
+import { useNavigate, useParams } from 'react-router'
+import { useEffect, useState } from 'react'
+import {ImHeart} from 'react-icons/im'
+import { sortByPrice } from './productsPageSlice'
 
 import './styles.css'
-const ProductsPage = () => {
+const ProductsPage:React.FC = () => {
   const { categoryId } = useParams()
+  const navigate = useNavigate()
   const dispatch = useAppDispatch()
   const products = useAppSelector((state) => state.products.products)
   const productsStatus = useAppSelector((state) => state.products.status)
-  const eror = useAppSelector((state) => state.products.error)
+  const error = useAppSelector((state) => state.products.error)
 
-  useEffect(() => {
-    if (productsStatus === 'idle' || productsStatus === 'succeeded') {
-      dispatch(fetchProducts(categoryId as string))
-    }
-  }, [productsStatus, dispatch, categoryId])
+  const options = [
+    {value: categoryId, text: 'Featured'},
+    {value: 'Price, low to high', text: 'Price, low to high'},
+    {value: 'Price, high to low', text: 'Price, high to low'},
+  ];
+
+
+  const  [sortOrder,setSortOrder] = useState()
+
+  const [selected, setSelected] = useState(options[0].value);
+
+  const handleChange = (event:React.ChangeEvent<HTMLSelectElement>) => {
+
+    setSelected(event.target.value);
+   
+  };
+
+  useEffect(()=>{
+    dispatch(sortByPrice(selected))
+  },[selected])
+
+  useEffect(()=>{
+
+      dispatch(fetchProducts({categoryId} as IPayload))
+
+  },[dispatch,categoryId])
+
+ 
 
   return (
     <div className='products-container'>
-      {products.map((product) => {        
+      <div className='sortByPrice'>
+        <label htmlFor="sort">
+        <span>Sort By </span>
+        <select name="" id="sort" value={selected} onChange={handleChange}>
+         {
+           options.map(option => (
+                      <option key={option.value} value={option.value}>
+                        {option.text}
+                      </option>
+                    ))
+         }
+        </select>
+        </label>
+        </div>
+      {products?.map((product) => { 
         return (
           <div
             key={product.id}
             className='product'
+            onClick={()=> navigate(`/products/${product.id}`)}
           >
+            <div className='products_images_div'>
             <img
+             className='producs_images'
               src={product.imageUrls[0]}
             />
-            <p className='product-title'>{product.title}</p>
-            <p>{'$' + product.price}</p>
+            <span className='products_icon_hert'>
+               <ImHeart className='hh'/>
+            </span>
+            </div>
+           <div>
+             <p className='product-title'>{product.title}</p>
+             <p>{'$' + product.price}</p>
+           </div>
           </div>
         )
       })}
