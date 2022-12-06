@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Allerta+Stencil&display=swap');
+
+
 .sticky-header {
     position: sticky;
     position: -webkit-sticky;
@@ -17,7 +20,7 @@
     color: black;
     text-decoration: none;
     font-size: 40px;
-    font-family: emoji;
+    font-family: 'Allerta Stencil', sans-serif;
     letter-spacing: 10px;
 }
 

@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+
+
+.main-video-container {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+
+.main-video-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.video-ad-container {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    position: absolute;
+}
+
+.text-shop {
+    margin-right: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.text-shop span {
+    color: white;
+    font-family: 'Dancing Script', cursive;
+    font-size: 40px;
+    font-weight: 400;
+    letter-spacing: 7px;
+}
+
+.text-shop button {
+    align-self: flex-start;
+    border: none;
+    border-radius: 0;
+    color: #000000;
+    background-color: #ffffffa3;
+    font-family: proxima-nova,Arial,sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    height: 38px;
+    letter-spacing: 1px;
+    line-height: 38px;
+    padding: 0 25px;
+    text-transform: uppercase;
+    width: auto;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.text-shop button:hover {
+    background-color: #ffffffed;
+}
