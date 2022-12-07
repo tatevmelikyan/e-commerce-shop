@@ -1,5 +1,4 @@
-import { AppDispatch } from './../../app/store';
-import { useAppDispatch } from './../../app/hooks';
+
 import { IProduct } from './../productPage/productPage';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { getProductsByCategory } from '../../firebase/queries'
@@ -33,7 +32,7 @@ const productsSlice = createSlice({
   initialState,
   reducers: {
     sortByPrice(state,action){
-      if(action.payload==='Price,low to high'){
+      if(action.payload==='Price, low to high'){
         state.products = state.products.sort((a,b)=>a.price-b.price)
       }else if(action.payload==='Price, high to low'){
         state.products = state.products.sort((a,b) => b.price - a.price)

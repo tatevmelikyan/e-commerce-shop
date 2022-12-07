@@ -1,9 +1,35 @@
 
+.product_info{
+    width: 100%;
+    display: flex;
+    gap: 20px;
+}
 
 .productImg{
-    width: 200px;
+    width:600px
 }
 
 h2{
     font-weight: 400;
 }
+
+.product_image_div{
+    width: 500px;
+    border: 1px solid black;
+}
+
+.product_details{
+    width: 400px;
+    border: 1px solid black;
+    right: 0
+}
+
+.imageContainer{
+    width: 100%;
+    gap: 10px;
+}
+
+.productImage{
+    width: 100%;
+}
+

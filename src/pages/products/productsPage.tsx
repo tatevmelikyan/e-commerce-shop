@@ -20,15 +20,10 @@ const ProductsPage:React.FC = () => {
     {value: 'Price, high to low', text: 'Price, high to low'},
   ];
 
-
-  const  [sortOrder,setSortOrder] = useState()
-
   const [selected, setSelected] = useState(options[0].value);
 
   const handleChange = (event:React.ChangeEvent<HTMLSelectElement>) => {
-
     setSelected(event.target.value);
-   
   };
 
   useEffect(()=>{
@@ -36,13 +31,11 @@ const ProductsPage:React.FC = () => {
   },[selected])
 
   useEffect(()=>{
-
       dispatch(fetchProducts({categoryId} as IPayload))
-
   },[dispatch,categoryId])
 
  
-
+ 
   return (
     <div className='products-container'>
       <div className='sortByPrice'>
@@ -60,11 +53,12 @@ const ProductsPage:React.FC = () => {
         </label>
         </div>
       {products?.map((product) => { 
+        
         return (
           <div
-            key={product.id}
+            key={product.id}            
             className='product'
-            onClick={()=> navigate(`/products/${product.id}`)}
+            onClick={()=>navigate(`/products/${product.id}`)}
           >
             <div className='products_images_div'>
             <img
@@ -72,7 +66,7 @@ const ProductsPage:React.FC = () => {
               src={product.imageUrls[0]}
             />
             <span className='products_icon_hert'>
-               <ImHeart className='hh'/>
+               <ImHeart/>
             </span>
             </div>
            <div>
