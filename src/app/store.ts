@@ -11,11 +11,9 @@ export const store = configureStore({
     departments: departmentsReducer,
     subdepartments: subdepartmentsReducer,
     products: productsReducer,
-  },
-    products: categoriesReducer,
-     user:userReducer
+    user:userReducer
   }
-})
+  })
 
 export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch
