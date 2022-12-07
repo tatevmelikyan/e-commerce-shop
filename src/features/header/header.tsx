@@ -11,7 +11,7 @@ const Header = () => {
       <header>
         <div className='logo-nav'>
           <div className='brand-logo'>
-            <Link to='/'>ALIAS</Link>
+            <Link to='/'>SAVILLA</Link>
           </div>
           <div className='customer-nav-container'>
             <CustomerNav />
