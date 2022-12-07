@@ -1,0 +1,39 @@
+.loginbox{
+    position: relative;
+    height: 800px;
+    width:  800px ;
+}
+
+
+.inputdivlogin{
+    position: absolute ;
+    top: 20%;
+    left: 35%;
+    padding: 2rem;
+    display:flex;
+    flex-wrap: wrap;
+    gap:30px ;
+}
+
+.emailinput{
+    width: 500px;
+height: 46px;
+border-color: black;
+}
+
+.paswordinput{
+  
+    width: 500px;
+    height: 46px;
+    border-color: black;
+}
+
+.loginbutton{
+    position: absolute;
+    width: 200px;
+    height: 30px;
+   
+    left: 65%;
+    top: 50%;
+}
+
