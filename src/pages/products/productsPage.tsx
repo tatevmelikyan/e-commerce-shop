@@ -1,12 +1,20 @@
-import { fetchProducts, IPayload } from './productsPageSlice'
+import { fetchProducts } from './productsPageSlice'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { useNavigate, useParams } from 'react-router'
 import { useEffect, useState } from 'react'
-import {ImHeart} from 'react-icons/im'
+import { HiOutlineHeart } from 'react-icons/hi'
 import { sortByPrice } from './productsPageSlice'
 
 import './styles.css'
-const ProductsPage:React.FC = () => {
+
+interface IOrderOption {
+  value: TOrder
+  text: 'Featured' | 'Price, low to high' | 'Price, high to low'
+}
+
+export type TOrder = 'featured' | 'asc' | 'desc'
+
+const ProductsPage: React.FC = () => {
   const { categoryId } = useParams()
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
@@ -14,65 +22,73 @@ const ProductsPage:React.FC = () => {
   const productsStatus = useAppSelector((state) => state.products.status)
   const error = useAppSelector((state) => state.products.error)
 
-  const options = [
-    {value: categoryId, text: 'Featured'},
-    {value: 'Price, low to high', text: 'Price, low to high'},
-    {value: 'Price, high to low', text: 'Price, high to low'},
-  ];
+  const orderOptions: IOrderOption[] = [
+    { value: 'featured', text: 'Featured' },
+    { value: 'asc', text: 'Price, low to high' },
+    { value: 'desc', text: 'Price, high to low' },
+  ]
 
-  const [selected, setSelected] = useState(options[0].value);
+  const [selected, setSelected] = useState<TOrder>('featured')
 
-  const handleChange = (event:React.ChangeEvent<HTMLSelectElement>) => {
-    setSelected(event.target.value);
-  };
+  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelected(event.target.value as TOrder)
+  }
 
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(sortByPrice(selected))
-  },[selected])
+  }, [selected])
 
-  useEffect(()=>{
-      dispatch(fetchProducts({categoryId} as IPayload))
-  },[dispatch,categoryId])
+  useEffect(() => {
+    if (categoryId) {
+      dispatch(fetchProducts(categoryId))
+    }
+  }, [dispatch, categoryId])
 
- 
- 
   return (
     <div className='products-container'>
       <div className='sortByPrice'>
-        <label htmlFor="sort">
-        <span>Sort By </span>
-        <select name="" id="sort" value={selected} onChange={handleChange}>
-         {
-           options.map(option => (
-                      <option key={option.value} value={option.value}>
-                        {option.text}
-                      </option>
-                    ))
-         }
-        </select>
+        <label htmlFor='sort'>
+          <span>Sort By </span>
+          <select
+            name=''
+            id='sort'
+            value={selected}
+            onChange={handleChange}
+          >
+            {orderOptions.map((option) => (
+              <option
+                key={option.value}
+                value={option.value}
+              >
+                {option.text}
+              </option>
+            ))}
+          </select>
         </label>
-        </div>
-      {products?.map((product) => { 
-        
+      </div>
+      {products.map((product) => {
         return (
           <div
             key={product.id}            
             className='product'
-            onClick={()=>navigate(`/products/${product.id}`)}
+            onClick={() => navigate(`/products/${product.id}`)}
           >
             <div className='products_images_div'>
-            <img
-             className='producs_images'
-              src={product.imageUrls[0]}
-            />
-            <span className='products_icon_hert'>
-               <ImHeart/>
-            </span>
+              <img
+                className='products_images'
+                src={product.imageUrls[0]}
+              />
+              <span className='products_icon_heart'>
+                <HiOutlineHeart
+                  stroke='#d21414'
+                  fill='white'
+                />
+              </span>
             </div>
-           <div>
-             <p className='product-title'>{product.title}</p>
-             <p>{'$' + product.price}</p>
-           </div>
+            <div>
+              <p className='product-title'>{product.title}</p>
+              <p>{'$' + product.price}</p>
+            </div>
           </div>
         )
       })}
