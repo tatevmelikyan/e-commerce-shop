@@ -17,6 +17,8 @@ import LoginPage from './pages/login/pages/LoginPage';
 import NotFound from './pages/notFound/NotFound';
 import ProductPage from './pages/productPage/productPage';
 import Products from './pages/admin/pagesForAdmin/productPage/products';
+import Users from './pages/admin/pagesForAdmin/usersPage/users';
+import Orders from './pages/admin/pagesForAdmin/ordersPage/orders';
 
 function App() {
   return (
@@ -32,12 +34,14 @@ function App() {
         <Route path='/about'       element={<AboutUs/>}/>
         <Route path='/account'     element={<CustomerAccountPage />} />
         <Route path='/account/admin'element={<AdminPage />} />
+        <Route path='/account/admin/products'element={<Products />} />
+        <Route path='/account/admin/users'element={<Users />} />
+        <Route path='/account/admin/orders'element={<Orders/>} />        
         <Route path='/favorites'    element={<FavoritesPage />}/>
         <Route path='/shoppingcart' element={<ShoppingCartPage />}/>
         <Route path='/register'    element={<RegisterPage/>}></Route>
         <Route path='/loginPage'  element={<LoginPage/>}></Route>
         <Route path='*'           element={<NotFound/>}> </Route>
-        <Route path='/account/admin/products' element={<Products/>}/>
       </Routes>
     </Layout>
     </BrowserRouter>
