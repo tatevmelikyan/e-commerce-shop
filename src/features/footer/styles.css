@@ -1,4 +1,5 @@
 .footerContainer{
+    position: absolute;
     margin: 0 auto;
     margin-top: 50px;
     text-align: left;
@@ -6,6 +7,7 @@
     clear: both;
     background-color: #e6e3de;
     padding-top: 30px;
+    z-index: 10;    
 }
 .footer{
     text-align: left;
