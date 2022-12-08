@@ -64,9 +64,13 @@ const getProductById = async (productId:string) => {
 
 
 let category: DocumentReference<DocumentData> 
+
 const getProductsByCategory = async (categoryId:string) => {
+  
   const categoryRef = doc(db,'categories',categoryId)
+  
   category = categoryRef
+  
  const qProducts = query(collection(db,'products'), where('categoryId', '==' ,categoryRef))
 
   const qSnapshot = await getDocs(qProducts)
@@ -82,8 +86,15 @@ const getProductsByCategory = async (categoryId:string) => {
       categoryId,
     }
   })
+  
   return products
 }
+
+
+
+
+
+
 
 
 // const getSortedProductsByCategory = async(sortOrder: any) => {

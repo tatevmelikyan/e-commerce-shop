@@ -1,17 +1,12 @@
-import { AppDispatch } from './../../app/store';
-import { useAppDispatch } from './../../app/hooks';
-import { IProduct } from './../productPage/productPage';
+import { TOrder } from './productsPage'
+import { IProduct } from '../productPage/productPage'
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { getProductsByCategory } from '../../firebase/queries'
 
-export interface IPayload {
-  categoryId: string;
-}
-
 export const fetchProducts = createAsyncThunk(
   'products/fetchProducts',
-  async ({categoryId}: IPayload) => {
-    const response = await getProductsByCategory(categoryId)    
+  async (categoryId: string) => {
+    const response = await getProductsByCategory(categoryId)
     return response
   },
 )
@@ -28,19 +23,24 @@ const initialState: ProductsState = {
   error: null,
 }
 
+interface ISortAction {
+  type: string
+  payload: TOrder
+}
+
 const productsSlice = createSlice({
   name: 'products',
   initialState,
   reducers: {
-    sortByPrice(state,action){
-      if(action.payload==='Price,low to high'){
-        state.products = state.products.sort((a,b)=>a.price-b.price)
-      }else if(action.payload==='Price, high to low'){
-        state.products = state.products.sort((a,b) => b.price - a.price)
-      }else{
-        state.products = state.products.sort((a,b)=>(a.id>b.id)?1:((b.id>a.id)?-1:0))
+    sortByPrice(state, action: ISortAction) {
+      if (action.payload === 'asc') {
+        state.products = state.products.sort((a, b) => a.price - b.price)
+      } else if (action.payload === 'desc') {
+        state.products = state.products.sort((a, b) => b.price - a.price)
+      } else {
+        state.products = state.products.sort((a, b) => (a.id > b.id ? 1 : b.id > a.id ? -1 : 0))
       }
-    }
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -59,4 +59,4 @@ const productsSlice = createSlice({
 })
 
 export default productsSlice.reducer
-export const {sortByPrice} = productsSlice.actions
+export const { sortByPrice } = productsSlice.actions

@@ -15,6 +15,7 @@ import ShoppingCartPage from './pages/cart/shoppingCartPage'
 import RegisterPage from './pages/login/pages/RegisterPage';
 import LoginPage from './pages/login/pages/LoginPage';
 import NotFound from './pages/notFound/NotFound';
+import ProductPage from './pages/productPage/productPage';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path='/' element={<HomePage />} />
         <Route path='/:departmentId' element={<DepartmentPage />} />
         <Route path='/:departmentId/:categoryId' element={<ProductsPage />} />
+        <Route path='/products/:productId' element={<ProductPage/>}/>
         <Route path= '/location'    element={<Location/>}/>
         <Route path='/about'       element={<AboutUs/>}/>
         <Route path='/account'     element={<CustomerAccountPage />} />
