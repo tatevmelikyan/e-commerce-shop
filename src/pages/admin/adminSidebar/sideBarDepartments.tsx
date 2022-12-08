@@ -2,7 +2,7 @@ import React from 'react'
 import '.././styles.css'
 import {FaUser,FaBoxes,FaTruckLoading} from 'react-icons/fa'
 
-export const SideBarDepartments = () => {
+const SideBarDepartments = function () {
   return (
     <div className='listedDeps'>
         <div className='items'>
@@ -20,3 +20,4 @@ export const SideBarDepartments = () => {
     </div>
   )
 }
+export default SideBarDepartments

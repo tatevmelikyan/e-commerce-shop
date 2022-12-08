@@ -1,17 +1,18 @@
-import React, { useState } from 'react'
+import React from 'react'
 import '.././styles.css'
-import { SideBarDepartments } from './sideBarDepartments'
+import  SideBarDepartments  from './sideBarDepartments'
 import {SlArrowRight} from 'react-icons/sl'
 
 
-export const SideBar = () => {
-  const [isMouseOn,setIsMouseOn] = useState(false)
+ const SideBar = function () {
   return (
     <div>
        <div className='arrow'><SlArrowRight/></div>
-      <div className='sideNav' onMouseLeave={()=>setIsMouseOn(false)}>
+      <div className='sideNav'>
       <SideBarDepartments/>    
      </div>
       </div>  
   )
 }
+
+export default SideBar

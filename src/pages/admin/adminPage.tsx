@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import  AddProduct from './addProduct'
-import { SideBar } from './adminSidebar/sideBar'
+import SideBar from './adminSidebar/sideBar'
 import './styles.css'
 
 const AdminPage = () => {

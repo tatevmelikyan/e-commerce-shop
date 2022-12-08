@@ -16,6 +16,7 @@ import RegisterPage from './pages/login/pages/RegisterPage';
 import LoginPage from './pages/login/pages/LoginPage';
 import NotFound from './pages/notFound/NotFound';
 import ProductPage from './pages/productPage/productPage';
+import Products from './pages/admin/pagesForAdmin/productPage/products';
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
         <Route path='/register'    element={<RegisterPage/>}></Route>
         <Route path='/loginPage'  element={<LoginPage/>}></Route>
         <Route path='*'           element={<NotFound/>}> </Route>
+        <Route path='/account/admin/products' element={<Products/>}/>
       </Routes>
     </Layout>
     </BrowserRouter>
