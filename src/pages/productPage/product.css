@@ -1,35 +1,142 @@
 
 .product_info{
-    width: 100%;
+    box-sizing: border-box;
     display: flex;
+    width: 100%;
+    height: 100%;
     gap: 20px;
+    padding: 10px;
 }
 
 .productImg{
-    width:600px
+    width:100%
 }
 
-h2{
+.product-title{
     font-weight: 400;
+    padding: 10px;
+}
+
+.product-title1{
+    font-weight: 400;
+    margin-top: 0;
+    padding-left: 10px;
 }
 
 .product_image_div{
-    width: 500px;
-    border: 1px solid black;
+    width: 60%;
+    height: 100vh;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+
+.imageContainer{
+    position: relative;
+    width: 100%;
+    height: 99%;
+    scroll-snap-align: center;
+    flex-shrink: 0;
+}
+
+.product_image_div::-webkit-scrollbar{
+    height: 8px;
+}
+
+.product_image_div::-webkit-scrollbar-track{
+   background: grey;
+   border-radius: 8px;
+}
+
+.product_image_div::-webkit-scrollbar-thumb{
+  background-color:rgb(206, 206, 206);
+  border-radius: 8px;
+}
+
+.product_details_div{
+    width:38%;
 }
 
 .product_details{
-    width: 400px;
-    border: 1px solid black;
-    right: 0
-}
-
-.imageContainer{
+    box-sizing: border-box;
     width: 100%;
-    gap: 10px;
+    padding: 20px;
 }
 
 .productImage{
     width: 100%;
+    height: 100%;
 }
+
+.button-instock{
+    padding: 10px ;
+    font-size: 15px;
+    /* border:1px solid rgb(206, 206, 206); */
+    border: none;
+    background-color: white;
+}
+
+.button-instock:hover{
+    background: #e6e3de;
+    color: white;
+}
+
+.span-instock{
+    font-size: 22px;
+    padding: 10px;
+}
+
+.button-add-cart{
+    width: 140px;
+    height: 40px;
+    border:1px solid rgb(206, 206, 206);
+    padding: 8px 0px;
+    font-weight: 400;
+    font-size: 16px;
+    background: black;
+    color: white;
+    transition: .3s;
+}
+
+.add-cart-div{
+    box-sizing: border-box;
+    height: 60px;
+}
+
+.button-add-cart:hover {
+  width: 145px;
+  height: 45px;
+  font-size: 17px;
+  /* transform: scale(1.05); */
+  transition: .5s;
+}
+
+.span-price{
+    font-size: 25px;
+    color: red;
+}
+
+.product-description{
+    padding: 10px;
+    letter-spacing: 1px;
+    color:rgb(97, 97, 97) ;
+}
+
+.product-description:hover{
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.product-details{
+    font-weight: 400;
+    font-size: 23px;
+    color: black;
+}
+
+.details-arr{
+  padding: 10px;
+}
+
 
