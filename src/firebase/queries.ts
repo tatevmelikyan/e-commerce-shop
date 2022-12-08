@@ -4,10 +4,26 @@ import { db } from './config'
 
 import { DocumentReference,Query,DocumentData,OrderByDirection } from '@firebase/firestore'
 
+
 interface IDepartment {
   id: string
   name: string
   imageUrl: string
+}
+
+const getAllProducts = async () => {
+  const docs = await getDocs(collection(db,'products'))
+  const products : IProduct[]=[]
+  docs.forEach(doc=>products.push({
+    title:doc.data().title, 
+    price:doc.data().price,
+    inStock:doc.data().inStock,
+    imageUrls:doc.data().imageUrls,
+    description:doc.data().description,
+    details:doc.data().details,
+    id:doc.id
+  }))
+  return products 
 }
 
 // Gets all Departments from firestore database.
@@ -125,4 +141,4 @@ const getProductsByCategory = async (categoryId:string) => {
 // }
 
 
-export { getAllDepartments, getSubdepartmentsWithCategoriesByDepartment,getProductById,getProductsByCategory, }
+export {getAllProducts, getAllDepartments, getSubdepartmentsWithCategoriesByDepartment,getProductById,getProductsByCategory, }
