@@ -1,10 +1,18 @@
 .loginbox {
+
   position: relative;
   height: 800px;
   width: 800px;
 }
 
+
+.registerbox{
+
+}
+
 .inputdivlogin {
+  font-weight: bold;
+  font-size: 20px;
   position: absolute;
   top: 20%;
   left: 62%;
@@ -15,25 +23,30 @@
 }
 
 .emailinput {
+  font-weight: bold;
+  padding-left: 10px;
+  font-size: 20px;
   z-index: 100;
   box-shadow: 2px 3px rgb(4, 4, 4);
-  border-radius: 18px;
+  /* border-radius: 18px; */
   width: 520px;
   height: 48px;
   border-color: black;
 }
 
 .paswordinput {
+  padding-left: 10px;
   z-index: 100;
   box-shadow: 2px 3px rgb(4, 4, 4);
-  border-radius: 18px;
+  /* border-radius: 18px; */
   width: 520px;
   height: 48px;
   border-color: black;
 }
 
 .loginbutton {
-    border-radius: 10px;
+  font-size: 20px;
+    /* border-radius: 10px; */
   position: absolute;
   width: 250px;
   height: 30px;
