@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 import { getProductById } from '../../firebase/queries'
 import { HiOutlineHeart } from 'react-icons/hi'
+import {SlArrowRight,SlArrowLeft} from 'react-icons/sl'
 
 export interface IProduct {
   categoryId?: string
@@ -65,13 +66,16 @@ const ProductPage: React.FC = () => {
           <div className='product_details'>
             <span className='span-price'>$ {product?.price.toLocaleString()}</span>
             <p></p>
-            <div>
-              <button className='button-instock'>-</button>
-              <span className='button-instock'>0</span>
-              <button className='button-instock'>+</button>
+            <div className='instoct-container'>
+              <button className='button-instock'>{<SlArrowLeft/>}</button>
+              <span className='span-instock'>0</span>
+              <button className='button-instock'>{<SlArrowRight/>}</button>
             </div>
             <br />
-            <button className='button-add-cart'>ADD CART</button>
+            <div className='add-cart-div'>
+
+            <button className='button-add-cart'>ADD TO CART</button>
+            </div>
 
             <p className='product-description'>
               <h3 className='product-details'>description</h3>
@@ -79,7 +83,12 @@ const ProductPage: React.FC = () => {
             </p>
             <p className='product-description'>
               <h3 className='product-details'>details</h3>
-              {product?.details}
+              {product?.details.map(detail=> 
+               
+               <li key={Math.random()} className='details-arr' >
+                {detail}
+               </li>
+                )}
             </p>
           </div>
         </div>
