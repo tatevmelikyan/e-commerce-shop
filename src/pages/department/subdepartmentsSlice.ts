@@ -3,9 +3,10 @@ import { RootState } from '../../app/store'
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { getSubdepartmentsWithCategoriesByDepartment } from '../../firebase/queries'
 
-interface ISubdepartment {
-  id: string
-  name: string
+export interface ISubdepartment {
+  id: string;
+  name: string;
+  departmentId: string;
   categories: ICategory[]
 }
 
