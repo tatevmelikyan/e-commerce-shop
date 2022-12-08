@@ -7,7 +7,7 @@ import { HiOutlineHeart } from 'react-icons/hi'
 import {SlArrowRight,SlArrowLeft} from 'react-icons/sl'
 
 export interface IProduct {
-  categoryId?: string
+  categoryId: string
   description: string
   details: string[]
   id: string
