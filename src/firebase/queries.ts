@@ -8,6 +8,7 @@ export interface IDepartment {
   id: string
   name: string
   imageUrl: string
+  subdepartments: ISubdepartment[]
 }
 
 const getAllProducts = async () => {
