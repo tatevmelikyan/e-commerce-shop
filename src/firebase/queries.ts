@@ -5,7 +5,7 @@ import { db } from './config'
 
 import { DocumentReference, Query, DocumentData, OrderByDirection } from '@firebase/firestore'
 
-interface IDepartment {
+export interface IDepartment {
   id: string
   name: string
   imageUrl: string
