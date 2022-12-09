@@ -1,13 +1,10 @@
+import { IDepartment } from './../../firebase/queries';
 import { RootState } from '../../app/store'
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { getAllDepartments } from '../../firebase/queries'
 
 interface DepartmentsState {
-  departments: {
-    id: string
-    name: string
-    imageUrl: string
-  }[]
+  departments: IDepartment[]
   status: 'idle' | 'loading' | 'succeeded' | 'failed'
   error: null | undefined | string
 }

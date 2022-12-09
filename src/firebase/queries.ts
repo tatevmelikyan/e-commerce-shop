@@ -4,7 +4,7 @@ import { collection, doc, getDocs, query, where, getDoc } from 'firebase/firesto
 import { db } from './config'
 
 
-interface IDepartment {
+export interface IDepartment {
   id: string
   name: string
   imageUrl: string
