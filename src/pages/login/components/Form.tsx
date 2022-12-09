@@ -1,4 +1,5 @@
 import { FC, useState } from 'react'
+
 import './components.css'
 interface FormProps {
   title: string
@@ -20,13 +21,11 @@ const Form: FC<FormProps> = ({ title, handleClick }) => {
         <form>
           <input
             className=' emailinput'
-            type='email'
-            value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder='email'
           />
           <input
-            className=' paswordinput'
+            className='paswordinput'
             // autoComplete = 'current-password'
             type='password'
             value={pass}

@@ -1,39 +1,72 @@
-.loginbox{
-    position: relative;
-    height: 800px;
-    width:  800px ;
+.loginbox {
+
+  position: relative;
+  height: 800px;
+  width: 800px;
 }
 
 
-.inputdivlogin{
-    position: absolute ;
-    top: 20%;
-    left: 35%;
-    padding: 2rem;
-    display:flex;
-    flex-wrap: wrap;
-    gap:30px ;
+.registerbox{
+
 }
 
-.emailinput{
-    width: 500px;
-height: 46px;
-border-color: black;
+.inputdivlogin {
+  font-weight: bold;
+  font-size: 20px;
+  position: absolute;
+  top: 20%;
+  left: 62%;
+  display: flex;
+  flex-wrap: wrap;
+  line-height: 6rem;
+  gap: 2rem;
 }
 
-.paswordinput{
-  
-    width: 500px;
-    height: 46px;
-    border-color: black;
+.emailinput {
+  font-weight: bold;
+  padding-left: 10px;
+  font-size: 20px;
+  z-index: 100;
+  box-shadow: 2px 3px rgb(4, 4, 4);
+  /* border-radius: 18px; */
+  width: 520px;
+  height: 48px;
+  border-color: black;
 }
 
-.loginbutton{
+.paswordinput {
+  padding-left: 10px;
+  z-index: 100;
+  box-shadow: 2px 3px rgb(4, 4, 4);
+  /* border-radius: 18px; */
+  width: 520px;
+  height: 48px;
+  border-color: black;
+}
+
+.loginbutton {
+  font-size: 20px;
+    /* border-radius: 10px; */
+  position: absolute;
+  width: 250px;
+  height: 30px;
+  cursor: pointer;
+  left: 78%;
+  top: 50%;
+}
+
+.loginbutton:hover {
+  background-color: rgb(34, 32, 32);
+   color: antiquewhite; 
+
+}
+
+.logintext{
+   width:400px ;
     position: absolute;
-    width: 200px;
-    height: 30px;
-   
-    left: 65%;
-    top: 50%;
+    align-items: center;
+    display: block;
+    justify-content: center;
+    left: 70%;
+    top: 6%;
 }
-

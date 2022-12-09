@@ -9,13 +9,13 @@ export const fetchedProducts = createAsyncThunk('allProducts/fetchedProducts', a
 })
 
 export interface ProductsState {
-  products: IProduct[]
+  allProducts: IProduct[]
   status: 'idle' | 'loading' | 'succeeded' | 'failed'
   error: null | undefined | string
 }
 
 const initialState: ProductsState = {
-  products: [],
+  allProducts: [],
   status: 'idle',
   error: null,
 }
@@ -27,11 +27,11 @@ const productsForAdminSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchedProducts.pending, (state) => {
-        state.status = 'loading'
+        state.status = 'loading'        
       })
       .addCase(fetchedProducts.fulfilled, (state, action) => {
         state.status = 'succeeded'
-        state.products = action.payload
+        state.allProducts = action.payload
       })
       .addCase(fetchedProducts.rejected, (state, action) => {
         state.status = 'failed'

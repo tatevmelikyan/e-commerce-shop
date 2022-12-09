@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import departmentsReducer from '../features/departmentsNav/departmentsSlice'
 import subdepartmentsReducer from '../pages/department/subdepartmentsSlice'
 import productsReducer from '../pages/products/productsPageSlice'
+import productsForAdminSlice from '../pages/admin/pagesForAdmin/productPage/productSlice'
 
 
 
@@ -11,7 +12,8 @@ export const store = configureStore({
     departments: departmentsReducer,
     subdepartments: subdepartmentsReducer,
     products: productsReducer,
-    user:userReducer
+    user:userReducer,
+    allProductsForAdmin:productsForAdminSlice
   }
   })
 
