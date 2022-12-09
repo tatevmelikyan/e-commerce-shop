@@ -2,6 +2,8 @@ import React from 'react'
 import { useAppSelector, useAppDispatch } from '../../../../app/hooks'
 import { useEffect, useState } from 'react'
 import { fetchedProducts } from './productSlice'
+import {FaEdit} from 'react-icons/fa'
+import {MdDelete} from 'react-icons/md'
 import './styles.css'
 
 const Products = function () {
@@ -19,9 +21,10 @@ const Products = function () {
         <tr>
           <th>PHOTO</th>
           <th>NAME</th>
-          <th>CATEGORY</th>
           <th>IN STOCK</th>
           <th>PRICE</th>
+          <th>EDIT</th>
+          <th>DELETE</th>
         </tr>
         <tbody>
           {products.length &&
@@ -35,9 +38,10 @@ const Products = function () {
                     />
                   </td>
                   <td className='productTD'>{product.title}</td>
-                  <td className='productTD'>{product.categoryId}</td>
                   <td className='productTD'>{product.inStock}</td>
                   <td className='productTD'>{product.price}$</td>
+                  <td className='icons'><FaEdit/></td>
+                  <td className='icons'><MdDelete/></td>
                 </tr>
               )
             })}

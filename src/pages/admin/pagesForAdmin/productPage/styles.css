@@ -16,3 +16,9 @@ table tr td {
 .productTD{
     width: 60px;
 }
+.icons{
+    text-align: center;
+    color: black;
+    height: 20px;
+    width: 20px;
+}
