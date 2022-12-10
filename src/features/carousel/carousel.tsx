@@ -7,11 +7,12 @@ import 'swiper/css/pagination'
 import './styles.css'
 import { Link } from 'react-router-dom'
 import { IProduct } from '../../pages/productPage/productPage'
+import { nanoid } from '@reduxjs/toolkit'
 
-const Carousel: React.FC<{ slideContent: IProduct[] }> = ({ slideContent }) => {
+const Carousel: React.FC<{ slideContent: IProduct[], sliderHeader: string }> = ({ slideContent, sliderHeader }) => {
   return (
     <div className='slider-container'>
-      <h3 className='slider-header'>Recently Viewed</h3>
+      <h3 className='slider-header'>{sliderHeader}</h3>
       <Swiper
         modules={[Navigation, Pagination]}
         spaceBetween={20}
@@ -24,7 +25,7 @@ const Carousel: React.FC<{ slideContent: IProduct[] }> = ({ slideContent }) => {
         {slideContent.map((item) => {
           return (
             <>
-              <SwiperSlide>
+              <SwiperSlide key={item.id} >
                 <div className='slide-item'>
                   <Link to={`/products/${item.id}`}>
                     <img
