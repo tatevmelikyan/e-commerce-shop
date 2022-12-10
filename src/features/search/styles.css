@@ -1,23 +1,24 @@
 .search-field {
-position: relative;
-border-radius: 8px;
-margin-left: 50px;
+    position: relative;
+    border-radius: 8px;
+    margin-left: 50px;
 }
 
-.search-field form button{
-   position: absolute;
-   right: 0;
-   font-size: 15px;
-   height: 36px;
-   appearance: none;
-   border: none;
-   background-color: white;
-   text-align: center;
-   cursor: pointer;
+.search-field form button {
+    position: absolute;
+    right: 0;
+    font-size: 15px;
+    height: 36px;
+    appearance: none;
+    border: none;
+    background-color: transparent;
+    text-align: center;
+    cursor: pointer;
 }
 
 
 .search-field form input {
+    background-color: transparent;
     outline: none;
     border: none;
     border-bottom: 1px solid black;
@@ -53,7 +54,7 @@ margin-left: 50px;
 }
 
 
-.search-suggestions-container.visible{
+.search-suggestions-container.visible {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
@@ -73,4 +74,34 @@ margin-left: 50px;
 
 .search-suggestions-container ul li:hover {
     background-color: rgb(243 242 242);
+}
+
+
+.searched-products {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 50px;
+    gap: 30px;
+}
+
+
+.search-result-heading {
+    margin: 50px 50px 0 50px
+}
+
+
+.no-results {
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.no-results-heading {
+    text-align: center;
+    overflow: hidden;
 }

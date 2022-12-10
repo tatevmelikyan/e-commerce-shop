@@ -1,4 +1,4 @@
-import { TOrder } from './productsPage'
+import { TOrder } from './sortBy'
 import { IProduct } from '../productPage/productPage'
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { getProductsByCategory } from '../../firebase/queries'
@@ -10,6 +10,8 @@ export const fetchProducts = createAsyncThunk(
     return response
   },
 )
+
+
 
 export interface ProductsState {
   products: IProduct[]
