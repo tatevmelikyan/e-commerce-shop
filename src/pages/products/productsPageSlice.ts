@@ -1,7 +1,7 @@
 import { TOrder } from './sortBy'
 import { IProduct } from '../productPage/productPage'
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { getProductsByCategory } from '../../firebase/queries'
+import { getAllProducts, getProductsByCategory } from '../../firebase/queries'
 
 export const fetchProducts = createAsyncThunk(
   'products/fetchProducts',
@@ -11,7 +11,13 @@ export const fetchProducts = createAsyncThunk(
   },
 )
 
-
+export const fetchAllProducts = createAsyncThunk(
+  'products/fetchAllProducts',
+  async (keyword: string) => {
+    const products = await getAllProducts()
+    return { products, keyword }
+  },
+)
 
 export interface ProductsState {
   products: IProduct[]
@@ -56,6 +62,15 @@ const productsSlice = createSlice({
       .addCase(fetchProducts.rejected, (state, action) => {
         state.status = 'failed'
         state.error = action.error.message
+      })
+      .addCase(fetchAllProducts.fulfilled, (state, action) => {
+        const { products, keyword } = action.payload
+        state.products = products.filter((product) => {
+          return product.title
+            .replace(/\s/g, '')
+            .toLowerCase()
+            .includes(keyword.replace(/\s/g, '').toLowerCase())
+        })
       })
   },
 })

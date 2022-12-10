@@ -1,40 +1,21 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
-import { getAllProducts } from '../../firebase/queries'
-import { IProduct } from '../../pages/productPage/productPage'
+import { useAppDispatch, useAppSelector } from '../../app/hooks'
+import { fetchAllProducts } from '../../pages/products/productsPageSlice'
 import ProductsUI from '../../pages/products/productsUI'
 import SortBy from '../../pages/products/sortBy'
 import NoResults from './noResults'
 
 const SearchResults: React.FC = () => {
   const { keyword } = useParams()
-
-  const [matchedProducts, setMatchedProducts] = useState<IProduct[]>([])
+  const dispatch = useAppDispatch()
+  const matchedProducts = useAppSelector((state) => state.products.products)
 
   useEffect(() => {
-    getMatchedProducts()
+    if (keyword) {
+      dispatch(fetchAllProducts(keyword))
+    }
   }, [keyword])
-
-  const fetchAllProducts = async () => {
-    const response = await getAllProducts()
-    return response
-  }
-
-  const getMatchedProducts = () => {
-    fetchAllProducts()
-      .then((products) => {
-        const matchedProducts = products.filter((product) => {
-          if (keyword) {
-            return product.title
-              .replace(/\s/g, '')
-              .toLowerCase()
-              .includes(keyword.replace(/\s/g, '').toLowerCase())
-          }
-        })
-        setMatchedProducts(matchedProducts)
-      })
-      .catch((err) => console.log(err))
-  }
 
   return (
     <div className='search-results'>
