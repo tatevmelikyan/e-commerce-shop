@@ -1,6 +1,6 @@
 import { ISubdepartment } from './../pages/department/subdepartmentsSlice'
 import { IProduct } from './../pages/productPage/productPage'
-import { collection, doc, getDocs, query, where, getDoc } from 'firebase/firestore'
+import { collection, doc, getDocs, query, where, getDoc, updateDoc } from 'firebase/firestore'
 import { db } from './config'
 
 
@@ -135,6 +135,11 @@ const getProductsByCategory = async (categoryId: string) => {
 
 //   return products
 // }
+
+
+
+
+
 
 export {
   getAllProducts,
