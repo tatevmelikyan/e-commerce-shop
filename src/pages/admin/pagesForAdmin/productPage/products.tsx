@@ -18,6 +18,7 @@ const Products = function () {
   return (
     <div>
       <table className='productPage'>
+        <thead>
         <tr>
           <th>PHOTO</th>
           <th>NAME</th>
@@ -26,6 +27,7 @@ const Products = function () {
           <th>EDIT</th>
           <th>DELETE</th>
         </tr>
+        </thead>
         <tbody>
           {products.length &&
             products.map((product) => {
@@ -47,13 +49,6 @@ const Products = function () {
             })}
         </tbody>
       </table>
-      {/* {products.length&&products.map(product=>{
-        return <div key={product.id} className='products'>
-          <div>{product?.title}</div>
-          <div>{product?.price}</div>
-          <div>{product?.inStock}</div>
-        </div>
-      })} */}
     </div>
   )
 }

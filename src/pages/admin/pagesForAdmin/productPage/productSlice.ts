@@ -23,7 +23,9 @@ const initialState: ProductsState = {
 const productsForAdminSlice = createSlice({
   name: 'allProducts',
   initialState,
-  reducers: {},
+  reducers: {
+
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchedProducts.pending, (state) => {
@@ -31,7 +33,8 @@ const productsForAdminSlice = createSlice({
       })
       .addCase(fetchedProducts.fulfilled, (state, action) => {
         state.status = 'succeeded'
-        state.allProducts = action.payload
+        //@ts-ignore
+        state.allProducts = action.payload.sort((a,b)=> a.title.localeCompare(b.title))
       })
       .addCase(fetchedProducts.rejected, (state, action) => {
         state.status = 'failed'

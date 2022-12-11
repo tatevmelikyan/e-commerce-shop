@@ -6,15 +6,15 @@
     margin-right:auto;
     border-spacing: 20px;
 }
-table tr td {
-   margin-top: 10px;
+table {
+   margin-top: 100px;
 }
 .photoInTable{
     height: 70px;
     width: 70px;
 }
 .productTD{
-    width: 60px;
+    width: 150px;
 }
 .icons{
     text-align: center;
