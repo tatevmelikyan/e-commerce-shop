@@ -47,7 +47,7 @@ const SearchField: React.FC = () => {
   const handleFocusOut = () => {
     setTimeout(() => {
       setIsSuggestionsVisible(false)
-    }, 100)
+    }, 500)
   }
 
   return (
