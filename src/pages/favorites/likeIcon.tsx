@@ -3,6 +3,8 @@ import { HiOutlineHeart } from 'react-icons/hi'
 import { IProduct } from '../productPage/productPage'
 
 const LikeIcon: FC<{ product: IProduct }> = ({ product }) => {
+  
+  
   const [isLiked, setIsLiked] = useState(false)
 
   const getLikedProducts = () => {

@@ -1,11 +1,9 @@
 import './product.css'
 
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 import { getProductById } from '../../firebase/queries'
 import { SlArrowRight, SlArrowLeft } from 'react-icons/sl'
-import { useAppDispatch } from '../../app/hooks'
-import { useAppSelector } from '../../app/hooks'
 import LikeIcon from '../favorites/likeIcon'
 
 export interface IProduct {

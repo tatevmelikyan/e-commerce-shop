@@ -1,15 +1,30 @@
 import { ISubdepartment } from './../pages/department/subdepartmentsSlice'
 import { IProduct } from './../pages/productPage/productPage'
-import { collection, doc, getDocs, query, where, getDoc, orderBy } from 'firebase/firestore'
+import { collection, doc, getDocs, query, where, getDoc, updateDoc } from 'firebase/firestore'
 import { db } from './config'
 
-import { DocumentReference, Query, DocumentData, OrderByDirection } from '@firebase/firestore'
 
 export interface IDepartment {
   id: string
   name: string
   imageUrl: string
   subdepartments: ISubdepartment[]
+}
+
+const getAllProducts = async () => {
+  const docs = await getDocs(collection(db,'products'))
+  const products : IProduct[]=[]
+  docs.forEach(doc=>products.push({
+    title:doc.data().title, 
+    price:doc.data().price,
+    inStock:doc.data().inStock,
+    imageUrls:doc.data().imageUrls,
+    description:doc.data().description,
+    details:doc.data().details,
+    categoryId:doc.data().categoryId,
+    id:doc.id
+  }))
+  return products 
 }
 
 // Gets all Departments from firestore database.
@@ -123,7 +138,13 @@ const getProductsByCategory = async (categoryId: string) => {
 //   return products
 // }
 
+
+
+
+
+
 export {
+  getAllProducts,
   getAllDepartments,
   getSubdepartmentsWithCategoriesByDepartment,
   getProductById,

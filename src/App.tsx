@@ -19,6 +19,7 @@ import ProductPage from './pages/productPage/productPage';
 import Products from './pages/admin/pagesForAdmin/productPage/products';
 import Users from './pages/admin/pagesForAdmin/usersPage/users';
 import Orders from './pages/admin/pagesForAdmin/ordersPage/orders';
+import SearchResults from './features/search/searchResults';
 
 function App() {
   return (
@@ -30,18 +31,19 @@ function App() {
         <Route path='/:departmentId' element={<DepartmentPage />} />
         <Route path='/:departmentId/:categoryId' element={<ProductsPage />} />
         <Route path='/products/:productId' element={<ProductPage/>}/>
-        <Route path= '/location'    element={<Location/>}/>
-        <Route path='/about'       element={<AboutUs/>}/>
-        <Route path='/account'     element={<CustomerAccountPage />} />
+        <Route path= '/location' element={<Location/>}/>
+        <Route path='/about' element={<AboutUs/>}/>
+        <Route path='/account' element={<CustomerAccountPage />} />
         <Route path='/account/admin'element={<AdminPage />} />
         <Route path='/account/admin/products'element={<Products />} />
         <Route path='/account/admin/users'element={<Users />} />
         <Route path='/account/admin/orders'element={<Orders/>} />        
-        <Route path='/favorites'    element={<FavoritesPage />}/>
+        <Route path='/favorites' element={<FavoritesPage />}/>
         <Route path='/shoppingcart' element={<ShoppingCartPage />}/>
-        <Route path='/register'    element={<RegisterPage/>}></Route>
-        <Route path='/loginPage'  element={<LoginPage/>}></Route>
-        <Route path='*'           element={<NotFound/>}> </Route>
+        <Route path='/register' element={<RegisterPage/>}></Route>
+        <Route path='/loginPage' element={<LoginPage/>}></Route>
+        <Route path='/search/:keyword' element={<SearchResults/>}></Route>
+        <Route path='*' element={<NotFound/>}> </Route>
       </Routes>
     </Layout>
     </BrowserRouter>
