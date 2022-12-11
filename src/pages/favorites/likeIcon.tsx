@@ -1,24 +1,36 @@
-import React, {FC, useState, useEffect } from 'react'
+import React, { FC, useState, useEffect } from 'react'
 import { HiOutlineHeart } from 'react-icons/hi'
 import { IProduct } from '../productPage/productPage'
 
-const LikeIcon: FC <{product: IProduct}> = ({product}) => {
+const LikeIcon: FC<{ product: IProduct }> = ({ product }) => {
   const [isLiked, setIsLiked] = useState(false)
+
+  const getLikedProducts = () => {
+    const favorites = localStorage.getItem('favorites')
+    let favoritesArr: IProduct[] = []
+
+    if (favorites) {
+      favoritesArr = JSON.parse(favorites)
+    }
+    const isProductLiked = favoritesArr.find((item: IProduct) => item.id === product?.id)
+      ? true
+      : false
+
+    return {
+      isProductLiked,
+      favoritesArr,
+    }
+  }
 
   const handleFavoritIcon = () => {
     setIsLiked(!isLiked)
 
-    const favorites = localStorage.getItem('favorites')
+    const { isProductLiked, favoritesArr } = getLikedProducts()
 
-    let favoritesArr: IProduct[] = []
-  
-    if (favorites) {
-      favoritesArr = JSON.parse(favorites)
-    }
-    const isProductLiked = favoritesArr.find((item: IProduct) => item.id === product?.id) ? true : false
+    let filteredFavoriteArr: IProduct[] = []
     if (isProductLiked) {
-      favoritesArr = favoritesArr.filter((item: IProduct) => item.id !== product?.id)
-      localStorage.setItem('favorites', JSON.stringify(favoritesArr))
+      filteredFavoriteArr = favoritesArr.filter((item: IProduct) => item.id !== product?.id)
+      localStorage.setItem('favorites', JSON.stringify(filteredFavoriteArr))
     } else {
       favoritesArr.push(product as IProduct)
       localStorage.setItem('favorites', JSON.stringify(favoritesArr))
@@ -26,15 +38,9 @@ const LikeIcon: FC <{product: IProduct}> = ({product}) => {
   }
 
   useEffect(() => {
-    const favorites = localStorage.getItem('favorites')
-    let favoritesArr: IProduct[] = []
-  
-    if (favorites) {
-      favoritesArr = JSON.parse(favorites)
-    }
-    const isProductLiked = favoritesArr.find((item: IProduct) => item.id === product?.id) ? true : false
-    if(isProductLiked) {
-        setIsLiked(true)
+    const { isProductLiked } = getLikedProducts()
+    if (isProductLiked) {
+      setIsLiked(true)
     }
   }, [])
 
