@@ -15,7 +15,7 @@ const DepartmentsNav = () => {
   const dispatch = useAppDispatch()
 
   const departments = useAppSelector((state) => selectAllDepartments(state))
-  console.log(departments, 'departments')
+  // console.log(departments, 'departments')
 
   const departmentsStatus = useAppSelector(selectDepartmentsStatus)
   const error = useAppSelector(selectDepartmentsError)

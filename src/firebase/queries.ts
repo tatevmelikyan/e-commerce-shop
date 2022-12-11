@@ -71,7 +71,9 @@ const getSubdepartmentsWithCategoriesByDepartment = async (departmentId: string)
 const getProductById = async (productId: string) => {
   const productRef = doc(db, 'products', productId)
   const productSnap = await getDoc(productRef)
-  return productSnap.data()
+  return {...productSnap.data(),
+    id: productSnap.id
+  }
 }
 
 const getProductsByCategory = async (categoryId: string) => {

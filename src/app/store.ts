@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import departmentsReducer from '../features/departmentsNav/departmentsSlice'
 import subdepartmentsReducer from '../pages/department/subdepartmentsSlice'
 import productsReducer from '../pages/products/productsPageSlice'
-
+import favoriteReducer from '../pages/favorites/favoriteSlice'
 
 
 import userReducer  from  '../pages/login/userSlices'
@@ -11,7 +11,8 @@ export const store = configureStore({
     departments: departmentsReducer,
     subdepartments: subdepartmentsReducer,
     products: productsReducer,
-    user:userReducer
+    user:userReducer,
+    favorites:favoriteReducer,
   }
   })
 
