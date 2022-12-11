@@ -3,12 +3,9 @@ import './product.css'
 import React, { useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router'
 import { getProductById } from '../../firebase/queries'
-import { HiOutlineHeart } from 'react-icons/hi'
 import { SlArrowRight, SlArrowLeft } from 'react-icons/sl'
-import { IProductFav, removeFavorites } from '../favorites/favoriteSlice'
 import { useAppDispatch } from '../../app/hooks'
 import { useAppSelector } from '../../app/hooks'
-import { addFavorites } from '../favorites/favoriteSlice'
 import LikeIcon from '../favorites/likeIcon'
 
 export interface IProduct {
@@ -23,8 +20,6 @@ export interface IProduct {
 }
 
 const ProductPage: React.FC = () => {
-  const favoritesState = useAppSelector((state) => state.favorites.favorits)
-  const dispatch = useAppDispatch()
   const { productId } = useParams()
   const [product, setProduct] = useState<IProduct>()
   
