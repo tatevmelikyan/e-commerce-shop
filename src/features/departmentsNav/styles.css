@@ -14,7 +14,6 @@
 }
 
 .department-list-item {
-  z-index: 100;
   float: left;
   border-bottom: 2px solid transparent;
   padding: 10px;
