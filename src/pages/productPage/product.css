@@ -57,6 +57,7 @@
 
 .product_details_div{
     width:38%;
+    box-sizing: border-box;
 }
 
 .product_details{

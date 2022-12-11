@@ -3,11 +3,11 @@ import './product.css'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 import { getProductById } from '../../firebase/queries'
-import { HiOutlineHeart } from 'react-icons/hi'
-import {SlArrowRight,SlArrowLeft} from 'react-icons/sl'
+import { SlArrowRight, SlArrowLeft } from 'react-icons/sl'
+import LikeIcon from '../favorites/likeIcon'
 
 export interface IProduct {
-  categoryId: string
+  categoryId?: string
   description: string
   details: string[]
   id: string
@@ -20,8 +20,8 @@ export interface IProduct {
 const ProductPage: React.FC = () => {
   const { productId } = useParams()
   const [product, setProduct] = useState<IProduct>()
-  const [heart,setHeart] = useState(false)
-
+  
+  
   useEffect(() => {
     async function fetch() {
       if (productId) {
@@ -32,14 +32,8 @@ const ProductPage: React.FC = () => {
     fetch()
   }, [productId])
 
-  const handleFavoritIcon = () => {
-    setHeart(!heart)
-  }
-
-
   return (
     <>
-      <h2 className='product-title'>{product?.title}</h2>
       <div className='product_info'>
         <div className='product_image_div'>
           {product?.imageUrls.map((img) => (
@@ -52,12 +46,7 @@ const ProductPage: React.FC = () => {
                 src={img}
                 alt=''
               />
-              <span className='products_icon_heart' onClick={handleFavoritIcon}>
-                <HiOutlineHeart
-                  stroke={!heart?'#d21414':'white'}
-                  fill={!heart?'white':'#d21414'}
-                />
-              </span>
+              <LikeIcon product={product}/>
             </div>
           ))}
         </div>
@@ -67,14 +56,13 @@ const ProductPage: React.FC = () => {
             <span className='span-price'>$ {product?.price.toLocaleString()}</span>
             <p></p>
             <div className='instoct-container'>
-              <button className='button-instock'>{<SlArrowLeft/>}</button>
+              <button className='button-instock'>{<SlArrowLeft />}</button>
               <span className='span-instock'>0</span>
-              <button className='button-instock'>{<SlArrowRight/>}</button>
+              <button className='button-instock'>{<SlArrowRight />}</button>
             </div>
             <br />
             <div className='add-cart-div'>
-
-            <button className='button-add-cart'>ADD TO CART</button>
+              <button className='button-add-cart'>ADD TO CART</button>
             </div>
 
             <p className='product-description'>
@@ -83,12 +71,14 @@ const ProductPage: React.FC = () => {
             </p>
             <p className='product-description'>
               <h3 className='product-details'>details</h3>
-              {product?.details.map(detail=> 
-               
-               <li key={Math.random()} className='details-arr' >
-                {detail}
-               </li>
-                )}
+              {product?.details.map((detail) => (
+                <li
+                  key={Math.random()}
+                  className='details-arr'
+                >
+                  {detail}
+                </li>
+              ))}
             </p>
           </div>
         </div>

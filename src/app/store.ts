@@ -5,7 +5,6 @@ import productsReducer from '../pages/products/productsSlice'
 import productsForAdminSlice from '../pages/admin/pagesForAdmin/productPage/productSlice'
 
 
-
 import userReducer  from  '../pages/login/userSlices'
 export const store = configureStore({
   reducer: {
