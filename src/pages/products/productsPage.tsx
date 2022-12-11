@@ -6,6 +6,7 @@ import { HiOutlineHeart } from 'react-icons/hi'
 import { sortByPrice } from './productsPageSlice'
 
 import './styles.css'
+import LikeIcon from '../favorites/likeIcon'
 
 interface IOrderOption {
   value: TOrder
@@ -78,12 +79,7 @@ const ProductsPage: React.FC = () => {
                 className='products_images'
                 src={product.imageUrls[0]}
               />
-              <span className='products_icon_heart'>
-                <HiOutlineHeart
-                  stroke='#d21414'
-                  fill='white'
-                />
-              </span>
+             <LikeIcon product={product}/>
             </div>
             <div>
               <p className='product-title'>{product.title}</p>

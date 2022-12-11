@@ -22,7 +22,8 @@ const LikeIcon: FC<{ product: IProduct }> = ({ product }) => {
     }
   }
 
-  const handleFavoritIcon = () => {
+  const handleFavoritIcon = (e:React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
+    e.stopPropagation()
     setIsLiked(!isLiked)
 
     const { isProductLiked, favoritesArr } = getLikedProducts()
@@ -47,7 +48,7 @@ const LikeIcon: FC<{ product: IProduct }> = ({ product }) => {
   return (
     <span
       className='products_icon_heart'
-      onClick={handleFavoritIcon}
+      onClick={(e)=>handleFavoritIcon(e)}
     >
       <HiOutlineHeart
         stroke='#d21414'
