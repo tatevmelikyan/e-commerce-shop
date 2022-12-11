@@ -24,7 +24,6 @@ const Carousel: React.FC<{ slideContent: IProduct[], sliderHeader: string }> = (
       >
         {slideContent.map((item) => {
           return (
-            <>
               <SwiperSlide key={item.id} >
                 <div className='slide-item'>
                   <Link to={`/products/${item.id}`}>
@@ -41,7 +40,7 @@ const Carousel: React.FC<{ slideContent: IProduct[], sliderHeader: string }> = (
                   </div>
                 </div>
               </SwiperSlide>
-            </>
+            
           )
         })}
       </Swiper>
