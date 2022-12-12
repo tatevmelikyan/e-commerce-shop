@@ -3,7 +3,6 @@ import './product.css'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 import { getProductById } from '../../firebase/queries'
-import { SlArrowRight, SlArrowLeft } from 'react-icons/sl'
 import LikeIcon from '../favorites/likeIcon'
 import AddToCart from '../cart/addToCart'
 

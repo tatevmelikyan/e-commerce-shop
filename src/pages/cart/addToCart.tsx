@@ -1,4 +1,4 @@
-import React,{FC,useState,useEffect} from 'react'
+import React,{FC,useState} from 'react'
 import { IProduct } from '../productPage/productPage'
 import './shoppingCart.css'
 
