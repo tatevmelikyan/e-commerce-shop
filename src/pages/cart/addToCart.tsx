@@ -10,6 +10,8 @@ const  AddToCart:FC<{ product: IProduct }> = ({product}) => {
     const[addedToCart,setAddedTocart] = useState(false)
 
     const handleAddToCard = () => {
+        setAddedTocart(true)
+        setTimeout(()=>{setAddedTocart(false)},800)
         const cards = localStorage.getItem('cards')
         let cartItemsArr:ICartItem[] = []
         if(cards){
@@ -30,9 +32,11 @@ const  AddToCart:FC<{ product: IProduct }> = ({product}) => {
   return (
      <div className='add-cart-div'>
         <button onClick={handleAddToCard} className='button-add-cart'>ADD TO CART</button>
-        {
-            addedToCart?<span className='productAddedCart'>product added to cart</span>:''
-        }
+        <div className='animDiv'>
+        
+            <img className={addedToCart?'added-productImage-to-cart ':'added-productImage-to-cart-Dnone'} src={product?.imageUrls[0]} alt="" />        
+        </div>
+      
     </div>
   )
 }
