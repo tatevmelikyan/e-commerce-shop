@@ -1,14 +1,14 @@
 import React from 'react'
 import { IProduct } from '../productPage/productPage'
-import { HiOutlineHeart } from 'react-icons/hi'
 import { useNavigate } from 'react-router'
+import LikeIcon from '../favorites/likeIcon'
 
 const ProductsUI: React.FC<{ products: IProduct[] }> = ({ products }) => {
   const navigate = useNavigate()
 
   return (
     <>
-      {products.map((product) => {
+      {products?.map((product) => {
         return (
           <div
             key={product.id}
@@ -20,12 +20,9 @@ const ProductsUI: React.FC<{ products: IProduct[] }> = ({ products }) => {
                 className='products_images'
                 src={product.imageUrls[0]}
               />
-              <span className='products_icon_heart'>
-                <HiOutlineHeart
-                  stroke='#d21414'
-                  fill='white'
-                />
-              </span>
+              <div className='productsLikeIcon'>
+              <LikeIcon product={product} />
+              </div>
             </div>
             <div>
               <p className='product-title'>{product.title}</p>
