@@ -18,6 +18,7 @@ const Carousel: React.FC<{ slideContent: IProduct[]; sliderHeader: string }> = (
       <Swiper
         modules={[Navigation, Pagination]}
         spaceBetween={20}
+        slidesPerView={4}
         slidesPerGroup={4}
         navigation
         pagination={{ clickable: true }}
