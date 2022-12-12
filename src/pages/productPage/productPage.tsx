@@ -5,6 +5,7 @@ import { useParams } from 'react-router'
 import { getProductById } from '../../firebase/queries'
 import { SlArrowRight, SlArrowLeft } from 'react-icons/sl'
 import LikeIcon from '../favorites/likeIcon'
+import AddToCart from '../cart/addToCart'
 
 export interface IProduct {
   categoryId?: string
@@ -46,7 +47,9 @@ const ProductPage: React.FC = () => {
                 src={img}
                 alt=''
               />
+              <div className='like-icon-container'>
               <LikeIcon product={product}/>
+              </div>
             </div>
           ))}
         </div>
@@ -55,22 +58,13 @@ const ProductPage: React.FC = () => {
           <div className='product_details'>
             <span className='span-price'>$ {product?.price.toLocaleString()}</span>
             <p></p>
-            <div className='instoct-container'>
-              <button className='button-instock'>{<SlArrowLeft />}</button>
-              <span className='span-instock'>0</span>
-              <button className='button-instock'>{<SlArrowRight />}</button>
-            </div>
-            <br />
-            <div className='add-cart-div'>
-              <button className='button-add-cart'>ADD TO CART</button>
-            </div>
+            <AddToCart product={product as IProduct}/>
 
-            <p className='product-description'>
-              <h3 className='product-details'>description</h3>
-              {product?.description}
-            </p>
-            <p className='product-description'>
-              <h3 className='product-details'>details</h3>
+              <p className='product-details'>Description</p>
+              <p className='product-discription-text'>{product?.description}</p>
+              <p className='product-details'>Details</p>
+              <p className='product-details-text'>
+
               {product?.details.map((detail) => (
                 <li
                   key={Math.random()}
@@ -79,7 +73,7 @@ const ProductPage: React.FC = () => {
                   {detail}
                 </li>
               ))}
-            </p>
+              </p>
           </div>
         </div>
       </div>
