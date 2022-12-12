@@ -1,0 +1,31 @@
+.favoritesContainer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.favoritePageLikeIcon{
+ position: absolute;
+ right:10px;
+ bottom: 100px;
+ font-size: 25px;
+}
+
+
+.itemImage{
+    width: 300px;
+}
+
+.favoritePageItem{
+  position: relative;
+}
+
+.favoriteHeader{
+  padding-left: 150px;
+
+}
+
+.favoriteHeader p{
+    font-size: 25px;
+}
