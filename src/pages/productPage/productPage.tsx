@@ -5,6 +5,8 @@ import { useParams } from 'react-router'
 import { getProductById } from '../../firebase/queries'
 import LikeIcon from '../favorites/likeIcon'
 import AddToCart from '../cart/addToCart'
+import { useAppDispatch } from '../../app/hooks'
+import { updateRecentlyViewedItems } from '../../features/recentlyViewed/recentlyViewedSlice'
 
 export interface IProduct {
   categoryId?: string
@@ -20,12 +22,13 @@ export interface IProduct {
 const ProductPage: React.FC = () => {
   const { productId } = useParams()
   const [product, setProduct] = useState<IProduct>()
-  
-  
+  const dispatch = useAppDispatch()
+
   useEffect(() => {
     async function fetch() {
       if (productId) {
         const response = await getProductById(productId)
+        dispatch(updateRecentlyViewedItems(response as IProduct))
         setProduct(response as IProduct)
       }
     }
@@ -47,7 +50,7 @@ const ProductPage: React.FC = () => {
                 alt=''
               />
               <div className='like-icon-container'>
-              <LikeIcon product={product}/>
+                <LikeIcon product={product} />
               </div>
             </div>
           ))}
@@ -57,13 +60,12 @@ const ProductPage: React.FC = () => {
           <div className='product_details'>
             <span className='span-price'>$ {product?.price.toLocaleString()}</span>
             <p></p>
-            <AddToCart product={product as IProduct}/>
+            <AddToCart product={product as IProduct} />
 
-              <p className='product-details'>Description</p>
-              <p className='product-discription-text'>{product?.description}</p>
-              <p className='product-details'>Details</p>
-              <p className='product-details-text'>
-
+            <p className='product-details'>Description</p>
+            <p className='product-discription-text'>{product?.description}</p>
+            <p className='product-details'>Details</p>
+            <p className='product-details-text'>
               {product?.details.map((detail) => (
                 <li
                   key={Math.random()}
@@ -72,7 +74,7 @@ const ProductPage: React.FC = () => {
                   {detail}
                 </li>
               ))}
-              </p>
+            </p>
           </div>
         </div>
       </div>

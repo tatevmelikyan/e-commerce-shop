@@ -10,15 +10,20 @@
 
 
 .slide-item-info {
+    height: 100px;
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-.slide-item-info .item-name:hover {
-    cursor: pointer;
-    text-decoration: underline;
+.slide-item-info a {
+    text-decoration: none;
 }
+
+.slide-item-info .item-name {
+    color: black;
+} 
+
 
 
 .swiper-button-next, .swiper-button-prev {
@@ -26,6 +31,7 @@
     background-color: rgba(0, 0, 0, 0.627);
     width: 50px;
     border-radius: 8px;
+    top: calc((100% - 100px) / 2);
 }
 
 .swiper-button-next::after, .swiper-button-prev::after {
