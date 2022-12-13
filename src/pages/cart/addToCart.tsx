@@ -2,7 +2,7 @@ import React,{FC,useState} from 'react'
 import { IProduct } from '../productPage/productPage'
 import './shoppingCart.css'
 
-interface ICartItem {
+export interface ICartItem {
     product:IProduct;
     qty:number
 }
