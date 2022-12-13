@@ -5,6 +5,7 @@ import { fetchedProducts } from './productSlice'
 import {FaEdit} from 'react-icons/fa'
 import {MdDelete} from 'react-icons/md'
 import './styles.css'
+import CategoriesToFilter from './filterByCategory/categoriesToFilter'
 
 const Products = function () {
   const dispatch = useAppDispatch()
@@ -17,6 +18,7 @@ const Products = function () {
 
   return (
     <div>
+      <CategoriesToFilter/>
       <table className='productPage'>
         <thead>
         <tr>
@@ -29,8 +31,7 @@ const Products = function () {
         </tr>
         </thead>
         <tbody>
-          {products.length &&
-            products.map((product) => {
+          {products?.map((product) => {
               return (
                 <tr key={product.id}>
                   <td className='productTD'>
