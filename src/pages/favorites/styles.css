@@ -1,0 +1,36 @@
+.favoritesContainer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+
+.favoriteHeader{
+  padding-left: 150px;
+
+}
+
+.favoriteHeader p{
+    font-size: 25px;
+}
+
+
+.noFavorites {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.noFavorites .heart{
+ font-size: 100px;
+}
+
+.noFavorites p{
+  font-size: 18px;
+  padding: 3px;
+  margin: 0;
+  
+}
