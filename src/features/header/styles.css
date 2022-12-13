@@ -1,7 +1,9 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Allerta+Stencil&display=swap');
 
 
 .sticky-header {
+    box-sizing: border-box;
     position: sticky;
     position: -webkit-sticky;
     top: 0;
@@ -25,11 +27,11 @@
 }
 
 
-.logo-nav {
+.search-logo-customer {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-top: 10px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
 }
 
 

@@ -1,0 +1,35 @@
+.productAddedCart{
+    color:red;
+    font-size: large;
+    padding: 10px;
+}
+
+.added-productImage-to-cart-Dnone {
+    display: none;
+}
+
+.added-productImage-to-cart {
+    width: 100px;
+    height: 100px;
+    animation: titleText2 1s linear forwards;
+    position: absolute;
+    z-index: 1;
+    display: block;
+}
+
+@keyframes titleText2 {
+    0%{bottom: 0px; right: 0; bottom: 1;}
+    100%{bottom:300px;right: 0;opacity: 0;}
+}
+
+.animDiv {
+    position: relative;
+    top: -400px;
+    width: 200px;
+    height: 500px;
+    z-index: 1;
+}
+.add-cart-div{
+    display: flex;
+    justify-content: space-between;
+}

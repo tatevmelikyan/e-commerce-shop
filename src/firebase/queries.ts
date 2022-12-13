@@ -1,6 +1,6 @@
 import { ISubdepartment } from './../pages/department/subdepartmentsSlice'
 import { IProduct } from './../pages/productPage/productPage'
-import { collection, doc, getDocs, query, where, getDoc } from 'firebase/firestore'
+import { collection, doc, getDocs, query, where, getDoc, updateDoc } from 'firebase/firestore'
 import { db } from './config'
 
 
@@ -86,7 +86,9 @@ const getSubdepartmentsWithCategoriesByDepartment = async (departmentId: string)
 const getProductById = async (productId: string) => {
   const productRef = doc(db, 'products', productId)
   const productSnap = await getDoc(productRef)
-  return productSnap.data()
+  return {...productSnap.data(),
+    id: productSnap.id
+  }
 }
 
 const getProductsByCategory = async (categoryId: string) => {
@@ -135,6 +137,11 @@ const getProductsByCategory = async (categoryId: string) => {
 
 //   return products
 // }
+
+
+
+
+
 
 export {
   getAllProducts,
