@@ -1,21 +1,26 @@
 import React from 'react'
 import { useState,useEffect } from 'react'
+import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { IProduct } from '../productPage/productPage'
+import ProductsUI from '../products/productsUI'
+import { getLikedProducts } from './favoritesSlice'
 import LikeIcon from './likeIcon'
 import './styles.css'
 
 const FavoritesPage = () => {
 
-  const [favorites, setFavorites] = useState<IProduct[]>()
-
+  // const [favorites, setFavorites] = useState<IProduct[]>()
+ const dispatch = useAppDispatch()
+ const favorites = useAppSelector(state=>state.favoriteItems.favoriteItems)
+ 
   useEffect(()=>{
-    const json = localStorage.getItem('favorites')
-    if (json){
-      setFavorites(JSON.parse(json))
-    } 
-    
+    // const json = localStorage.getItem('favorites')
+    // if (json){
+    //   setFavorites(JSON.parse(json))
+    // } 
+    dispatch(getLikedProducts())
   },[])
-  console.log(favorites);
+
 
   return (
     <div className='favoritePage'>
@@ -23,14 +28,18 @@ const FavoritesPage = () => {
       <h1 >Your Favorite Items</h1>
       <p>Item count: { favorites?.length}</p>
      </div>
+     <div className='favoritesContainer'>
+     <ProductsUI products={favorites}/>
+     </div>
+     
 
-    <div className='favoritesContainer'>
+    {/* <div className='favoritesContainer'>
    
     {
       favorites?.map(item=> <div className='favoritePageItem' key={item.id}>
-        <div >
+        <div className='favorite-image-container'>
           <img src={item.imageUrls[0]} alt="" className='itemImage'/>
-         <div className='favoritePageLikeIcon'>
+         <div  className='favoritePageLikeIcon'>
            <LikeIcon product={item}/>
          </div>
         </div>
@@ -38,7 +47,7 @@ const FavoritesPage = () => {
         <p>{item.price}</p>
          </div>)
     }
-  </div>
+  </div> */}
 </div>
     
   )

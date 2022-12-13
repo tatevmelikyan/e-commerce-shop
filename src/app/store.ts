@@ -3,7 +3,7 @@ import departmentsReducer from '../features/departmentsNav/departmentsSlice'
 import subdepartmentsReducer from '../pages/department/subdepartmentsSlice'
 import productsReducer from '../pages/products/productsSlice'
 import productsForAdminSlice from '../pages/admin/pagesForAdmin/productPage/productSlice'
-
+import favoritesReducer from '../pages/favorites/favoritesSlice'
 
 import userReducer  from  '../pages/login/userSlices'
 export const store = configureStore({
@@ -12,7 +12,8 @@ export const store = configureStore({
     subdepartments: subdepartmentsReducer,
     products: productsReducer,
     user:userReducer,
-    allProductsForAdmin:productsForAdminSlice
+    allProductsForAdmin:productsForAdminSlice,
+    favoriteItems: favoritesReducer
   }
   })
 
