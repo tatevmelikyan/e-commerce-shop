@@ -3,10 +3,10 @@ import './product.css'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 import { getProductById } from '../../firebase/queries'
-import LikeIcon from '../favorites/likeIcon'
 import AddToCart from '../cart/addToCart'
 import { useAppDispatch } from '../../app/hooks'
 import { updateRecentlyViewedItems } from '../../features/recentlyViewed/recentlyViewedSlice'
+import ProductPageCarusel from './productPageCarusel'
 
 export interface IProduct {
   categoryId?: string
@@ -39,22 +39,9 @@ const ProductPage: React.FC = () => {
     <>
       <div className='product_info'>
         <div className='product_image_div'>
-          {product?.imageUrls.map((img) => (
-            <div
-              className='imageContainer'
-              key={img}
-            >
-              <img
-                className='productImage'
-                src={img}
-                alt=''
-              />
-              <div className='like-icon-container'>
-                <LikeIcon product={product} />
-              </div>
-            </div>
-          ))}
-        </div>
+        <ProductPageCarusel slideContent={product as IProduct}/>
+       
+           </div>
         <div className='product_details_div'>
           <h2 className='product-title1'>{product?.title}</h2>
           <div className='product_details'>

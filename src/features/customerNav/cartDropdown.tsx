@@ -20,6 +20,7 @@ const CartDropdown = () => {
   console.log(cartItems );
   return (
   <div className='cart-dropdown'>
+    <div className='table-container'>
      {
       <table>
         <thead>
@@ -40,7 +41,14 @@ const CartDropdown = () => {
         </tbody>
       </table>
      }
-     <div className='viewToCart'><button onClick={()=>navigate('/shoppingcart')}>VIEW CART</button></div>
+    
+     <div className='viewToCart'>
+     <div>Total Price {cartItems?.reduce((a,b:ICartItem)=>{
+      return a+b.qty*b.product.price
+     },0)}</div>
+       <button onClick={()=>navigate('/shoppingcart')}>VIEW CART</button>
+     </div>
+     </div>
   </div>
      
   )
