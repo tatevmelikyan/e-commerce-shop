@@ -166,6 +166,7 @@
 .slide-item-productePage {
     width: 100%;
     position: relative;
+    cursor: zoom-in;
 }
 
 .slide-item-productePage img {
@@ -174,9 +175,16 @@
 }
 
 
+
+
 .slide-item-productePage-info {
     height: 100px;
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+
+
+.productPageImg{
+    cursor: zoom-in;
 }
