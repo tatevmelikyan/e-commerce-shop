@@ -1,9 +1,70 @@
 import React from 'react'
+import { useAppDispatch, useAppSelector } from '../../app/hooks'
+import NoCartItems from './noCartItems'
 import './shoppingCart.css'
+import {AiFillPlusSquare, AiFillMinusSquare} from 'react-icons/ai'
+import { addQtyToCartItem, removeQtyFromCartItem } from './cartSlice'
+import { IProduct } from '../productPage/productPage'
+import { Link } from 'react-router-dom'
 
 const ShoppingCartPage = () => {
+  const cartItems = useAppSelector(state => state.cartItems.cartItems)
+const dispatch = useAppDispatch()
+
+  const handleMinusQty = (product: IProduct ) => {
+    dispatch(removeQtyFromCartItem(product))
+  }
+
+  const handleAddQty = (product: IProduct) => {
+    dispatch(addQtyToCartItem(product))
+  }
+
   return (
-    <div>ShoppingCartPage</div>
+    <div>
+      <h3 className='shopping-cart-header'>SHOPPING CART</h3>
+      {
+        cartItems.length ? 
+        <div className='cart-main-grid'>
+          <div>
+            <div className="cart-items-header">
+                      <span>product</span>
+                      <span>qty</span>
+                      <span>total price</span>
+                    </div>
+            {
+              cartItems.map(item => {
+                return (
+                  <div key={item.product.id} className='cart-item-grid'>
+                    <div className='cart-item-product-container'>
+                      <div className='cart-item-product'>
+                        <Link to={`/products/${item.product.id}`}>
+                          <img src={item.product.imageUrls[0]} alt='product' />
+                        </Link>
+                        <Link to={`/products/${item.product.id}`}>
+                          <span>{item.product.title}</span>
+                        </Link>
+                        <span>${item.product.price.toLocaleString()}</span>
+                      </div>
+                    </div>
+                    <div className='cart-item-qty'>
+                      <button onClick={() => handleMinusQty(item.product)}>&#8722;</button>
+                      <span>{item.qty}</span>
+                      <button onClick={() => handleAddQty(item.product)}>+</button>
+                    </div>
+                    <div className='cart-item-total-price'>
+                      <span>${(item.qty * item.product.price).toLocaleString()}</span>
+                    </div>
+                  </div>
+                )
+              })
+            }
+          </div>
+          <div className='cart-summary'>summary</div>
+        </div>
+        : 
+        <NoCartItems />
+      }
+    </div>
   )
 }
 

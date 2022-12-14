@@ -33,3 +33,121 @@
     display: flex;
     justify-content: space-between;
 }
+
+
+
+/*shopping cart page css */
+
+
+.shopping-cart-header {
+    background-color: antiquewhite;
+    padding-left: 130px;
+}
+
+
+.cart-main-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    background-color: rgb(248, 248, 248);
+}
+
+
+.cart-item-grid {
+    margin: 20px;
+    padding: 20px;
+    /* width: 50%; */
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    border-bottom: 1px solid rgb(215, 215, 215);
+    background-color: white;
+    gap: 20px;
+}
+
+.cart-items-header {
+    background-color: whitesmoke;
+    margin: 20px;
+    padding: 20px;
+    /* width: 50%; */
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 20px;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgb(215, 215, 215);
+}
+
+.cart-items-header span {
+    text-align: center;
+}
+
+
+.cart-item-product-container {
+    display: flex;
+    justify-content: center;
+}
+
+.cart-item-product {
+    width: 60%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.cart-item-product a {
+    text-decoration: none;
+    color: black
+}
+
+.cart-item-product a:hover {
+    text-decoration: underline;
+}
+
+.cart-item-product img {
+width: 100%;
+}
+
+
+
+
+
+.cart-item-image-container img {
+    width: 100%;
+}
+
+.cart-item-title {
+    display: flex;
+    justify-content: center;
+}
+
+.cart-item-title span {
+    /* width: max-content;
+    height: fit-content; */
+}
+
+
+.cart-item-price span, .cart-item-qty, .cart-item-total-price span {
+    display: flex;
+    justify-content: center;
+}
+
+.cart-item-qty {
+    height: fit-content;
+}
+
+.cart-item-qty span {
+    display: inline-flex;
+  align-items: center;
+    border: 1px solid rgb(215, 215, 215); 
+     padding: 5px 10px 5px 10px; 
+}
+
+.cart-item-qty button {
+    cursor: pointer;
+    padding: 5px 10px 5px 10px;
+    border: none;
+    border: 1px solid rgb(215, 215, 215);
+    font-size: 24px;
+}
+
+.cart-item-qty button svg {
+    font-size: 30px;
+}
