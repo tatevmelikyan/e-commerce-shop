@@ -33,9 +33,11 @@ const CartDropdown = () => {
               onClick = {()=>navigate(`/products/${item.product.id}`)}
               >
               <td><img className='cartDropdownImg' src={item.product.imageUrls[0]} alt="" /></td>
-              <td>{item.qty}</td>
+              <td></td>
               <td>{item.product.title}</td>
               <td>${item.product.price}</td>
+              <td>x</td>
+              <td className='productCount'> {item.qty}</td>
             </tr>)
           }
         </tbody>
