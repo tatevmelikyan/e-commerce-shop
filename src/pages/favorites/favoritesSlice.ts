@@ -36,9 +36,13 @@ const favoritesSlice = createSlice({
       localStorage.setItem('favorites', JSON.stringify(state.favoriteItems))
      }
       
+    },
+    clearLikedItems: (state)=>{
+      state.favoriteItems.length = 0
+      localStorage.setItem('favorites', JSON.stringify(state.favoriteItems))
     }
   },
 })
 
-export const { getLikedProducts, updateLikedProducts } = favoritesSlice.actions
+export const { getLikedProducts, updateLikedProducts,clearLikedItems } = favoritesSlice.actions
 export default favoritesSlice.reducer
