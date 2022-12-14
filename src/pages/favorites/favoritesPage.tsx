@@ -15,7 +15,6 @@ const FavoritesPage = () => {
  const favorites = useAppSelector(state=>state.favoriteItems.favoriteItems)
  
   useEffect(()=>{
-    
     dispatch(getLikedProducts())
   },[])
 
