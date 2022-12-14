@@ -1,7 +1,6 @@
 import React from 'react'
 import Footer from '../footer/footer'
 import Header from '../header/header'
-import './styles.css'
 import SideBar from '../../pages/admin/adminSidebar/sideBar'
 import RecentlyViewed from '../recentlyViewed/recentlyViewed'
 
