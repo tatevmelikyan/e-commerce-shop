@@ -1,4 +1,4 @@
-import { fetchProducts } from './productsSlice'
+import { fetchProducts } from '../../features/slices/productsSlice'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { useParams } from 'react-router'
 import { useEffect } from 'react'

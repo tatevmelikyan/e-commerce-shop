@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useAppDispatch } from '../../app/hooks'
-import { sortByPrice } from './productsSlice'
+import { sortByPrice } from '../../features/slices/productsSlice'
 
 interface IOrderOption {
   value: TOrder

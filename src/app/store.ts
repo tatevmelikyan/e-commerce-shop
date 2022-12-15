@@ -1,14 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit'
-import departmentsReducer from '../features/departmentsNav/departmentsSlice'
-import subdepartmentsReducer from '../pages/department/subdepartmentsSlice'
-import productsReducer from '../pages/products/productsSlice'
-import productsForAdminSlice from '../pages/admin/pagesForAdmin/productPage/productSlice'
-import favoritesReducer from '../pages/favorites/favoritesSlice'
-import recentlyViewedReducer from '../features/recentlyViewed/recentlyViewedSlice'
-import categoriesForAdminSlice from '../pages/admin/pagesForAdmin/productPage/filterByCategory/categoriesToFilterSlice'
+import departmentsReducer from '../features/slices/departmentsSlice'
+import subdepartmentsReducer from '../features/slices/subdepartmentsSlice'
+import productsReducer from '../features/slices/productsSlice'
+import productsForAdminSlice from '../features/slices/productSlice'
+import favoritesReducer from '../features/slices/favoritesSlice'
+import recentlyViewedReducer from '../features/slices/recentlyViewedSlice'
+import categoriesForAdminSlice from '../features/slices/categoriesToFilterSlice'
 
-import userReducer  from  '../pages/login/userSlices'
-import cartItemsReducer from '../pages/cart/cartSlice'
+import userReducer  from  '../features/slices/userSlices'
+import cartItemsReducer from '../features/slices/cartSlice'
 
 export const store = configureStore({
   reducer: {

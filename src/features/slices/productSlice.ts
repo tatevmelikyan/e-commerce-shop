@@ -1,6 +1,6 @@
 import React from 'react'
-import { getAllProducts } from '../../../../firebase/queries'
-import { IProduct } from '../../../productPage/productPage'
+import { getAllProducts } from '../../firebase/queries'
+import { IProduct } from '../../pages/productPage/productPage'
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
 export const fetchedProducts = createAsyncThunk('allProducts/fetchedProducts', async () => {

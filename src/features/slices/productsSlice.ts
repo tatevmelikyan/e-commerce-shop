@@ -1,5 +1,5 @@
-import { TOrder } from './sortBy'
-import { IProduct } from '../productPage/productPage'
+import { TOrder } from '../../pages/products/sortBy'
+import { IProduct } from '../../pages/productPage/productPage'
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { getAllProducts, getProductsByCategory } from '../../firebase/queries'
 

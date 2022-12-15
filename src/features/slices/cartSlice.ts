@@ -1,5 +1,5 @@
-import { ICartItem } from './addToCart';
-import { IProduct } from './../productPage/productPage';
+import { ICartItem } from '../../pages/cart/addToCart';
+import { IProduct } from '../../pages/productPage/productPage';
 import { createSlice } from '@reduxjs/toolkit';
 
 interface CartState {

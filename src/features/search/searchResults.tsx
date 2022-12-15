@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
-import { fetchAllProducts } from '../../pages/products/productsSlice'
+import { fetchAllProducts } from '../slices/productsSlice'
 import ProductsUI from '../../pages/products/productsUI'
 import SortBy from '../../pages/products/sortBy'
 import NoResults from './noResults'
