@@ -57,7 +57,7 @@
     padding: 20px;
     /* width: 50%; */
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-columns: 2fr 1fr 1fr 50px;
     border-bottom: 1px solid rgb(215, 215, 215);
     background-color: white;
     gap: 20px;
@@ -69,7 +69,7 @@
     padding: 20px;
     /* width: 50%; */
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-columns: 2fr 1fr 1fr 50px;
     gap: 20px;
     text-transform: uppercase;
     border-bottom: 1px solid rgb(215, 215, 215);
@@ -118,36 +118,84 @@ width: 100%;
     justify-content: center;
 }
 
-.cart-item-title span {
-    /* width: max-content;
-    height: fit-content; */
+.cart-item-total-price span {
+   font-size: 20px;
 }
 
 
-.cart-item-price span, .cart-item-qty, .cart-item-total-price span {
+.cart-item-price span, .cart-item-qty, .cart-item-total-price {
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
-.cart-item-qty {
-    height: fit-content;
-}
 
 .cart-item-qty span {
-    display: inline-flex;
-  align-items: center;
     border: 1px solid rgb(215, 215, 215); 
-     padding: 5px 10px 5px 10px; 
+   font-size: 20px;
+     padding: 7px 10px; 
 }
 
 .cart-item-qty button {
     cursor: pointer;
-    padding: 5px 10px 5px 10px;
+    padding: 5px 10px;
     border: none;
     border: 1px solid rgb(215, 215, 215);
     font-size: 24px;
+    height: fit-content;
 }
 
 .cart-item-qty button svg {
     font-size: 30px;
+}
+
+.remove-cart-item button {
+    background-color: white;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    transition: .2s;
+    font-size: 24px;
+}
+
+.remove-cart-item button:hover {
+    color: red;
+}
+
+
+/* empty cart css */
+
+.empty-cart-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.empty-cart-container h1 {
+    text-transform: capitalize;
+}
+
+.cart-icon {
+    color:lightslategray;
+    font-size: 100px;
+}
+
+.cart-icon:hover {
+    transform: rotate(10deg);
+}
+
+.cart-sign-in-btn {
+    background-color: black;
+    color: white;
+    padding: 5px 20px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.cart-sign-in-btn:hover {
+   transform: scale(1.25);
+}
+
+.sign-in-text {
+    font-size: 18px;
 }

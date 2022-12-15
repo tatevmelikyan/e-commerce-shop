@@ -17,32 +17,14 @@ const  AddToCart:FC<{ product: IProduct }> = ({product}) => {
         dispatch(updateCartItems(product))
         setAddedToCart(true)
         setTimeout(()=>{setAddedToCart(false)},800)
-        // const cartItems = localStorage.getItem('cartItems')
-        // let cartItemsArr:ICartItem[] = []
-        // if(cartItems){
-        //     cartItemsArr = JSON.parse(cartItems)
-        // } 
-       
-        // const cartItem = cartItemsArr.find((item:ICartItem)=>item.product.id === product?.id)
-
-        // if(!cartItem){
-        //     cartItemsArr.push({product,qty: 1})
-        //     localStorage.setItem('cartItems',JSON.stringify(cartItemsArr))
-        //     console.log('add');
-        // } else {
-        //     cartItem.qty++
-        //     localStorage.setItem('cartItems',JSON.stringify(cartItemsArr))
-        // }
     }
 
   return (
      <div className='add-cart-div'>
         <button onClick={handleAddToCard} className='button-add-cart'>ADD TO CART</button>
         <div className='animDiv'>
-        
             <img className={addedToCart?'added-productImage-to-cart ':'added-productImage-to-cart-Dnone'} src={product?.imageUrls[0]} alt="" />        
         </div>
-      
     </div>
   )
 }

@@ -3,9 +3,12 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import NoCartItems from './noCartItems'
 import './shoppingCart.css'
 import {AiFillPlusSquare, AiFillMinusSquare} from 'react-icons/ai'
-import { addQtyToCartItem, removeQtyFromCartItem } from './cartSlice'
+import { addQtyToCartItem, removeCartItem, removeQtyFromCartItem } from './cartSlice'
 import { IProduct } from '../productPage/productPage'
 import { Link } from 'react-router-dom'
+import {CiSquareRemove} from 'react-icons/ci'
+
+
 
 const ShoppingCartPage = () => {
   const cartItems = useAppSelector(state => state.cartItems.cartItems)
@@ -17,6 +20,10 @@ const dispatch = useAppDispatch()
 
   const handleAddQty = (product: IProduct) => {
     dispatch(addQtyToCartItem(product))
+  }
+
+  const handleRemoveItem = (product: IProduct) => {
+    dispatch(removeCartItem(product))
   }
 
   return (
@@ -53,6 +60,9 @@ const dispatch = useAppDispatch()
                     </div>
                     <div className='cart-item-total-price'>
                       <span>${(item.qty * item.product.price).toLocaleString()}</span>
+                    </div>
+                    <div className='remove-cart-item'>
+                      <button onClick={() => handleRemoveItem(item.product)}><CiSquareRemove /></button>
                     </div>
                   </div>
                 )
