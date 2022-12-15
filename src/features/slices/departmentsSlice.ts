@@ -1,4 +1,4 @@
-import { IDepartment } from './../../firebase/queries';
+import { IDepartment } from '../../firebase/queries';
 import { RootState } from '../../app/store'
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { getAllDepartments } from '../../firebase/queries'

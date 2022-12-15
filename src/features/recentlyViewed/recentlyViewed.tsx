@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import Carousel from '../carousel/carousel'
-import { getRecentlyViewedItems } from './recentlyViewedSlice'
+import { getRecentlyViewedItems } from '../slices/recentlyViewedSlice'
 
 const RecentlyViewed: React.FC = () => {
   const dispatch = useAppDispatch()

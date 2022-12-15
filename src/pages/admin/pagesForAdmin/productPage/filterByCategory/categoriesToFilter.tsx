@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useAppSelector, useAppDispatch } from '../../../../../app/hooks'
-import { fetchedCategories } from './categoriesToFilterSlice'
-import { filterCategory } from '../productSlice'
+import { fetchedCategories } from '../../../../../features/slices/categoriesSlice'
+// import { filterCategory } from '../../../../../features/slices/productSlice'
 
 // interface ICategoryOption {
 //   value: COrder

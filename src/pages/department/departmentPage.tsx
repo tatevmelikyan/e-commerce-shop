@@ -8,9 +8,9 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks'
     selectSubdepartmentsByDepartment,
     selectSubdepartmentsError,
     selectSubdepartmentsStatus,
-  } from './subdepartmentsSlice'
+  } from '../../features/slices/subdepartmentsSlice'
 
-import { selectDepartment } from '../../features/departmentsNav/departmentsSlice'
+import { selectDepartment } from '../../features/slices/departmentsSlice'
 
 const DepartmentPage: React.FC = () => {
   const dispatch = useAppDispatch()

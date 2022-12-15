@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { ICartItem } from '../../pages/cart/addToCart'
-import { getCartItems } from '../../pages/cart/cartSlice'
+import { getCartItems } from '../slices/cartSlice'
 
 const CartDropdown = () => {
 

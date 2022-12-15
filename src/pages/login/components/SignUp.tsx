@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
 import { Form } from './Form'
-import { setUser } from '../userSlices'
+import { setUser } from '../../../features/slices/userSlices'
 import { useAppDispatch } from '../../../app/hooks'
 
 const SignUp = () => {

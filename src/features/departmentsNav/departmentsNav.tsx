@@ -8,7 +8,7 @@ import {
   fetchDepartments,
   selectDepartmentsStatus,
   selectDepartmentsError,
-} from './departmentsSlice'
+} from '../slices/departmentsSlice'
 import DropDownNav from './dropdownMenu/dropDownMenu'
 
 import './styles.css'
