@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
-import { fetchAllProducts } from '../slices/productsSlice'
+import { fetchProductsForSearch } from '../slices/productsSlice'
 import ProductsUI from '../../pages/products/productsUI'
 import SortBy from '../../pages/products/sortBy'
 import NoResults from './noResults'
@@ -13,7 +13,7 @@ const SearchResults: React.FC = () => {
 
   useEffect(() => {
     if (keyword) {
-      dispatch(fetchAllProducts(keyword))
+      dispatch(fetchProductsForSearch(keyword))
     }
   }, [keyword])
 
