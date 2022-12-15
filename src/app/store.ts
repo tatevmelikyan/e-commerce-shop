@@ -8,7 +8,7 @@ import recentlyViewedReducer from '../features/recentlyViewed/recentlyViewedSlic
 import categoriesForAdminSlice from '../pages/admin/pagesForAdmin/productPage/filterByCategory/categoriesToFilterSlice'
 
 import userReducer  from  '../pages/login/userSlices'
-
+import cartItemsReducer from '../pages/cart/cartSlice'
 
 export const store = configureStore({
   reducer: {
@@ -20,6 +20,7 @@ export const store = configureStore({
     recentlyViewed: recentlyViewedReducer,
     allCategories:categoriesForAdminSlice,
     favoriteItems: favoritesReducer,
+    cartItems: cartItemsReducer
   }
   })
 
