@@ -9,11 +9,11 @@ import CategoriesToFilter from './filterByCategory/categoriesToFilter'
 import { filterCategory } from './productSlice'
 import { fetchedCategories } from './filterByCategory/categoriesToFilterSlice'
 
+
 const Products = function () {
   const products = useAppSelector((state) => state.allProductsForAdmin.allProducts)
-  const [selected, setSelected] = useState('All Products')
+  const [selected, setSelected] =  useState('All Products')
   const dispatch = useAppDispatch()
-  const categories = useAppSelector((state) => state.allCategories.allCategories)
 
   useEffect(()=>{
     dispatch(fetchedCategories())
@@ -29,33 +29,11 @@ const Products = function () {
 
   const changeCategory = (category:string) => {
     setSelected(category)
-
   }
 
   return (
     <div>
-      <div style = {{position:'absolute',right:'20px'} } className='filterByCategory'>
-      <label htmlFor='filter'>
-        <span>Filter By </span>
-        <select
-          name=''
-          id='filter'
-          value={selected}
-          onChange={(e)=>changeCategory(e.target.value)}
-        >
-          {' '}
-          <option>All Products</option>
-          {categories.map((category) => (
-            <option
-              key={category.id}
-              value={category.id}
-            >
-              {category.name}
-            </option>
-          ))}
-        </select>
-      </label>
-    </div>
+      <CategoriesToFilter selected={selected} changeCategory={changeCategory}/>
       <table className='productPage'>
         <thead>
         <tr>

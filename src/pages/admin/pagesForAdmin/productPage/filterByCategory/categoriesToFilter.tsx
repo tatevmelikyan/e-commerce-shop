@@ -1,46 +1,31 @@
-import React, { useEffect, useState } from 'react'
-import { useAppSelector, useAppDispatch } from '../../../../../app/hooks'
-import { fetchedCategories } from './categoriesToFilterSlice'
-import { filterCategory } from '../productSlice'
+import { useAppSelector } from '../../../../../app/hooks'
 
-// interface ICategoryOption {
-//   value: COrder
-//   text: 'All Products' |  string
-// }
 
-// export type COrder = 'All Products' | string
+interface IChangingFunction {
+  changeCategory: (category: string) => void,
+  selected:string
+}
 
-export default function CategoriesToFilter() {
-  const [selected, setSelected] = useState('All Products')
-  const dispatch = useAppDispatch()
+export default function CategoriesToFilter({selected, changeCategory}:IChangingFunction) {
   const categories = useAppSelector((state) => state.allCategories.allCategories)
 
-  useEffect(() => {
-    dispatch(fetchedCategories())
-  }, [])
-
-
-
-  const changeCategory = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelected(e.target.value)
-  }
-
+  
   return (
-    <div className='filterByCategory'>
+      <div style = {{position:'absolute',right:'20px'} } className='filterByCategory'>
       <label htmlFor='filter'>
         <span>Filter By </span>
         <select
           name=''
           id='filter'
           value={selected}
-          onChange={changeCategory}
+          onChange={(e)=>changeCategory(e.target.value)}
         >
           {' '}
           <option>All Products</option>
           {categories.map((category) => (
             <option
               key={category.id}
-              value={category.name}
+              value={category.id}
             >
               {category.name}
             </option>
@@ -48,5 +33,5 @@ export default function CategoriesToFilter() {
         </select>
       </label>
     </div>
-  )
+    )
 }
