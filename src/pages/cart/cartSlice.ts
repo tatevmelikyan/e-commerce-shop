@@ -4,12 +4,14 @@ import { createSlice } from '@reduxjs/toolkit';
 
 interface CartState {
     cartItems: ICartItem[];
+    subtotal: number;
     status: 'idle' | 'loading' | 'succeeded' | 'failed';
     error: null | string
 }
 
 const initialState: CartState = {
     cartItems: [],
+    subtotal: 0,
     status: 'idle',
     error: null
 }
@@ -58,11 +60,16 @@ const cartSlice = createSlice({
             const product = action.payload
             state.cartItems = state.cartItems.filter(item => item.product.id !== product.id)
             localStorage.setItem('cartItems', JSON.stringify(state.cartItems))
+        },
+        calcCartSubtotal: (state) => {
+            state.subtotal = state.cartItems.reduce((prev, current) => {
+               return prev + current.product.price * current.qty
+            }, 0)
         }
     }
 })
 
 
-export const {getCartItems, updateCartItems, addQtyToCartItem, removeQtyFromCartItem, removeCartItem} = cartSlice.actions
+export const {getCartItems, updateCartItems, addQtyToCartItem, removeQtyFromCartItem, removeCartItem, calcCartSubtotal} = cartSlice.actions
 
 export default cartSlice.reducer
