@@ -1,23 +1,20 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router'
+import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { ICartItem } from '../../pages/cart/addToCart'
+import { getCartItems } from '../../pages/cart/cartSlice'
 
 const CartDropdown = () => {
-  const [cartItems,setCartItems] = useState<ICartItem[]>()
+
   const navigate = useNavigate()
+  const dispatch = useAppDispatch()
+  const cartItems = useAppSelector(state => state.cartItems.cartItems)
 
-  const carts = localStorage.getItem('cards')
 
-  let cartItemsArr:ICartItem[] = []
-  if(carts){
-    cartItemsArr = JSON.parse(carts)
-  }
-  
-  useEffect(()=>{
-    setCartItems(cartItemsArr)
-    console.log(cartItems );
-  },[])
-  console.log(cartItems );
+  useEffect(() => {
+    dispatch(getCartItems())
+  }, [])
+
   return (
   <div className='cart-dropdown'>
     <div className='table-container'>

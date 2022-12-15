@@ -6,7 +6,7 @@ import productsForAdminSlice from '../pages/admin/pagesForAdmin/productPage/prod
 import favoritesReducer from '../pages/favorites/favoritesSlice'
 import recentlyViewedReducer from '../features/recentlyViewed/recentlyViewedSlice'
 import userReducer  from  '../pages/login/userSlices'
-
+import cartItemsReducer from '../pages/cart/cartSlice'
 
 export const store = configureStore({
   reducer: {
@@ -16,7 +16,8 @@ export const store = configureStore({
     user:userReducer,
     allProductsForAdmin:productsForAdminSlice,
     favoriteItems: favoritesReducer,
-    recentlyViewed: recentlyViewedReducer
+    recentlyViewed: recentlyViewedReducer,
+    cartItems: cartItemsReducer
   }
   })
 

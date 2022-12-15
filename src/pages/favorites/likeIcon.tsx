@@ -34,6 +34,7 @@ const LikeIcon: FC<{ product: IProduct }> = ({ product }) => {
       <HiOutlineHeart
         stroke='#d21414'
         fill={!isLiked ? 'white' : '#d21414'}
+        cursor='pointer'
       />
     </span>
   )
