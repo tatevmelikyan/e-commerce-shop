@@ -1,24 +1,25 @@
 import { useAppSelector } from '../../../../../app/hooks'
 
-
 interface IChangingFunction {
-  changeCategory: (category: string) => void,
-  selected:string
+  changeCategory: (category: string) => void
+  selected: string
 }
 
-export default function CategoriesToFilter({selected, changeCategory}:IChangingFunction) {
+export default function CategoriesToFilter({ selected, changeCategory }: IChangingFunction) {
   const categories = useAppSelector((state) => state.allCategories.allCategories)
 
-  
   return (
-      <div style = {{position:'absolute',right:'20px'} } className='filterByCategory'>
+    <div
+      style={{ position: 'absolute', right: '20px' }}
+      className='filterByCategory'
+    >
       <label htmlFor='filter'>
         <span>Filter By </span>
         <select
           name=''
           id='filter'
           value={selected}
-          onChange={(e)=>changeCategory(e.target.value)}
+          onChange={(e) => changeCategory(e.target.value)}
         >
           {' '}
           <option>All Products</option>
@@ -33,5 +34,5 @@ export default function CategoriesToFilter({selected, changeCategory}:IChangingF
         </select>
       </label>
     </div>
-    )
+  )
 }
