@@ -20,10 +20,19 @@ const initialState: ProductsState = {
   error: null,
 }
 
+let arr:IProduct[] = []
+
 const productsForAdminSlice = createSlice({
   name: 'allProducts',
   initialState,
-  reducers: {},
+  reducers: {
+    filterCategory: (state, action) => {
+      console.log(action.payload);
+      state.allProducts = arr.filter((product:IProduct)=>product.categoryId===action.payload)
+    console.log(state.allProducts,'filtered');
+    }
+
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchedProducts.pending, (state) => {
@@ -31,7 +40,8 @@ const productsForAdminSlice = createSlice({
       })
       .addCase(fetchedProducts.fulfilled, (state, action) => {
         state.status = 'succeeded'
-        state.allProducts = action.payload
+        arr = action.payload.sort((a,b)=> a.title.localeCompare(b.title))
+        state.allProducts = action.payload.sort((a,b)=> a.title.localeCompare(b.title))
       })
       .addCase(fetchedProducts.rejected, (state, action) => {
         state.status = 'failed'
@@ -42,4 +52,4 @@ const productsForAdminSlice = createSlice({
 
 
 export default productsForAdminSlice.reducer
-
+export const {filterCategory} = productsForAdminSlice.actions

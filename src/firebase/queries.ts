@@ -27,6 +27,18 @@ const getAllProducts = async () => {
   return products 
 }
 
+const getAllCategories = async()=>{
+  const docs = await getDocs(collection(db,'categories'))
+  const categories : ICategory[]=[]
+  docs.forEach(doc=> categories.push({
+    id: doc.id,
+    name: doc.data().name,
+    imageUrl: doc.data().imageUrl,
+    subdepartmentId: doc.data().subDepartmentId,
+  }))
+  return categories
+}
+
 // Gets all Departments from firestore database.
 const getAllDepartments = async () => {
   const departmentsSnap = await getDocs(collection(db, 'departments'))
@@ -70,7 +82,7 @@ const getSubdepartmentsWithCategoriesByDepartment = async (departmentId: string)
   const q = query(collection(db, 'subdepartments'), where('departmentId', '==', departmentId))
   const subdepartmentsSnap = await getDocs(q)
   const subdepartments = subdepartmentsSnap.docs.map<Promise<ISubdepartment>>(
-    async (subdepartment) => {
+    async (subdepartment) => { 
       const categories = await getCategoriesBySubdepartment(subdepartment.id)
       return {
         id: subdepartment.id,
@@ -149,4 +161,5 @@ export {
   getSubdepartmentsWithCategoriesByDepartment,
   getProductById,
   getProductsByCategory,
+  getAllCategories,
 }

@@ -77,3 +77,5 @@ const productsSlice = createSlice({
 
 export default productsSlice.reducer
 export const { sortByPrice } = productsSlice.actions
+
+

@@ -5,6 +5,8 @@ import productsReducer from '../pages/products/productsSlice'
 import productsForAdminSlice from '../pages/admin/pagesForAdmin/productPage/productSlice'
 import favoritesReducer from '../pages/favorites/favoritesSlice'
 import recentlyViewedReducer from '../features/recentlyViewed/recentlyViewedSlice'
+import categoriesForAdminSlice from '../pages/admin/pagesForAdmin/productPage/filterByCategory/categoriesToFilterSlice'
+
 import userReducer  from  '../pages/login/userSlices'
 import cartItemsReducer from '../pages/cart/cartSlice'
 
@@ -15,8 +17,9 @@ export const store = configureStore({
     products: productsReducer,
     user:userReducer,
     allProductsForAdmin:productsForAdminSlice,
-    favoriteItems: favoritesReducer,
     recentlyViewed: recentlyViewedReducer,
+    allCategories:categoriesForAdminSlice,
+    favoriteItems: favoritesReducer,
     cartItems: cartItemsReducer
   }
   })

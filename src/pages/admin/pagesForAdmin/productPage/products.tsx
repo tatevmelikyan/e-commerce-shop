@@ -5,19 +5,59 @@ import { fetchedProducts } from './productSlice'
 import {FaEdit} from 'react-icons/fa'
 import {MdDelete} from 'react-icons/md'
 import './styles.css'
+import CategoriesToFilter from './filterByCategory/categoriesToFilter'
+import { filterCategory } from './productSlice'
+import { fetchedCategories } from './filterByCategory/categoriesToFilterSlice'
 
 const Products = function () {
-  const dispatch = useAppDispatch()
   const products = useAppSelector((state) => state.allProductsForAdmin.allProducts)
+  const [selected, setSelected] = useState('All Products')
+  const dispatch = useAppDispatch()
+  const categories = useAppSelector((state) => state.allCategories.allCategories)
 
+  useEffect(()=>{
+    dispatch(fetchedCategories())
+  })
+  
   useEffect(() => {
-    dispatch(fetchedProducts())
-    console.log(products)
-  }, [])
+    if(selected === 'All Products') {      
+      dispatch(fetchedProducts())
+    } else {
+      dispatch(filterCategory(selected))
+    }
+  }, [selected])
+
+  const changeCategory = (category:string) => {
+    setSelected(category)
+
+  }
 
   return (
     <div>
+      <div style = {{position:'absolute',right:'20px'} } className='filterByCategory'>
+      <label htmlFor='filter'>
+        <span>Filter By </span>
+        <select
+          name=''
+          id='filter'
+          value={selected}
+          onChange={(e)=>changeCategory(e.target.value)}
+        >
+          {' '}
+          <option>All Products</option>
+          {categories.map((category) => (
+            <option
+              key={category.id}
+              value={category.id}
+            >
+              {category.name}
+            </option>
+          ))}
+        </select>
+      </label>
+    </div>
       <table className='productPage'>
+        <thead>
         <tr>
           <th>PHOTO</th>
           <th>NAME</th>
@@ -26,9 +66,9 @@ const Products = function () {
           <th>EDIT</th>
           <th>DELETE</th>
         </tr>
+        </thead>
         <tbody>
-          {products.length &&
-            products.map((product) => {
+          {products?.map((product) => {
               return (
                 <tr key={product.id}>
                   <td className='productTD'>
@@ -47,13 +87,6 @@ const Products = function () {
             })}
         </tbody>
       </table>
-      {/* {products.length&&products.map(product=>{
-        return <div key={product.id} className='products'>
-          <div>{product?.title}</div>
-          <div>{product?.price}</div>
-          <div>{product?.inStock}</div>
-        </div>
-      })} */}
     </div>
   )
 }
