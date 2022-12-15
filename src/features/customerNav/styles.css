@@ -28,7 +28,85 @@ color: black;
     position: relative;
 }
 
-.cart-dropdown  {
-   position: absolute;
-   background-color: white;
+.table-container{
+    width: 300px;
+    height: 100%;
+    position: relative;
+}
+
+.cart-dropdown{
+    padding: 10px;
+    position: absolute;
+    z-index: 1;
+    left: -295px;   
+    width: 300px;
+    height: 1px;
+    opacity: 0;
+    transition: .5s;
+    visibility: hidden;
+    background-color: rgb(248, 248, 248);
+    overflow-y: auto;
+    border: 1px solid rgb(215, 215, 215);
+    transition-delay: .3s;
+}
+
+.cart-link a:hover + .cart-dropdown{
+    height: 300px;
+    overflow: auto;
+    opacity: 1;
+    visibility: visible;
+}
+
+.cart-dropdown:hover{
+    height: 300px;
+    overflow: auto;
+    opacity: 1;
+    visibility: visible;
+}
+
+.cart-dropdown::-webkit-scrollbar{
+    width: 4px;
+}
+
+.cart-dropdown::-webkit-scrollbar-thumb{
+    background: grey;
+    border-radius: 8px;  
+}
+
+.cart-dropdown::-webkit-scrollbar-track{
+    background-color:rgb(206, 206, 206);
+    border-radius: 8px;
+ }
+
+.cartTableTr{
+    font-size: 18px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.cartDropdownImg {
+    width: 50px;
+}
+
+.cartTableTr td {
+    font-size: 16px;
+    padding: 5px;
+}
+
+.viewToCart {
+    position: absolute;
+    bottom: 0px;
+}
+
+.viewToCart button {
+    width: 300px;
+    background-color: black;
+    color: white;
+    padding: 5px 12px;
+    transition: .3s;
+    cursor: pointer;
+}
+
+.viewToCart button:hover {
+    font-size: 15px;
 }

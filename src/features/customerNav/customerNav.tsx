@@ -29,10 +29,11 @@ const CustomerNav = () => {
             <FaHeart />
           </Link>
         </li>
-        <li className='cart-link' onMouseOver={handleCartHover} onMouseOut={handleCartHover}>
+        <li className='cart-link'>
           <Link to={'/shoppingcart'}>
             <HiShoppingCart />
           </Link>
+          <CartDropdown/>
         </li>
       </ul>
       {
