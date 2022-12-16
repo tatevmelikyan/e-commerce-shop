@@ -20,7 +20,7 @@ const CustomerNav = () => {
     <nav className='customer-nav'>
       <ul>
         <li className='user-link'>
-          <Link to={'/loginPage'}>
+          <Link to={'/account/signIn'}>
             <FaUserAlt />
           </Link>
         </li>

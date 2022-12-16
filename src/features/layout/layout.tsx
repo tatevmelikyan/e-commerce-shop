@@ -13,7 +13,7 @@ const Layout = ({ children }: LayoutProps) => {
   return (
     <div className='App-wrapper'>
       <Header />
-      <SideBar/>
+      {/* <SideBar/> */}
       <div className='all-content'>{children}</div>
       <RecentlyViewed />
       <Footer />
