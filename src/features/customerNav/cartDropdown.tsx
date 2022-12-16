@@ -1,23 +1,21 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router'
+import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { ICartItem } from '../../pages/cart/addToCart'
+import { getCartItems } from '../slices/cartSlice'
 
 const CartDropdown = () => {
-  const [cartItems,setCartItems] = useState<ICartItem[]>()
+
   const navigate = useNavigate()
+  const dispatch = useAppDispatch()
+  const cartItems = useAppSelector(state => state.cartItems.cartItems)
+  const subtotal = useAppSelector(state => state.cartItems.subtotal)
 
-  const carts = localStorage.getItem('cards')
 
-  let cartItemsArr:ICartItem[] = []
-  if(carts){
-    cartItemsArr = JSON.parse(carts)
-  }
-  
-  useEffect(()=>{
-    setCartItems(cartItemsArr)
-    console.log(cartItems );
-  },[])
-  console.log(cartItems );
+  useEffect(() => {
+    dispatch(getCartItems())
+  }, [])
+
   return (
   <div className='cart-dropdown'>
     <div className='table-container'>
@@ -45,9 +43,7 @@ const CartDropdown = () => {
      }
     
      <div className='viewToCart'>
-     <div>Total Price {cartItems?.reduce((a,b:ICartItem)=>{
-      return a+b.qty*b.product.price
-     },0)}</div>
+      <div>Subtotal: ${subtotal.toLocaleString()}</div>
        <button onClick={()=>navigate('/shoppingcart')}>VIEW CART</button>
      </div>
      </div>

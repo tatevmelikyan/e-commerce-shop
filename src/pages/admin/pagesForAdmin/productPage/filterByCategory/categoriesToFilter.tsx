@@ -1,7 +1,9 @@
-import { useEffect } from 'react'
-import { useAppSelector,useAppDispatch } from '../../../../../app/hooks'
+import React, { useEffect } from 'react'
 
-import { fetchedCategories } from './categoriesToFilterSlice'
+import { useAppSelector, useAppDispatch } from '../../../../../app/hooks'
+import { fetchedCategories } from '../../../../../features/slices/categoriesSlice'
+
+import './styles.css'
 
 interface IChangingFunction {
   changeCategory: (category: string) => void
@@ -17,7 +19,6 @@ export default function CategoriesToFilter({ selected, changeCategory }: IChangi
 
   return (
     <div
-      style={{ position: 'absolute', right: '20px' }}
       className='filterByCategory'>
       <label htmlFor='filter'>
         <span>Filter By </span>

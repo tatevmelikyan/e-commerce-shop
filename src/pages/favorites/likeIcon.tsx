@@ -2,7 +2,7 @@ import React, { FC, useState, useEffect } from 'react'
 import { HiOutlineHeart } from 'react-icons/hi'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { IProduct } from '../productPage/productPage'
-import { getLikedProducts, updateLikedProducts } from './favoritesSlice'
+import { getLikedProducts, updateLikedProducts } from '../../features/slices/favoritesSlice'
 
 const LikeIcon: FC<{ product: IProduct }> = ({ product }) => {
   const [isLiked, setIsLiked] = useState(false)
@@ -34,6 +34,7 @@ const LikeIcon: FC<{ product: IProduct }> = ({ product }) => {
       <HiOutlineHeart
         stroke='#d21414'
         fill={!isLiked ? 'white' : '#d21414'}
+        cursor='pointer'
       />
     </span>
   )

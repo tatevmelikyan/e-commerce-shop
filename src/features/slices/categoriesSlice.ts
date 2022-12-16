@@ -1,4 +1,4 @@
-import { getAllCategories,ICategory } from '../../../../../firebase/queries'
+import { getAllCategories,ICategory } from '../../firebase/queries'
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
 

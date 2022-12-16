@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { IProduct } from '../productPage/productPage'
+import { IProduct } from '../../pages/productPage/productPage'
 
 interface FavoritesState {
   favoriteItems: IProduct[]

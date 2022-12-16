@@ -1,25 +1,30 @@
-import { useEffect, useState } from 'react'
 import { useAppSelector, useAppDispatch } from '../../../../app/hooks'
-import { FaEdit } from 'react-icons/fa'
-import { MdDelete } from 'react-icons/md'
-
-import { fetchedProducts } from './productSlice'
-import CategoriesToFilter from './filterByCategory/categoriesToFilter'
-import { filterCategory } from './productSlice'
-
+import { useEffect, useState } from 'react'
+import {FaEdit} from 'react-icons/fa'
+import {MdDelete} from 'react-icons/md'
 import './styles.css'
+import CategoriesToFilter from './filterByCategory/categoriesToFilter'
 
+
+import { fetchAllProducts, fetchProductsByCategory } from '../../../../features/slices/productsSlice'
+import { fetchedCategories } from '../../../../features/slices/categoriesSlice'
 
 const Products = function () {
-  const products = useAppSelector((state) => state.allProductsForAdmin.allProducts)
+  const products = useAppSelector(state => state.products.products)
   const [selected, setSelected] = useState('All Products')
   const dispatch = useAppDispatch()
 
+  useEffect(()=>{
+    dispatch(fetchedCategories())
+  },[])
+  
+
   useEffect(() => {
-    if (selected === 'All Products') {
-      dispatch(fetchedProducts())
+    if(selected === 'All Products') {
+      console.log('in if');  
+      dispatch(fetchAllProducts())
     } else {
-      dispatch(filterCategory(selected))
+      dispatch(fetchProductsByCategory(selected))
     }
   }, [selected])
 

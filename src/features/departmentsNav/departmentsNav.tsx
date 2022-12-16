@@ -1,4 +1,6 @@
 import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom'
+
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import LoadingPage from '../../pages/loading/loadingPage'
 import {
@@ -6,10 +8,11 @@ import {
   fetchDepartments,
   selectDepartmentsStatus,
   selectDepartmentsError,
-} from './departmentsSlice'
-import { Link } from 'react-router-dom'
-import './styles.css'
+} from '../slices/departmentsSlice'
 import DropDownNav from './dropdownMenu/dropDownMenu'
+
+import './styles.css'
+
 
 const DepartmentsNav = () => {
   const dispatch = useAppDispatch()

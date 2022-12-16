@@ -1,4 +1,4 @@
-import { ISubdepartment } from './../pages/department/subdepartmentsSlice'
+import { ISubdepartment } from '../features/slices/subdepartmentsSlice'
 import { IProduct } from './../pages/productPage/productPage'
 import { collection, doc, getDocs, query, where, getDoc, updateDoc } from 'firebase/firestore'
 import { db } from './config'
