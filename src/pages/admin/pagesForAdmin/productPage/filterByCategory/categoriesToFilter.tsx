@@ -12,14 +12,13 @@ export default function CategoriesToFilter({ selected, changeCategory }: IChangi
   const dispatch = useAppDispatch()
   useEffect(() => {
     dispatch(fetchedCategories())
-  })
+  },[])
   const categories = useAppSelector((state) => state.allCategories.allCategories)
 
   return (
     <div
       style={{ position: 'absolute', right: '20px' }}
-      className='filterByCategory'
-    >
+      className='filterByCategory'>
       <label htmlFor='filter'>
         <span>Filter By </span>
         <select
