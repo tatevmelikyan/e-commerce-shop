@@ -1,4 +1,7 @@
-import { useAppSelector } from '../../../../../app/hooks'
+import { useEffect } from 'react'
+import { useAppSelector,useAppDispatch } from '../../../../../app/hooks'
+
+import { fetchedCategories } from './categoriesToFilterSlice'
 
 interface IChangingFunction {
   changeCategory: (category: string) => void
@@ -6,6 +9,10 @@ interface IChangingFunction {
 }
 
 export default function CategoriesToFilter({ selected, changeCategory }: IChangingFunction) {
+  const dispatch = useAppDispatch()
+  useEffect(() => {
+    dispatch(fetchedCategories())
+  })
   const categories = useAppSelector((state) => state.allCategories.allCategories)
 
   return (

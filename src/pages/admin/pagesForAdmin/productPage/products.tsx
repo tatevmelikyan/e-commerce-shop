@@ -1,22 +1,19 @@
-import React from 'react'
-import { useAppSelector, useAppDispatch } from '../../../../app/hooks'
 import { useEffect, useState } from 'react'
-import { fetchedProducts } from './productSlice'
+import { useAppSelector, useAppDispatch } from '../../../../app/hooks'
 import { FaEdit } from 'react-icons/fa'
 import { MdDelete } from 'react-icons/md'
-import './styles.css'
+
+import { fetchedProducts } from './productSlice'
 import CategoriesToFilter from './filterByCategory/categoriesToFilter'
 import { filterCategory } from './productSlice'
-import { fetchedCategories } from './filterByCategory/categoriesToFilterSlice'
+
+import './styles.css'
+
 
 const Products = function () {
   const products = useAppSelector((state) => state.allProductsForAdmin.allProducts)
   const [selected, setSelected] = useState('All Products')
   const dispatch = useAppDispatch()
-
-  useEffect(() => {
-    dispatch(fetchedCategories())
-  })
 
   useEffect(() => {
     if (selected === 'All Products') {
