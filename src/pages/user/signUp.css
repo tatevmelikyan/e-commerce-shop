@@ -49,6 +49,12 @@ flex-direction: column;
     cursor: pointer;
 }
 
+
+.password-matching-error {
+    font-size: 14px;
+    color: red;
+}
+
 /* .sign-up-page {
     display: flex;
     flex-direction: column;

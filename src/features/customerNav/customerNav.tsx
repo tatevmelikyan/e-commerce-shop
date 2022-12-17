@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import { FaUserAlt, FaHeart } from 'react-icons/fa'
 import { HiShoppingCart } from 'react-icons/hi'
 import CartDropdown from './cartDropdown'
+import UserDropdown from './userDropdown'
 
 
 
@@ -23,6 +24,7 @@ const CustomerNav = () => {
           <Link to={'/account/signIn'}>
             <FaUserAlt />
           </Link>
+          <UserDropdown />
         </li>
         <li>
           <Link to={'/favorites'}>
