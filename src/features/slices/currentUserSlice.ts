@@ -1,27 +1,33 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
+
+
 const initialState = {
-    name: '',
-    email: '',
+    name: null,
+    email: null,
+    id: null
 }
 
-// const getCurrentUser = createAsyncThunk(
-//     ''
-// )
+
 
 const currentUserSlice = createSlice({
     name: 'currentUser',
     initialState,
     reducers: {
         setCurrentUser: (state, action) => {
-            console.log(action.payload, 'payload');
             state.email = action.payload.email
             state.name = action.payload.name
+            state.id = action.payload.id
+        },
+        removeCurrentUser: (state) => {
+            state.email = null
+            state.id = null
+            state.name = null
         }
     }
 })
 
 
-export const {setCurrentUser} = currentUserSlice.actions
+export const {setCurrentUser, removeCurrentUser} = currentUserSlice.actions
 
 export default currentUserSlice.reducer

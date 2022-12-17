@@ -2,9 +2,9 @@ import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { auth } from '../../firebase/auth'
-import './signUp.css'
+import './styles.css'
 import LoadingPage from '../loading/loadingPage'
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useAppDispatch } from '../../app/hooks'
 import { setCurrentUser } from '../../features/slices/currentUserSlice'
@@ -18,7 +18,7 @@ const SignUp = () => {
 
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
-  
+
 
   const handleCreateAccount = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -29,12 +29,16 @@ const SignUp = () => {
           updateProfile(cred.user, {
               displayName: name
           })
-          console.log('user created:::',cred.user);
-          setIsLoading(false)
-          navigate('/account')
+          .then(() => {
+            setIsLoading(false)
+              navigate('/account')
+          })
+          .catch(err => {
+            toast.error(err.message)
+            setIsLoading(false)
+          })
       })
       .catch(err => {
-          console.log(err.message); 
           toast.error(err.message)
           setIsLoading(false)
       })
@@ -44,11 +48,9 @@ const SignUp = () => {
   }
 
   return (
-   <>
-   <ToastContainer />
-     <div className='sign-up-page'>
+     <div className='sign-form-page'>
        {isLoading && <LoadingPage />}
-       <div className='sign-up-header'>
+       <div className='sign-form-header'>
          <h2>Create Account</h2>
          By creating an account you are gonna be able to make orders and track your order history.
          Save your favorite items to your account.
@@ -56,7 +58,7 @@ const SignUp = () => {
            Already have an account? <Link to='/account/signIn'>Sign In</Link>
          </div>
        </div>
-       <div className='sign-up-form-container'>
+       <div className='sign-form-container'>
          <form onSubmit={handleCreateAccount}>
            <div>
              <label htmlFor='name'>Name</label>
@@ -102,7 +104,6 @@ const SignUp = () => {
          </form>
        </div>
      </div>
-   </>
   )
 }
 

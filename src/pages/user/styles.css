@@ -1,4 +1,4 @@
-.sign-up-page {
+.sign-form-page {
    padding: 50px;
    display: flex;
    justify-content: space-evenly;
@@ -6,19 +6,19 @@
    background-color: rgb(248, 248, 248);
 }
 
-.sign-up-header {
+.sign-form-header {
     width: 300px;
 }
 
-/* .sign-up-form-container {
-    width: 400px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-} */
 
+.sign-form-container {
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px #5650504a;
+    background-color: white;
+}
 
-.sign-up-form-container form {
+.sign-form-container form {
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -26,22 +26,22 @@
 
 
 
-.sign-up-form-container form div{
+.sign-form-container form div{
 display: flex;
 flex-direction: column;
 
 }
 
-.sign-up-form-container form div label::after {
+.sign-form-container form div label::after {
     content: '*';
 }
 
-.sign-up-form-container h1 {
+.sign-form-container h1 {
     display: inline-block;
 }
 
 
-.sign-up-form-container form button {
+.sign-form-container form button {
     padding: 10px;
     width: 200px;
     background-color: rgb(165, 180, 133);
@@ -55,14 +55,3 @@ flex-direction: column;
     color: red;
 }
 
-/* .sign-up-page {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-}
-
-.sign-up-page form {
-    display: flex;
-    flex-direction: column;
-
-} */
