@@ -20,6 +20,7 @@
 .footer-bottom{
     display: inline-block;
     width: 990px;
+    border: none;
 }
 .footer-column{
     padding-left: 10px;
@@ -30,6 +31,12 @@
 
 .footerContainer .footer ul {
     list-style: none;
+}
+.footerContainer .footer .footer-column li{
+    margin-top: 12px;
+}
+.footerContainer .footer .footer-column .liClass{
+    cursor: pointer;
 }
 .footerContainer .footer .footer-heading{
     font-size: 15px;
@@ -69,7 +76,6 @@
     display: inline;
 }
 .footerContainer ul .subscribe .email input {
-    -webkit-appearance: none;
     border-radius: 0;
     box-shadow: none;
     border: 1px solid #cecece;
@@ -77,6 +83,12 @@
     height: 38px;
     padding: 0 0 0 10px;
     width: 233px;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+}
+.footerContainer ul .subscribe .email input:focus{
+    outline: none;
+    border: 1px solid black;
 }
 .footerContainer ul .subscribe .submit {
     background-color: #010101;
