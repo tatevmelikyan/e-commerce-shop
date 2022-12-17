@@ -1,17 +1,21 @@
-import { useAppSelector, useAppDispatch } from '../../../../app/hooks'
 import { useEffect, useState } from 'react'
 import {FaEdit} from 'react-icons/fa'
 import {MdDelete} from 'react-icons/md'
-import './styles.css'
+
+import { useAppSelector, useAppDispatch } from '../../../../app/hooks'
 import CategoriesToFilter from './filterByCategory/categoriesToFilter'
-
-
 import { fetchAllProducts, fetchProductsByCategory } from '../../../../features/slices/productsSlice'
 import { fetchedCategories } from '../../../../features/slices/categoriesSlice'
+import { ZoomTheImgae } from './zoomTheImage/zoomTheImgae'
+
+import './styles.css'
+
 
 const Products = function () {
   const products = useAppSelector(state => state.products.products)
   const [selected, setSelected] = useState('All Products')
+  const [zoomed,setZoomed] = useState(false)
+  const [src,setSrc] = useState('')
   const dispatch = useAppDispatch()
 
   useEffect(()=>{
@@ -34,6 +38,9 @@ const Products = function () {
 
   return (
     <div>
+       <div>
+     {zoomed&&<ZoomTheImgae imgUrl={src} zoomed={zoomed} setZoomed={setZoomed}/>}
+     </div>
       <CategoriesToFilter
         selected={selected}
         changeCategory={changeCategory}
@@ -57,6 +64,10 @@ const Products = function () {
                   <img
                     className='photoInTable'
                     src={product.imageUrls[0]}
+                    onClick={()=>{
+                      setZoomed(!zoomed)
+                      setSrc(product.imageUrls[0])
+                    }}
                   />
                 </td>
                 <td className='productTD'>{product.title}</td>
