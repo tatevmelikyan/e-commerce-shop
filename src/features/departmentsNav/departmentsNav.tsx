@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import LoadingPage from '../../pages/loading/loadingPage'
@@ -35,7 +35,7 @@ const DepartmentsNav = () => {
         key={department.id}
         className='department-list-item'
       >
-        <Link to={`/${department.id}`}>{department.name}</Link>
+        <NavLink to={`/${department.id}`}>{department.name}</NavLink>
         <DropDownNav department={department} />
       </li>
     )
