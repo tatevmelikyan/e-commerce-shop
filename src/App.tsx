@@ -20,10 +20,15 @@ import Products from './pages/admin/pagesForAdmin/productPage/products';
 import Users from './pages/admin/pagesForAdmin/usersPage/users';
 import Orders from './pages/admin/pagesForAdmin/ordersPage/orders';
 import SearchResults from './features/search/searchResults';
+import SignUp from './pages/user/signUp';
+import SignIn from './pages/user/signIn';
+import { ToastContainer } from 'react-toastify';
+import SignOut from './pages/user/signOut';
 
 function App() {
   return (
       <BrowserRouter>
+      <ToastContainer />
     <Layout>
       <ScrollToTop />
       <Routes>
@@ -34,14 +39,17 @@ function App() {
         <Route path= '/location' element={<Location/>}/>
         <Route path='/about' element={<AboutUs/>}/>
         <Route path='/account' element={<CustomerAccountPage />} />
+        <Route path='/account/signIn' element={<SignIn />}/>
+        <Route path='/account/signUp' element={<SignUp />}/>
+        <Route path='/account/signOut' element={<SignOut />}/>
         <Route path='/account/admin'element={<AdminPage />} />
         <Route path='/account/admin/products'element={<Products />} />
         <Route path='/account/admin/users'element={<Users />} />
         <Route path='/account/admin/orders'element={<Orders/>} />        
         <Route path='/favorites' element={<FavoritesPage />}/>
         <Route path='/shoppingcart' element={<ShoppingCartPage />}/>
-        <Route path='/register' element={<RegisterPage/>}></Route>
-        <Route path='/loginPage' element={<LoginPage/>}></Route>
+        {/* <Route path='/register' element={<RegisterPage/>}></Route>
+        <Route path='/loginPage' element={<LoginPage/>}></Route> */}
         <Route path='/search/:keyword' element={<SearchResults/>}></Route>
         <Route path='*' element={<NotFound/>}> </Route>
       </Routes>

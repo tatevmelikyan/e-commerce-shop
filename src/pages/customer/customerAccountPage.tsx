@@ -1,9 +1,10 @@
 import React from 'react'
+import { useAppSelector } from '../../app/hooks'
 
 const CustomerAccountPage = () => {
-  return (
-    <div>UserPage</div>
-  )
+  const currentUser = useAppSelector((state) => state.currentUser)
+
+  return <div>Welcome {currentUser.name}</div>
 }
 
 export default CustomerAccountPage

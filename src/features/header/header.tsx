@@ -20,7 +20,7 @@ const Header = () => {
           <BsSearch/>
           </div>
           <div className='brand-logo'>
-            <Link to='/'>SAVILLA</Link>
+            <Link to='/'>Ç&apos;est la Home</Link>
           </div>
           <div className='customer-nav-container'>
             <CustomerNav />

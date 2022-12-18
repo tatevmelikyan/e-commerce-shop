@@ -1,4 +1,4 @@
-import { IProduct } from './../../pages/productPage/productPage'
+import { IProduct } from '../../pages/productPage/productPage'
 import { createSlice } from '@reduxjs/toolkit'
 
 interface RecentlyViewedState {

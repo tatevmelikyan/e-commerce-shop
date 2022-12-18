@@ -1,5 +1,5 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Allerta+Stencil&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
 
 
 .sticky-header {
@@ -21,7 +21,7 @@
     color: black;
     text-decoration: none;
     font-size: 40px;
-    font-family: 'Allerta Stencil', sans-serif;
+    font-family: 'Raleway', sans-serif;
     letter-spacing: 10px;
 }
 

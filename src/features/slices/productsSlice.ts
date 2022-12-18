@@ -1,9 +1,9 @@
-import { TOrder } from './sortBy'
-import { IProduct } from '../productPage/productPage'
+import { TOrder } from '../../pages/products/sortBy'
+import { IProduct } from '../../pages/productPage/productPage'
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { getAllProducts, getProductsByCategory } from '../../firebase/queries'
 
-export const fetchProducts = createAsyncThunk(
+export const fetchProductsByCategory = createAsyncThunk(
   'products/fetchProducts',
   async (categoryId: string) => {
     const response = await getProductsByCategory(categoryId)
@@ -11,13 +11,20 @@ export const fetchProducts = createAsyncThunk(
   },
 )
 
-export const fetchAllProducts = createAsyncThunk(
+export const fetchProductsForSearch = createAsyncThunk(
   'products/fetchAllProducts',
   async (keyword: string) => {
     const products = await getAllProducts()
     return { products, keyword }
   },
 )
+
+
+export const fetchAllProducts = createAsyncThunk('allProducts/fetchedProducts', async () => {
+  const response = await getAllProducts()
+  return response
+})
+
 
 export interface ProductsState {
   products: IProduct[]
@@ -52,18 +59,18 @@ const productsSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchProducts.pending, (state) => {
+      .addCase(fetchProductsByCategory.pending, (state) => {
         state.status = 'loading'
       })
-      .addCase(fetchProducts.fulfilled, (state, action) => {
+      .addCase(fetchProductsByCategory.fulfilled, (state, action) => {
         state.status = 'succeeded'
-        state.products = action.payload
+        state.products = action.payload.sort((a,b)=> a.title.localeCompare(b.title))
       })
-      .addCase(fetchProducts.rejected, (state, action) => {
+      .addCase(fetchProductsByCategory.rejected, (state, action) => {
         state.status = 'failed'
         state.error = action.error.message
       })
-      .addCase(fetchAllProducts.fulfilled, (state, action) => {
+      .addCase(fetchProductsForSearch.fulfilled, (state, action) => {
         const { products, keyword } = action.payload
         state.products = products.filter((product) => {
           return product.title
@@ -72,8 +79,14 @@ const productsSlice = createSlice({
             .includes(keyword.replace(/\s/g, '').toLowerCase())
         })
       })
+      .addCase(fetchAllProducts.fulfilled, (state, action) => {
+        state.status = 'succeeded'
+        state.products = action.payload.sort((a,b)=> a.title.localeCompare(b.title))
+      })
   },
 })
 
 export default productsSlice.reducer
 export const { sortByPrice } = productsSlice.actions
+
+

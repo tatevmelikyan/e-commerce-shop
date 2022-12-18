@@ -1,7 +1,7 @@
 import React,{FC,useState} from 'react'
 import { useAppDispatch } from '../../app/hooks';
 import { IProduct } from '../productPage/productPage'
-import { updateCartItems } from './cartSlice';
+import { updateCartItems } from '../../features/slices/cartSlice';
 import './shoppingCart.css'
 
 export interface ICartItem {

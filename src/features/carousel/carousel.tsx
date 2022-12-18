@@ -22,7 +22,6 @@ const Carousel: React.FC<{ slideContent: IProduct[]; sliderHeader: string }> = (
         slidesPerGroup={4}
         navigation
         pagination={{ clickable: true }}
-        onSlideChange={() => console.log('slide change')}
       >
         {slideContent.map((item) => {
           return (

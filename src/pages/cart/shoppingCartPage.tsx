@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import NoCartItems from './noCartItems'
 import './shoppingCart.css'
 import {AiFillPlusSquare, AiFillMinusSquare} from 'react-icons/ai'
-import { addQtyToCartItem, removeCartItem, removeQtyFromCartItem } from './cartSlice'
+import { addQtyToCartItem, calcCartSubtotal, removeCartItem, removeQtyFromCartItem } from '../../features/slices/cartSlice'
 import { IProduct } from '../productPage/productPage'
 import { Link } from 'react-router-dom'
 import {CiSquareRemove} from 'react-icons/ci'
@@ -12,6 +12,7 @@ import {CiSquareRemove} from 'react-icons/ci'
 
 const ShoppingCartPage = () => {
   const cartItems = useAppSelector(state => state.cartItems.cartItems)
+  const subtotal = useAppSelector(state => state.cartItems.subtotal)
 const dispatch = useAppDispatch()
 
   const handleMinusQty = (product: IProduct ) => {
@@ -25,6 +26,16 @@ const dispatch = useAppDispatch()
   const handleRemoveItem = (product: IProduct) => {
     dispatch(removeCartItem(product))
   }
+
+  const handleSubtotal = () => {
+    dispatch(calcCartSubtotal())
+  }
+
+
+  useEffect(() => {
+    handleSubtotal()
+  }, [cartItems])
+
 
   return (
     <div>
@@ -69,7 +80,18 @@ const dispatch = useAppDispatch()
               })
             }
           </div>
-          <div className='cart-summary'>summary</div>
+          <div className='cart-summary-wrapper'>
+           <div className='cart-summary'>
+             <h3>order summary</h3>
+             <div className='summary-container'>
+               Subtotal:
+               <span>${subtotal.toLocaleString()}</span>
+             </div>
+             <div className='checkout'>
+              <button className='checkout-btn'>checkout now</button>
+             </div>
+           </div>
+          </div>
         </div>
         : 
         <NoCartItems />

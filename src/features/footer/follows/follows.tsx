@@ -1,5 +1,6 @@
 import React from 'react'
 import { FaFacebook, FaYoutube, FaInstagram } from 'react-icons/fa'
+
 import Subscribe from '../subscribe/subscribe'
 
 const Follows: React.FC = () => {
