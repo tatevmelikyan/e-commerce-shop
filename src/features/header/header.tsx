@@ -13,7 +13,7 @@ const Header = () => {
         <div className='search-logo-customer'>
           <SearchField />
           <div className='brand-logo'>
-            <Link to='/'>Ç&apos;est la Home</Link>
+            <Link to='/'>C&apos;est la Home</Link>
           </div>
           <div className='customer-nav-container'>
             <CustomerNav />
