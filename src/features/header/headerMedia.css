@@ -1,5 +1,185 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+@media screen and (max-width: 900px) {
+  .menu_counteyner {
+    display: block;
+    position: relative;
+    width: 100px;
+  }
+  .nav-container {
+    display: none;
+  }
+
+ .search_div{
+    display: none;
+ }
+
+  .search-div-container {
+    display: none;
+  }
+
+  .customer-nav-container {
+    display: none;
+  }
+
+  .customer-nav-container-media {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+  }
+
+  .search-media {
+    display: block;
+    font-size: 20px;
+  }
+
+  .search-media-container{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .media-search-hover{
+    display: none;
+  }
+
+  .media-search-hover-active{
+    display: block;
+    position: absolute;
+    top: 30px;
+    right: -25px;
+  }
+
+  .search-logo-customer {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .burgerMenu {
+    opacity: 1;
+    display: block;
+    width: 300px;
+    height: 600px;
+    position: absolute;
+    left: -85%;
+    transition: 0.5s;
+    background-color: white;
+    z-index: 1;
+    overflow: hidden;
+    border: 1px solid #e6e3de;
+  }
+
+  .burgerMenu_active {
+    opacity: 0;
+    width: 0;
+    height: 600px;
+    position: absolute;
+    left: -150px;
+    transition: 0.5s;
+    background-color: white;
+    z-index: 1;
+    overflow: hidden;
+  }
+
+  .line {
+    width: 40px;
+    height: 2px;
+    background-color: black;
+    transition: 0.5s;
+    position: absolute;
+  }
+
+  .my_menu {
+    width: 40px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .line1 {
+    transform: translateY(-8px);
+  }
+
+  .line1_active {
+    transform: translateY(0) rotate(45deg);
+  }
+
+  .line3 {
+    transform: translateY(8px);
+  }
+
+  .line3_active {
+    transform: translateY(0) rotate(-45deg);
+  }
+
+  .line2 {
+    width: 40px;
+    height: 2px;
+    background-color: black;
+    transition: 0.5s;
+    position: absolute;
+  }
+
+  .line2_active {
+    width: 0;
+  }
+
+  .department_media {
+    padding: 20px;
+    width: 100%;
+    background-color: white;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    padding-left: 70px;
+    list-style-type: none;
+    gap: 20px;
+  }
+
+  .department_media li a {
+    text-decoration: none;
+    color: black;
+  }
+
+  .department_media li a:hover {
+    color: blue;
+  }
+}
+
+
+@media screen and (max-width: 600px) {
+    .brand-logo a{
+        font-size: 35px;
+        letter-spacing: 4px;
+    }
+    
+    .search-media{
+        font-size: 15px;
+        padding-top: 5px;
+    }
+
+    .menu_counteyner{
+        width: 50px;
+    }
+
+    .search-logo-customer{
+        gap: 8px;
+    }
+
+    .line{
+        width: 30px;
+    }
+    
+    .line2_active {
+        width: 0;
+      }
+}
+
+@media screen and (max-width: 420px) {
+    .brand-logo a{
+        font-size: 24px;
+        letter-spacing: 2px;
+    }
 }

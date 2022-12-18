@@ -32,6 +32,10 @@
     padding: 20px;
 }
 
+.burgerMenu{
+    display: none;
+}
+
 .search-media{
     display: none
 }
@@ -40,7 +44,11 @@
     align-self: center;
 }
 
-.customer-nav-container {
+.customer-fnav-container {
    align-self: flex-end;
    margin-right: 50px;
+}
+
+.menu_counteyner{
+    display: none;
 }
