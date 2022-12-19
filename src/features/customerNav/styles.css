@@ -110,3 +110,10 @@ color: black;
 .viewToCart button:hover {
     font-size: 15px;
 }
+
+.customer-nav ul{
+    padding-right: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

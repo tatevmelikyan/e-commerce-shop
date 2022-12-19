@@ -17,7 +17,6 @@
     background-color: white;
 }
 
-
 .brand-logo a {
     color: black;
     text-decoration: none;
@@ -26,7 +25,6 @@
     letter-spacing: 10px;
 }
 
-
 .search-logo-customer {
     display: flex;
     justify-content: space-between;
@@ -34,13 +32,23 @@
     padding: 20px;
 }
 
+.burgerMenu{
+    display: none;
+}
+
+.search-media{
+    display: none
+}
 
 .brand-logo {
     align-self: center;
 }
 
-
-.customer-nav-container {
+.customer-fnav-container {
    align-self: flex-end;
    margin-right: 50px;
+}
+
+.menu_counteyner{
+    display: none;
 }
