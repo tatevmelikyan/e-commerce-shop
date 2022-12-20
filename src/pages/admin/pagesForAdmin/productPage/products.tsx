@@ -7,14 +7,18 @@ import CategoriesToFilter from './filterByCategory/categoriesToFilter'
 import { fetchAllProducts, fetchProductsByCategory } from '../../../../features/slices/productsSlice'
 import { fetchedCategories } from '../../../../features/slices/categoriesSlice'
 import { ZoomTheImgae } from './zoomTheImage/zoomTheImgae'
-
+import { deleteProduct } from '../../../../firebase/queries'
+import { EditProduct } from '../editProduct'
 import './styles.css'
+import AdminPage from '../../adminPage'
 
 
 const Products = function () {
   const products = useAppSelector(state => state.products.products)
+  const [open, setOpen] = useState(false)
   const [selected, setSelected] = useState('All Products')
   const [zoomed,setZoomed] = useState(false)
+  const [editedProduct, setEditedProduct] = useState ()
   const [src,setSrc] = useState('')
   const dispatch = useAppDispatch()
 
@@ -35,12 +39,20 @@ const Products = function () {
   const changeCategory = (category: string) => {
     setSelected(category)
   }
+  const productHandler = () => {
+    setOpen(!open)
+  }
 
   return (
     <div>
+       <div className='AdminPage'>
+     <AdminPage/>
+    
+     </div>
        <div>
      {zoomed&&<ZoomTheImgae imgUrl={src} zoomed={zoomed} setZoomed={setZoomed}/>}
      </div>
+     
       <CategoriesToFilter
         selected={selected}
         changeCategory={changeCategory}
@@ -74,16 +86,23 @@ const Products = function () {
                 <td className='productTD'>{product.inStock}</td>
                 <td className='productTD'>{product.price}$</td>
                 <td className='icons'>
-                  <FaEdit />
+                  <FaEdit onClick={()=>{
+                    return(
+                      productHandler()
+                    )
+                  }}/>
                 </td>
                 <td className='icons'>
-                  <MdDelete />
+                  <MdDelete onClick={()=>{
+                    deleteProduct(product.id)
+                  }}/>
                 </td>
               </tr>
             )
           })}
         </tbody>
       </table>
+      { open && <EditProduct editedProduct={editedProduct}  open={open} setOpen={setOpen} />}
     </div>
   )
 }

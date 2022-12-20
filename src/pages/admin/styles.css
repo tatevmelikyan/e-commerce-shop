@@ -51,3 +51,41 @@
  .items div{
   margin: 10px;
  }
+
+ .inputContainer{
+ 
+  margin-left: 30%;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.inputContainer >input{
+  display: flex;
+ width: 200px;
+ height: 24px;
+ text-align: center;
+ align-items: center;
+ margin: 10px;
+
+
+}
+
+.divImage{
+ 
+  display: flex;
+ 
+}
+.divImage .image{
+ display: inline;
+  text-align: center;
+  /* line-height: 75px;
+  font-size: 30px; */
+  width: 72px;
+  height: 72px;
+}
+
+.addBooton{
+  width: 20%;
+  margin:10px auto;
+}
