@@ -1,5 +1,5 @@
 import './product.css'
-
+import './productMedia.css'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 import { getProductById } from '../../firebase/queries'
@@ -7,7 +7,6 @@ import AddToCart from '../cart/addToCart'
 import { useAppDispatch } from '../../app/hooks'
 import { updateRecentlyViewedItems } from '../../features/slices/recentlyViewedSlice'
 import ProductPageCarusel from './productPageCarusel'
-import { TransformWrapper,TransformComponent } from 'react-zoom-pan-pinch'
 
 
 export interface IProduct {
