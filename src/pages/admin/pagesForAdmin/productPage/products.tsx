@@ -13,27 +13,34 @@ import './styles.css'
 
 const Products = function () {
   const products = useAppSelector(state => state.products.products)
-  const [selected, setSelected] = useState('All Products')
+  const [categoryId, setSelected] = useState('All Products')
   const [zoomed,setZoomed] = useState(false)
+  const [pages,setPages] = useState(10)
   const [src,setSrc] = useState('')
   const dispatch = useAppDispatch()
 
   useEffect(()=>{
     dispatch(fetchedCategories())
+    console.log(products,'products');
+    
   },[])
   
 
   useEffect(() => {
-    if(selected === 'All Products') {
+    if(categoryId === 'All Products') {
       console.log('in if');  
-      dispatch(fetchAllProducts())
-    } else {
-      dispatch(fetchProductsByCategory(selected))
+      dispatch(fetchAllProducts(pages))
+    } else {      
+      dispatch(fetchProductsByCategory({pages,categoryId}))
     }
-  }, [selected])
+  }, [categoryId,pages])
 
   const changeCategory = (category: string) => {
     setSelected(category)
+    setPages(10)
+  }
+  const handlePages = () => {
+    setPages(pages+10)
   }
 
   return (
@@ -42,7 +49,7 @@ const Products = function () {
      {zoomed&&<ZoomTheImgae imgUrl={src} zoomed={zoomed} setZoomed={setZoomed}/>}
      </div>
       <CategoriesToFilter
-        selected={selected}
+        selected={categoryId}
         changeCategory={changeCategory}
       />
       <table className='productPage'>
@@ -84,6 +91,9 @@ const Products = function () {
           })}
         </tbody>
       </table>
+      <div className='loadMore'>
+      <button  onClick={handlePages}>Load more</button>
+      </div>
     </div>
   )
 }

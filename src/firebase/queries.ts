@@ -11,7 +11,7 @@ export interface IDepartment {
   subdepartments: ISubdepartment[]
 }
 
-const getAllProducts = async () => {
+const getAllProducts = async (pages:number) => {
   const docs = await getDocs(collection(db,'products'))
   const products : IProduct[]=[]
   docs.forEach(doc=>products.push({
@@ -24,7 +24,7 @@ const getAllProducts = async () => {
     categoryId:doc.data().categoryId,
     id:doc.id
   }))
-  return products 
+  return {products,pages} 
 }
 
 const getAllCategories = async()=>{
@@ -103,7 +103,7 @@ const getProductById = async (productId: string) => {
   }
 }
 
-const getProductsByCategory = async (categoryId: string) => {
+const getProductsByCategory = async (pages:number,categoryId: string) => {
   const qProducts = query(collection(db, 'products'), where('categoryId', '==', categoryId))
 
   const qSnapshot = await getDocs(qProducts)
@@ -121,7 +121,7 @@ const getProductsByCategory = async (categoryId: string) => {
     }
   })
 
-  return products
+  return {pages,products}
 }
 
 // const getSortedProductsByCategory = async(sortOrder: any) => {
