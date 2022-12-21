@@ -9,15 +9,16 @@ const Subscribe: React.FC = () => {
             type='email'
             placeholder='ENTER YOUR EMAIL'
           />
-        </div>
-        <div className='submit'>
-          <button
+             <button
             className='submit'
             type='submit'
           >
             Sign UP
           </button>
         </div>
+        {/* <div className='submit'> */}
+       
+        {/* </div> */}
       </form>
     </li>
   )
