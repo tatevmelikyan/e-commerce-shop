@@ -61,3 +61,17 @@ flex-direction: column;
     color: red;
 }
 
+@media screen and (max-width:600px) {
+    .sign-form-page{
+        flex-direction: column;
+    }
+    .sign-form-container input{
+        padding: 8px;
+    }
+    .sign-form-header{
+        width: 100%;
+    }
+    .sign-form-container form button{
+        width: 150px;
+    }
+}
