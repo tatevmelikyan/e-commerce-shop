@@ -1,12 +1,11 @@
 import React from 'react'
 import { useState,useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
-import { IProduct } from '../productPage/productPage'
 import ProductsUI from '../products/productsUI'
 import { getLikedProducts, clearLikedItems } from '../../features/slices/favoritesSlice'
-import LikeIcon from './likeIcon'
 import NoFavorites from './noFavorites'
 import './styles.css'
+import './favoritesMedia.css'
 
 
 const FavoritesPage = () => {
@@ -26,7 +25,7 @@ const FavoritesPage = () => {
        favorites.length?
        <div className='favoritePage'>
        <div className='favoriteHeader'>
-       <h1 >Your Favorite Items</h1>
+       <h1 className='favorites-h1'>Your Favorite Items</h1>
        <div className= 'clearFavoritesContainer'>
         <button onClick={()=>dispatch(clearLikedItems())}>Clear All Favorites</button>
        </div>
