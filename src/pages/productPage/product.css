@@ -64,7 +64,7 @@
 }
 
 .like-icon-container:hover {
-    font-size: 50px;
+    font-size: 45px;
 }
 
 .button-instock{
@@ -94,6 +94,7 @@
     background: black;
     color: white;
     transition: .3s;
+    cursor: pointer;
 }
 /* 
 .add-cart-div{
