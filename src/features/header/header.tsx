@@ -1,19 +1,70 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './styles.css'
+import './headerMedia.css'
 
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import CustomerNav from '../customerNav/customerNav'
 import DepartmentsNav from '../departmentsNav/departmentsNav'
 import SearchField from '../search/searchField'
+import { BsSearch } from 'react-icons/bs'
+import { useAppSelector } from '../../app/hooks'
+import { selectAllDepartments } from '../slices/departmentsSlice'
 
 const Header = () => {
+  const [toggleClass, setToggleClass] = useState(false)
+  const [isSearch,setIsSearch] = useState(false)
+
+  const departments = useAppSelector((state) => selectAllDepartments(state))
+
+  const toggle = () => {
+    setToggleClass(!toggleClass)
+  }
+
+  const hideSearch = () => {
+    setIsSearch(!isSearch)
+  }
+
   return (
     <div className='sticky-header'>
       <header>
         <div className='search-logo-customer'>
+          <div
+            className='menu_counteyner'
+          >
+            <div
+              className='my_menu'
+              onClick={toggle}
+            >
+              <span className={`line ${toggleClass ? 'line1_active' : 'line1'}`}></span>
+              <span className={`line ${toggleClass ? 'line2_active' : 'line2'}`}></span>
+              <span className={`line ${toggleClass ? 'line3_active' : 'line3'}`}></span>
+            </div>
+            <div className={`${toggleClass ? 'burgerMenu' : 'burgerMenu_active'}`}>
+              <div className='customer-nav-container-media'>
+                <CustomerNav />
+              </div>
+              <div className='department_media'>
+                {departments.map((department) => (
+                  <li key={department.id}>
+                    <NavLink to={`/${department.id}`}>{department.name}</NavLink>
+                  </li>
+                ))}
+              </div>
+            </div>
+          </div>
+          <div className='search_div'>
           <SearchField />
+          </div>
           <div className='brand-logo'>
-            <Link to='/'>Ç&apos;est la Home</Link>
+            <Link to='/'>C&apos;est la Home</Link>
+          </div>
+          <div className='search-media'>
+            <div className='search-media-container'>
+              <BsSearch className='search' onClick={hideSearch}/>
+              <div className={`${isSearch?'media-search-hover-active':'media-search-hover'}`}>
+               <SearchField />
+              </div>
+            </div>
           </div>
           <div className='customer-nav-container'>
             <CustomerNav />

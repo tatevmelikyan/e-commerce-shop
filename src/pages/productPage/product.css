@@ -95,11 +95,11 @@
     color: white;
     transition: .3s;
 }
-
+/* 
 .add-cart-div{
     box-sizing: border-box;
     height: 60px;
-}
+} */
 
 .button-add-cart:hover {
   width: 145px;

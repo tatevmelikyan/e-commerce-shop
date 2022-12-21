@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router'
 //@ts-ignore
 import vid from '../../assets/pexels-tima-miroshnichenko-5834599.mp4'
 import './styles.css'
+import './homePageMedia.css'
 
 
 const HomePage = () => {
