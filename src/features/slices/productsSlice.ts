@@ -5,48 +5,58 @@ import { getAllProducts, getProductsByCategory } from '../../firebase/queries'
 import { type } from 'os'
 
 export const fetchProductsByCategory = createAsyncThunk<
- {
-  pages: number;
-  products: IProduct[];
-},
-{
-  pages:number;
-  categoryId:string
-}
->(
-  'products/fetchProducts',
-  async ({pages,categoryId}) => {
-    const response = await getProductsByCategory(pages,categoryId )
-    return response
+  {
+    pages: number
+    products: IProduct[]
   },
-)
-
-export const fetchProductsForSearch = createAsyncThunk(
-  'products/fetchAllProducts',
-  //@ts-ignore
-  async (pages:number,keyword: string) => {
-    const products = await getAllProducts(pages)
-    return { products, keyword }
-  },
-)
-
-
-export const fetchAllProducts = createAsyncThunk('allProducts/fetchedProducts', async (pages:number) => {
-  const response = await getAllProducts(pages)
-  return response
+  {
+    pages: number
+    categoryId: string
+  }
+>('products/fetchProducts', async ({ pages, categoryId }) => {
+  const products = await getProductsByCategory(categoryId)
+  return { products, pages }
 })
 
+export const fetchProductsForSearch = createAsyncThunk<
+  {
+    products: IProduct[]
+    pages: number
+    keyword: string
+  },
+  {
+    pages: number
+    keyword: string
+  }
+>(
+  'products/fetchAllProducts',
+
+  async ({ pages, keyword }) => {
+    const products = await getAllProducts()
+    return { products, keyword, pages }
+  },
+)
+
+export const fetchAllProducts = createAsyncThunk(
+  'allProducts/fetchedProducts',
+  async (pages: number) => {
+    const products = await getAllProducts()
+    return { products, pages }
+  },
+)
 
 export interface ProductsState {
   products: IProduct[]
-  pages:number
+  pages: number
+  mathedProductsCount: number
   status: 'idle' | 'loading' | 'succeeded' | 'failed'
   error: null | undefined | string
 }
 
 const initialState: ProductsState = {
   products: [],
-  pages:10, 
+  pages: 10,
+  mathedProductsCount: 0,
   status: 'idle',
   error: null,
 }
@@ -74,7 +84,7 @@ const productsSlice = createSlice({
     //   })
     //   state.products.length = action.payload
     //   console.log(state.products);
-      
+
     // },
     sortByPrice(state, action: ISortAction) {
       if (action.payload === 'asc') {
@@ -93,32 +103,32 @@ const productsSlice = createSlice({
       })
       .addCase(fetchProductsByCategory.fulfilled, (state, action) => {
         state.status = 'succeeded'
-        state.products = action.payload.products.sort((a,b)=> a.title.localeCompare(b.title))
-        state.products.length = action.payload.pages
+        const { pages, products } = action.payload
+        state.products = products.sort((a, b) => a.title.localeCompare(b.title)).splice(0, pages)
       })
       .addCase(fetchProductsByCategory.rejected, (state, action) => {
         state.status = 'failed'
         state.error = action.error.message
       })
       .addCase(fetchProductsForSearch.fulfilled, (state, action) => {
-        const { products, keyword } = action.payload
-        //@ts-ignore
+        const { products, keyword, pages } = action.payload
         state.products = products.filter((product) => {
           return product.title
             .replace(/\s/g, '')
             .toLowerCase()
             .includes(keyword.replace(/\s/g, '').toLowerCase())
         })
+        state.mathedProductsCount = state.products.length
+        state.products = state.products.splice(0, pages)
       })
       .addCase(fetchAllProducts.fulfilled, (state, action) => {
         state.status = 'succeeded'
-        state.products = action.payload.products.sort((a,b)=> a.title.localeCompare(b.title))
-        state.products.length = action.payload.pages
+        const { products, pages } = action.payload
+        state.products = products.sort((a, b) => a.title.localeCompare(b.title)).splice(0, pages)
+        action.payload
       })
   },
 })
 
 export default productsSlice.reducer
 export const { sortByPrice } = productsSlice.actions
-
-

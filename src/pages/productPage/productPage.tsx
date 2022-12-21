@@ -7,8 +7,7 @@ import AddToCart from '../cart/addToCart'
 import { useAppDispatch } from '../../app/hooks'
 import { updateRecentlyViewedItems } from '../../features/slices/recentlyViewedSlice'
 import ProductPageCarusel from './productPageCarusel'
-import { TransformWrapper,TransformComponent } from 'react-zoom-pan-pinch'
-
+import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch'
 
 export interface IProduct {
   categoryId?: string
@@ -41,10 +40,8 @@ const ProductPage: React.FC = () => {
     <>
       <div className='product_info'>
         <div className='product_image_div'>
-        
-        <ProductPageCarusel slideContent={product as IProduct}/>
-       
-           </div>
+          <ProductPageCarusel slideContent={product as IProduct} />
+        </div>
         <div className='product_details_div'>
           <h2 className='product-title1'>{product?.title}</h2>
           <div className='product_details'>

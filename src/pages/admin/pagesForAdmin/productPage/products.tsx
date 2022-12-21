@@ -1,53 +1,59 @@
 import { useEffect, useState } from 'react'
-import {FaEdit} from 'react-icons/fa'
-import {MdDelete} from 'react-icons/md'
+import { FaEdit } from 'react-icons/fa'
+import { MdDelete } from 'react-icons/md'
 
 import { useAppSelector, useAppDispatch } from '../../../../app/hooks'
 import CategoriesToFilter from './filterByCategory/categoriesToFilter'
-import { fetchAllProducts, fetchProductsByCategory } from '../../../../features/slices/productsSlice'
+import {
+  fetchAllProducts,
+  fetchProductsByCategory,
+} from '../../../../features/slices/productsSlice'
 import { fetchedCategories } from '../../../../features/slices/categoriesSlice'
 import { ZoomTheImgae } from './zoomTheImage/zoomTheImgae'
 
 import './styles.css'
 
-
 const Products = function () {
-  const products = useAppSelector(state => state.products.products)
+  const products = useAppSelector((state) => state.products.products)
   const [categoryId, setSelected] = useState('All Products')
-  const [zoomed,setZoomed] = useState(false)
-  const [pages,setPages] = useState(10)
-  const [src,setSrc] = useState('')
+  const [zoomed, setZoomed] = useState(false)
+  const [pages, setPages] = useState(10)
+  const [src, setSrc] = useState('')
   const dispatch = useAppDispatch()
 
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(fetchedCategories())
-    console.log(products,'products');
-    
-  },[])
-  
+    console.log(products, 'products')
+  }, [])
 
   useEffect(() => {
-    if(categoryId === 'All Products') {
-      console.log('in if');  
+    if (categoryId === 'All Products') {
+      console.log('in if')
       dispatch(fetchAllProducts(pages))
-    } else {      
-      dispatch(fetchProductsByCategory({pages,categoryId}))
+    } else {
+      dispatch(fetchProductsByCategory({ pages, categoryId }))
     }
-  }, [categoryId,pages])
+  }, [categoryId, pages])
 
   const changeCategory = (category: string) => {
     setSelected(category)
     setPages(10)
   }
   const handlePages = () => {
-    setPages(pages+10)
+    setPages(pages + 10)
   }
 
   return (
     <div>
-       <div>
-     {zoomed&&<ZoomTheImgae imgUrl={src} zoomed={zoomed} setZoomed={setZoomed}/>}
-     </div>
+      <div>
+        {zoomed && (
+          <ZoomTheImgae
+            imgUrl={src}
+            zoomed={zoomed}
+            setZoomed={setZoomed}
+          />
+        )}
+      </div>
       <CategoriesToFilter
         selected={categoryId}
         changeCategory={changeCategory}
@@ -71,7 +77,7 @@ const Products = function () {
                   <img
                     className='photoInTable'
                     src={product.imageUrls[0]}
-                    onClick={()=>{
+                    onClick={() => {
                       setZoomed(!zoomed)
                       setSrc(product.imageUrls[0])
                     }}
@@ -92,7 +98,7 @@ const Products = function () {
         </tbody>
       </table>
       <div className='loadMore'>
-      <button  onClick={handlePages}>Load more</button>
+        <button onClick={handlePages}>Load more</button>
       </div>
     </div>
   )
