@@ -8,12 +8,16 @@ import SortBy from './sortBy'
 import ProductsUI from './productsUI'
 
 const ProductsPage: React.FC = () => {
-  const [pages,setPages] = useState(12)
+  const [pages,setPages] = useState(8)
   const { categoryId } = useParams()
   const dispatch = useAppDispatch()
   const products = useAppSelector((state) => state.products.products)
   const productsStatus = useAppSelector((state) => state.products.status)
   const error = useAppSelector((state) => state.products.error)
+
+  useEffect(()=>{
+    setPages(8)
+  },[categoryId])
 
   useEffect(() => {
     if (categoryId) {
@@ -22,7 +26,7 @@ const ProductsPage: React.FC = () => {
   }, [dispatch,pages, categoryId])
 
   const handlePagination = () => {
-    setPages(pages+12)
+    setPages(pages+8)
   }
   return (
     <div className='products-container'>
