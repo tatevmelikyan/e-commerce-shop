@@ -2,7 +2,6 @@ import { TOrder } from '../../pages/products/sortBy'
 import { IProduct } from '../../pages/productPage/productPage'
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { getAllProducts, getProductsByCategory } from '../../firebase/queries'
-import { type } from 'os'
 
 export const fetchProductsByCategory = createAsyncThunk<
   {
@@ -15,7 +14,7 @@ export const fetchProductsByCategory = createAsyncThunk<
   }
 >('products/fetchProducts', async ({ pages, categoryId }) => {
   const products = await getProductsByCategory(categoryId)
-  return { products, pages }
+  return { products, pages, categoryId }
 })
 
 export const fetchProductsForSearch = createAsyncThunk<
@@ -48,6 +47,7 @@ export const fetchAllProducts = createAsyncThunk(
 export interface ProductsState {
   products: IProduct[]
   pages: number
+  needLoad:boolean
   mathedProductsCount: number
   status: 'idle' | 'loading' | 'succeeded' | 'failed'
   error: null | undefined | string
@@ -56,6 +56,7 @@ export interface ProductsState {
 const initialState: ProductsState = {
   products: [],
   pages: 10,
+  needLoad:true,
   mathedProductsCount: 0,
   status: 'idle',
   error: null,
@@ -70,29 +71,13 @@ const productsSlice = createSlice({
   name: 'products',
   initialState,
   reducers: {
-    // sortByPages(state, action:ISortPages) {
-    //   console.log(state.products);
-
-    //   console.log('!!!!!!!!!!!im in a slice');
-    //   let count = 0
-    //   //@ts-ignore
-    //   state.products = state.products.map(product=>{
-    //     if(count !== action.payload) {
-    //       count++
-    //       return product
-    //     }
-    //   })
-    //   state.products.length = action.payload
-    //   console.log(state.products);
-
-    // },
     sortByPrice(state, action: ISortAction) {
       if (action.payload === 'asc') {
         state.products = state.products.sort((a, b) => a.price - b.price)
       } else if (action.payload === 'desc') {
         state.products = state.products.sort((a, b) => b.price - a.price)
       } else {
-        state.products = state.products.sort((a, b) => (a.id > b.id ? 1 : b.id > a.id ? -1 : 0))
+        state.products = state.products.sort((a, b) => a.title.localeCompare(b.title))
       }
     },
   },
@@ -104,7 +89,16 @@ const productsSlice = createSlice({
       .addCase(fetchProductsByCategory.fulfilled, (state, action) => {
         state.status = 'succeeded'
         const { pages, products } = action.payload
-        state.products = products.sort((a, b) => a.title.localeCompare(b.title)).splice(0, pages)
+        
+        state.products = products.sort((a, b) => a.title.localeCompare(b.title))
+        console.log(state.products.length, products.length);
+        const original = state.products.length 
+        state.products = state.products.splice(0, pages)  
+        if(original===state.products.length){          
+          state.needLoad=false
+        }  else {
+          state.needLoad=true
+        }
       })
       .addCase(fetchProductsByCategory.rejected, (state, action) => {
         state.status = 'failed'
@@ -125,7 +119,6 @@ const productsSlice = createSlice({
         state.status = 'succeeded'
         const { products, pages } = action.payload
         state.products = products.sort((a, b) => a.title.localeCompare(b.title)).splice(0, pages)
-        action.payload
       })
   },
 })

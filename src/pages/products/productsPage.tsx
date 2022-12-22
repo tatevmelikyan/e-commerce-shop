@@ -2,7 +2,6 @@ import { fetchProductsByCategory } from '../../features/slices/productsSlice'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { useParams } from 'react-router'
 import { useEffect, useState } from 'react'
-import {SlArrowDown} from 'react-icons/sl'
 
 import './styles.css'
 import SortBy from './sortBy'
@@ -16,6 +15,9 @@ const ProductsPage: React.FC = () => {
   const products = useAppSelector((state) => state.products.products)
   const productsStatus = useAppSelector((state) => state.products.status)
   const error = useAppSelector((state) => state.products.error)
+  const needLoad = useAppSelector(state=>state.products.needLoad)
+
+
 
   useEffect(() => {
     setPages(8)
@@ -24,19 +26,19 @@ const ProductsPage: React.FC = () => {
   useEffect(() => {
     if (categoryId) {
       dispatch(fetchProductsByCategory({ pages, categoryId }))
-    }
-  }, [dispatch, pages, categoryId])
+     }
+  }, [pages, categoryId])
 
   const handlePagination = () => {
     setPages(pages + 8)
-  }
+   }
   return (
     <>
     <div className='products-container'>
       <SortBy />
       <ProductsUI products={products} />
     </div>
-    <LoadMoreBtn handlePagination={handlePagination}/>
+    {needLoad&&<LoadMoreBtn handlePagination={handlePagination}/>}
     </>
   )
 }

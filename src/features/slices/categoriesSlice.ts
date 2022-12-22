@@ -33,7 +33,6 @@ export interface categoriesState {
         })
         .addCase(fetchedCategories.fulfilled, (state, action) => {
           state.status = 'succeeded'
-          //@ts-ignore
           state.allCategories = action.payload.sort((a,b)=> a.name.localeCompare(b.name))
         })
         .addCase(fetchedCategories.rejected, (state, action) => {
