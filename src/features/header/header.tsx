@@ -26,6 +26,7 @@ const Header = () => {
 
   return (
     <div className='sticky-header'>
+      <div onClick={toggle} className={`${!toggleClass?'divOverley':'divOverleyActive'}`}></div>
       <header>
         <div className='search-logo-customer'>
           <div
@@ -45,9 +46,11 @@ const Header = () => {
               </div>
               <div className='department_media'>
                 {departments.map((department) => (
-                  <li key={department.id}>
-                    <NavLink to={`/${department.id}`}>{department.name}</NavLink>
+                  <div key={department.id}>
+                  <li>
+                    <NavLink className='depName' to={`/${department.id}`}>{department.name}</NavLink>
                   </li>
+                  </div>
                 ))}
               </div>
             </div>

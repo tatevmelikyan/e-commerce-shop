@@ -37,6 +37,10 @@
     cursor: pointer;
 }
 
+.liClass:hover{
+    text-decoration: underline;
+}
+
 .footer-heading{
     font-size: 15px;
     font-weight: 600;
