@@ -8,7 +8,7 @@ const ProductsUI: React.FC<{ products: IProduct[] }> = ({ products }) => {
 
   return (
     <>
-      {products?.map((product) => {
+      {products.map((product) => {
         return (
           <div
             key={product.id}
