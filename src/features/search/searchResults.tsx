@@ -13,7 +13,7 @@ const SearchResults: React.FC = () => {
   const dispatch = useAppDispatch()
   const matchedProducts = useAppSelector((state) => state.products.products)
   const matchedProductsCount = useAppSelector((state) => state.products.mathedProductsCount)
-  const needLoad = useAppSelector(state=>state.products.needLoad)
+  const needLoad = useAppSelector((state) => state.products.needLoad)
 
   useEffect(() => {
     if (keyword) {
@@ -39,7 +39,7 @@ const SearchResults: React.FC = () => {
       ) : (
         <NoResults keyword={keyword as string} />
       )}
-      {needLoad && <LoadMoreBtn handlePagination={handlePagination}/>}
+      {needLoad && <LoadMoreBtn handlePagination={handlePagination} />}
     </div>
   )
 }

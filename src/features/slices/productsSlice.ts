@@ -47,7 +47,7 @@ export const fetchAllProducts = createAsyncThunk(
 export interface ProductsState {
   products: IProduct[]
   pages: number
-  needLoad:boolean
+  needLoad: boolean
   mathedProductsCount: number
   status: 'idle' | 'loading' | 'succeeded' | 'failed'
   error: null | undefined | string
@@ -56,7 +56,7 @@ export interface ProductsState {
 const initialState: ProductsState = {
   products: [],
   pages: 10,
-  needLoad:true,
+  needLoad: true,
   mathedProductsCount: 0,
   status: 'idle',
   error: null,
@@ -89,15 +89,15 @@ const productsSlice = createSlice({
       .addCase(fetchProductsByCategory.fulfilled, (state, action) => {
         state.status = 'succeeded'
         const { pages, products } = action.payload
-        
+
         state.products = products.sort((a, b) => a.title.localeCompare(b.title))
-        console.log(state.products.length, products.length);
-        const original = state.products.length 
-        state.products = state.products.splice(0, pages)  
-        if(original===state.products.length){          
-          state.needLoad=false
-        }  else {
-          state.needLoad=true
+        console.log(state.products.length, products.length)
+        const original = state.products.length
+        state.products = state.products.splice(0, pages)
+        if (original === state.products.length) {
+          state.needLoad = false
+        } else {
+          state.needLoad = true
         }
       })
       .addCase(fetchProductsByCategory.rejected, (state, action) => {
@@ -113,24 +113,24 @@ const productsSlice = createSlice({
             .includes(keyword.replace(/\s/g, '').toLowerCase())
         })
         state.mathedProductsCount = state.products.length
-        const original = state.products.length 
+        const original = state.products.length
         state.products = state.products.splice(0, pages)
-        if(original===state.products.length){          
-          state.needLoad=false
-        }  else {
-          state.needLoad=true
+        if (original === state.products.length) {
+          state.needLoad = false
+        } else {
+          state.needLoad = true
         }
       })
       .addCase(fetchAllProducts.fulfilled, (state, action) => {
         state.status = 'succeeded'
         const { products, pages } = action.payload
         state.products = products.sort((a, b) => a.title.localeCompare(b.title))
-        const original = state.products.length 
-        state.products=state.products.splice(0, pages)
-        if(original===state.products.length){          
-          state.needLoad=false
-        }  else {
-          state.needLoad=true
+        const original = state.products.length
+        state.products = state.products.splice(0, pages)
+        if (original === state.products.length) {
+          state.needLoad = false
+        } else {
+          state.needLoad = true
         }
       })
   },

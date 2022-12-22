@@ -15,9 +15,7 @@ const ProductsPage: React.FC = () => {
   const products = useAppSelector((state) => state.products.products)
   const productsStatus = useAppSelector((state) => state.products.status)
   const error = useAppSelector((state) => state.products.error)
-  const needLoad = useAppSelector(state=>state.products.needLoad)
-
-
+  const needLoad = useAppSelector((state) => state.products.needLoad)
 
   useEffect(() => {
     setPages(8)
@@ -26,19 +24,19 @@ const ProductsPage: React.FC = () => {
   useEffect(() => {
     if (categoryId) {
       dispatch(fetchProductsByCategory({ pages, categoryId }))
-     }
+    }
   }, [pages, categoryId])
 
   const handlePagination = () => {
     setPages(pages + 8)
-   }
+  }
   return (
     <>
-    <div className='products-container'>
-      <SortBy />
-      <ProductsUI products={products} />
-    </div>
-    {needLoad&&<LoadMoreBtn handlePagination={handlePagination}/>}
+      <div className='products-container'>
+        <SortBy />
+        <ProductsUI products={products} />
+      </div>
+      {needLoad && <LoadMoreBtn handlePagination={handlePagination} />}
     </>
   )
 }
