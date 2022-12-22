@@ -16,6 +16,7 @@ import './styles.css'
 
 const Products = function () {
   const products = useAppSelector((state) => state.products.products)
+  const needLoad = useAppSelector(state=>state.products.needLoad)
   const [categoryId, setSelected] = useState('All Products')
   const [zoomed, setZoomed] = useState(false)
   const [pages, setPages] = useState(10)
@@ -98,7 +99,7 @@ const Products = function () {
           })}
         </tbody>
       </table>
-      <LoadMoreBtn handlePagination={handlePages}/>
+      {needLoad && <LoadMoreBtn handlePagination={handlePages}/>}
     </div>
   )
 }

@@ -14,7 +14,7 @@ export const fetchProductsByCategory = createAsyncThunk<
   }
 >('products/fetchProducts', async ({ pages, categoryId }) => {
   const products = await getProductsByCategory(categoryId)
-  return { products, pages, categoryId }
+  return { products, pages }
 })
 
 export const fetchProductsForSearch = createAsyncThunk<
@@ -113,12 +113,25 @@ const productsSlice = createSlice({
             .includes(keyword.replace(/\s/g, '').toLowerCase())
         })
         state.mathedProductsCount = state.products.length
+        const original = state.products.length 
         state.products = state.products.splice(0, pages)
+        if(original===state.products.length){          
+          state.needLoad=false
+        }  else {
+          state.needLoad=true
+        }
       })
       .addCase(fetchAllProducts.fulfilled, (state, action) => {
         state.status = 'succeeded'
         const { products, pages } = action.payload
-        state.products = products.sort((a, b) => a.title.localeCompare(b.title)).splice(0, pages)
+        state.products = products.sort((a, b) => a.title.localeCompare(b.title))
+        const original = state.products.length 
+        state.products=state.products.splice(0, pages)
+        if(original===state.products.length){          
+          state.needLoad=false
+        }  else {
+          state.needLoad=true
+        }
       })
   },
 })
