@@ -10,6 +10,7 @@ import {
 } from '../../../../features/slices/productsSlice'
 import { fetchedCategories } from '../../../../features/slices/categoriesSlice'
 import { ZoomTheImgae } from './zoomTheImage/zoomTheImgae'
+import { LoadMoreBtn } from '../../../../features/loadMoreBtn/loadMoreBtn'
 
 import './styles.css'
 
@@ -97,9 +98,7 @@ const Products = function () {
           })}
         </tbody>
       </table>
-      <div className='loadMore'>
-        <button onClick={handlePages}>Load more</button>
-      </div>
+      <LoadMoreBtn handlePagination={handlePages}/>
     </div>
   )
 }

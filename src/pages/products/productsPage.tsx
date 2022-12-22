@@ -2,10 +2,12 @@ import { fetchProductsByCategory } from '../../features/slices/productsSlice'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { useParams } from 'react-router'
 import { useEffect, useState } from 'react'
+import {SlArrowDown} from 'react-icons/sl'
 
 import './styles.css'
 import SortBy from './sortBy'
 import ProductsUI from './productsUI'
+import { LoadMoreBtn } from '../../features/loadMoreBtn/loadMoreBtn'
 
 const ProductsPage: React.FC = () => {
   const [pages, setPages] = useState(8)
@@ -29,13 +31,13 @@ const ProductsPage: React.FC = () => {
     setPages(pages + 8)
   }
   return (
+    <>
     <div className='products-container'>
       <SortBy />
       <ProductsUI products={products} />
-      <div>
-        <button onClick={handlePagination}>Load more</button>
-      </div>
     </div>
+    <LoadMoreBtn handlePagination={handlePagination}/>
+    </>
   )
 }
 

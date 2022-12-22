@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { fetchProductsForSearch } from '../slices/productsSlice'
 import ProductsUI from '../../pages/products/productsUI'
 import SortBy from '../../pages/products/sortBy'
+import { LoadMoreBtn } from '../loadMoreBtn/loadMoreBtn'
 import NoResults from './noResults'
 
 const SearchResults: React.FC = () => {
@@ -37,9 +38,7 @@ const SearchResults: React.FC = () => {
       ) : (
         <NoResults keyword={keyword as string} />
       )}
-      <div>
-        <button onClick={handlePagination}>Load More</button>
-      </div>
+      <LoadMoreBtn handlePagination={handlePagination}/>
     </div>
   )
 }
