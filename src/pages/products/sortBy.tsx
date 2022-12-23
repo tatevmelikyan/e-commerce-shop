@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useAppDispatch } from '../../app/hooks'
+import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { sortByPrice } from '../../features/slices/productsSlice'
 
 interface IOrderOption {
@@ -12,10 +12,10 @@ export type TOrder = 'featured' | 'asc' | 'desc'
 const SortBy = () => {
   const [selected, setSelected] = useState<TOrder>('featured')
   const dispatch = useAppDispatch()
-
+  const products = useAppSelector((state) => state.products.products)
   useEffect(() => {
     dispatch(sortByPrice(selected))
-  }, [selected])
+  }, [selected, products])
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelected(event.target.value as TOrder)

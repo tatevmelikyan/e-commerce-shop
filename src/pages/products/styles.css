@@ -80,3 +80,23 @@
 .productsLikeIcon:hover {
     font-size: 33px;
 }
+.loader{
+    margin-top: 5%;
+    text-align: center;
+    position: relative;
+}
+.loadBtn{
+    font-size: 35px;
+    cursor: pointer;
+}
+.loadText{
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    right: 0;
+    transform: translateY(42px);
+}
+.loadBtn:hover + .loadText{
+   opacity: 1;
+}
+

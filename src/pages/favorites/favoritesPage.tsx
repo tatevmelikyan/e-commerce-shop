@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState,useEffect } from 'react'
+import { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import ProductsUI from '../products/productsUI'
 import { getLikedProducts, clearLikedItems } from '../../features/slices/favoritesSlice'
@@ -7,17 +7,13 @@ import NoFavorites from './noFavorites'
 import './styles.css'
 import './favoritesMedia.css'
 
-
 const FavoritesPage = () => {
+  const dispatch = useAppDispatch()
+  const favorites = useAppSelector((state) => state.favoriteItems.favoriteItems)
 
- 
- const dispatch = useAppDispatch()
- const favorites = useAppSelector(state=>state.favoriteItems.favoriteItems)
- 
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(getLikedProducts())
-  },[])
-
+  }, [])
 
   return (
     <>

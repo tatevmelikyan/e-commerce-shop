@@ -3,7 +3,6 @@ import { IProduct } from './../pages/productPage/productPage'
 import { collection, doc, getDocs, query, where, getDoc, updateDoc } from 'firebase/firestore'
 import { db } from './config'
 
-
 export interface IDepartment {
   id: string
   name: string
@@ -12,30 +11,34 @@ export interface IDepartment {
 }
 
 const getAllProducts = async () => {
-  const docs = await getDocs(collection(db,'products'))
-  const products : IProduct[]=[]
-  docs.forEach(doc=>products.push({
-    title:doc.data().title, 
-    price:doc.data().price,
-    inStock:doc.data().inStock,
-    imageUrls:doc.data().imageUrls,
-    description:doc.data().description,
-    details:doc.data().details,
-    categoryId:doc.data().categoryId,
-    id:doc.id
-  }))
-  return products 
+  const docs = await getDocs(collection(db, 'products'))
+  const products: IProduct[] = []
+  docs.forEach((doc) =>
+    products.push({
+      title: doc.data().title,
+      price: doc.data().price,
+      inStock: doc.data().inStock,
+      imageUrls: doc.data().imageUrls,
+      description: doc.data().description,
+      details: doc.data().details,
+      categoryId: doc.data().categoryId,
+      id: doc.id,
+    }),
+  )
+  return products
 }
 
-const getAllCategories = async()=>{
-  const docs = await getDocs(collection(db,'categories'))
-  const categories : ICategory[]=[]
-  docs.forEach(doc=> categories.push({
-    id: doc.id,
-    name: doc.data().name,
-    imageUrl: doc.data().imageUrl,
-    subdepartmentId: doc.data().subDepartmentId,
-  }))
+const getAllCategories = async () => {
+  const docs = await getDocs(collection(db, 'categories'))
+  const categories: ICategory[] = []
+  docs.forEach((doc) =>
+    categories.push({
+      id: doc.id,
+      name: doc.data().name,
+      imageUrl: doc.data().imageUrl,
+      subdepartmentId: doc.data().subDepartmentId,
+    }),
+  )
   return categories
 }
 
@@ -82,7 +85,7 @@ const getSubdepartmentsWithCategoriesByDepartment = async (departmentId: string)
   const q = query(collection(db, 'subdepartments'), where('departmentId', '==', departmentId))
   const subdepartmentsSnap = await getDocs(q)
   const subdepartments = subdepartmentsSnap.docs.map<Promise<ISubdepartment>>(
-    async (subdepartment) => { 
+    async (subdepartment) => {
       const categories = await getCategoriesBySubdepartment(subdepartment.id)
       return {
         id: subdepartment.id,
@@ -98,9 +101,7 @@ const getSubdepartmentsWithCategoriesByDepartment = async (departmentId: string)
 const getProductById = async (productId: string) => {
   const productRef = doc(db, 'products', productId)
   const productSnap = await getDoc(productRef)
-  return {...productSnap.data(),
-    id: productSnap.id
-  }
+  return { ...productSnap.data(), id: productSnap.id }
 }
 
 const getProductsByCategory = async (categoryId: string) => {
@@ -149,11 +150,6 @@ const getProductsByCategory = async (categoryId: string) => {
 
 //   return products
 // }
-
-
-
-
-
 
 export {
   getAllProducts,

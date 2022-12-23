@@ -31,7 +31,7 @@ const departmentsSlice = createSlice({
       })
       .addCase(fetchDepartments.fulfilled, (state, action) => {
         state.status = 'succeeded'
-        state.departments = action.payload
+        state.departments = action.payload.sort((a, b) => a.name.localeCompare(b.name))
       })
       .addCase(fetchDepartments.rejected, (state, action) => {
         state.status = 'failed'
