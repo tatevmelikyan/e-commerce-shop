@@ -12,41 +12,30 @@ const CartDropdown: React.FC = () => {
   const userCartSubTotal = useAppSelector((state) => state.currentUser.userCartSubTotal)
   const subtotal = currentUser ? userCartSubTotal : localSubtotal
 
-  return (
-    <div className='cart-dropdown'>
-      <div className='table-container'>
-        {
-          <table>
-            <thead></thead>
-            <tbody>
-              {cartItems?.map((item: ICartItem) => (
-                <tr
-                  className='cartTableTr'
-                  key={Math.random()}
-                  onClick={() => navigate(`/products/${item.product.id}`)}
-                >
-                  <td>
-                    <img
-                      className='cartDropdownImg'
-                      src={item.product.imageUrls[0]}
-                      alt=''
-                    />
-                  </td>
-                  <td></td>
-                  <td>{item.product.title}</td>
-                  <td>${item.product.price}</td>
-                  <td>x</td>
-                  <td className='productCount'> {item.qty}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        }
 
-        <div className='viewToCart'>
-          <div>Subtotal: ${subtotal.toLocaleString()}</div>
-          <button onClick={() => navigate('/shoppingcart')}>VIEW CART</button>
-        </div>
+  return (
+  <div className='cart-dropDown-container'>
+      <div className='cart-dropDown-list'>
+        {cartItems.map((item) => (
+          <div
+            onClick={() => navigate(`/products/${item.product.id}`)}
+            className='dropDownListItem'
+            key={Math.random()}
+          >
+            <img
+              src={item.product.imageUrls[0]}
+              alt=''
+            />
+            <span className='dropDownListItemTitle'>{item.product.title}</span>
+            <span className='dropDownListItemPrice'>
+              ${item.product.price} x {item.qty}
+            </span>
+          </div>
+        ))}
+      </div>
+      <div className='cart-dropDown-button'>
+        <div>Subtotal: ${subtotal.toLocaleString()}</div>
+        <button onClick={() => navigate('/shoppingcart')}>VIEW CART</button>
       </div>
     </div>
   )
