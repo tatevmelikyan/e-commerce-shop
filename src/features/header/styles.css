@@ -41,7 +41,8 @@
 }
 
 .brand-logo {
-    align-self: center;
+    text-align: flex-end;
+    padding-left: 150px;
 }
 
 .customer-fnav-container {
