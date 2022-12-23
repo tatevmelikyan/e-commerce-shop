@@ -1,8 +1,10 @@
+import { auth } from './auth';
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { IUser } from './../features/slices/types';
 import { ISubdepartment } from '../features/slices/subdepartmentsSlice'
 import { IProduct } from './../pages/productPage/productPage'
-import { collection, doc, getDocs, query, where, getDoc, updateDoc } from 'firebase/firestore'
+import { collection, doc, getDocs, query, where, getDoc, updateDoc, setDoc } from 'firebase/firestore'
 import { db } from './config'
-
 
 export interface IDepartment {
   id: string
@@ -12,30 +14,34 @@ export interface IDepartment {
 }
 
 const getAllProducts = async () => {
-  const docs = await getDocs(collection(db,'products'))
-  const products : IProduct[]=[]
-  docs.forEach(doc=>products.push({
-    title:doc.data().title, 
-    price:doc.data().price,
-    inStock:doc.data().inStock,
-    imageUrls:doc.data().imageUrls,
-    description:doc.data().description,
-    details:doc.data().details,
-    categoryId:doc.data().categoryId,
-    id:doc.id
-  }))
-  return products 
+  const docs = await getDocs(collection(db, 'products'))
+  const products: IProduct[] = []
+  docs.forEach((doc) =>
+    products.push({
+      title: doc.data().title,
+      price: doc.data().price,
+      inStock: doc.data().inStock,
+      imageUrls: doc.data().imageUrls,
+      description: doc.data().description,
+      details: doc.data().details,
+      categoryId: doc.data().categoryId,
+      id: doc.id,
+    }),
+  )
+  return products
 }
 
-const getAllCategories = async()=>{
-  const docs = await getDocs(collection(db,'categories'))
-  const categories : ICategory[]=[]
-  docs.forEach(doc=> categories.push({
-    id: doc.id,
-    name: doc.data().name,
-    imageUrl: doc.data().imageUrl,
-    subdepartmentId: doc.data().subDepartmentId,
-  }))
+const getAllCategories = async () => {
+  const docs = await getDocs(collection(db, 'categories'))
+  const categories: ICategory[] = []
+  docs.forEach((doc) =>
+    categories.push({
+      id: doc.id,
+      name: doc.data().name,
+      imageUrl: doc.data().imageUrl,
+      subdepartmentId: doc.data().subDepartmentId,
+    }),
+  )
   return categories
 }
 
@@ -82,7 +88,7 @@ const getSubdepartmentsWithCategoriesByDepartment = async (departmentId: string)
   const q = query(collection(db, 'subdepartments'), where('departmentId', '==', departmentId))
   const subdepartmentsSnap = await getDocs(q)
   const subdepartments = subdepartmentsSnap.docs.map<Promise<ISubdepartment>>(
-    async (subdepartment) => { 
+    async (subdepartment) => {
       const categories = await getCategoriesBySubdepartment(subdepartment.id)
       return {
         id: subdepartment.id,
@@ -98,9 +104,8 @@ const getSubdepartmentsWithCategoriesByDepartment = async (departmentId: string)
 const getProductById = async (productId: string) => {
   const productRef = doc(db, 'products', productId)
   const productSnap = await getDoc(productRef)
-  return {...productSnap.data(),
-    id: productSnap.id
-  }
+  console.log(productSnap, 'product snap');
+  return { ...productSnap.data(), id: productSnap.id }
 }
 
 const getProductsByCategory = async (categoryId: string) => {
@@ -124,34 +129,6 @@ const getProductsByCategory = async (categoryId: string) => {
   return products
 }
 
-// const getSortedProductsByCategory = async(sortOrder: any) => {
-// const productsRef = collection(db, 'products')
-// const q = query(productsRef, where('categoryId', '==', category), orderBy('price',sortOrder))
-
-// const qSnapshot = await getDocs(q)
-// console.log(qSnapshot,'kkkkkkkkkkkkkkkk');
-
-//   const products:IProduct[] = qSnapshot.docs.map(snap=>{
-//     console.log('map');
-
-//     return {
-//       id:snap.id,
-//       title:snap.data().title,
-//       price:snap.data().price,
-//       description:snap.data().description,
-//       details:snap.data().details,
-//       imageUrls:snap.data().imageUrls,
-//       inStock:snap.data().inStock,
-//       categoryId: category.id,
-//     }
-//   })
-//   console.log(products, 'order products  ::::');
-
-//   return products
-// }
-
-
-
 
 
 
@@ -162,4 +139,6 @@ export {
   getProductById,
   getProductsByCategory,
   getAllCategories,
+
+  
 }

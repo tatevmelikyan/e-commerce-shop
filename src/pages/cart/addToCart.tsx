@@ -1,8 +1,9 @@
 import React,{FC,useState} from 'react'
-import { useAppDispatch } from '../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { IProduct } from '../productPage/productPage'
 import { updateCartItems } from '../../features/slices/cartSlice';
 import './shoppingCart.css'
+import { updateUserCartItems } from '../../features/slices/currentUserSlice';
 
 export interface ICartItem {
     product:IProduct;
@@ -12,9 +13,14 @@ export interface ICartItem {
 const  AddToCart:FC<{ product: IProduct }> = ({product}) => {
     const[addedToCart,setAddedToCart] = useState(false)
     const dispatch = useAppDispatch()
+    const currentUser = useAppSelector(state => state.currentUser.currentUser)
 
     const handleAddToCard = () => {
-        dispatch(updateCartItems(product))
+        if(currentUser) {
+            dispatch(updateUserCartItems({product, actionType: 'addToCart'}))
+        } else {
+            dispatch(updateCartItems(product))
+        }
         setAddedToCart(true)
         setTimeout(()=>{setAddedToCart(false)},800)
     }
