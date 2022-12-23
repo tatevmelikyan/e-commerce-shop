@@ -7,6 +7,7 @@ import './styles.css'
 import SortBy from './sortBy'
 import ProductsUI from './productsUI'
 import {Skeleton} from '../../features/skeletons'
+import { LoadMoreBtn } from '../../features/loadMoreBtn/loadMoreBtn'
 
 const ProductsPage: React.FC = () => {
   const [pages, setPages] = useState(8)
@@ -31,6 +32,7 @@ const ProductsPage: React.FC = () => {
     setPages(pages + 8)
   }
   return (
+    <>
     <div className='products-container'>
       <SortBy />
       {productsStatus===('loading'||'idle')?[...new Array(8)].map((e,ind)=><div className='product' key={ind}>
@@ -38,6 +40,8 @@ const ProductsPage: React.FC = () => {
       </div>)
       :<ProductsUI products={products} />}
     </div>
+    {needLoad&&<LoadMoreBtn handlePagination={handlePagination}/>}
+    </>
   )
 }
 
