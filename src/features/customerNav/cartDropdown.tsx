@@ -1,30 +1,20 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useNavigate } from 'react-router'
-import { useAppDispatch, useAppSelector } from '../../app/hooks'
-import { getCartItems,calcCartSubtotal } from '../slices/cartSlice'
+import { useAppSelector } from '../../app/hooks'
+import { ICartItem } from '../../pages/cart/addToCart'
 
-
-
-const CartDropdown = () => {
+const CartDropdown: React.FC = () => {
   const navigate = useNavigate()
-  const dispatch = useAppDispatch()
-  const cartItems = useAppSelector((state) => state.cartItems.cartItems)
-  const subtotal = useAppSelector((state) => state.cartItems.subtotal)
+  const currentUser = useAppSelector((state) => state.currentUser.currentUser)
+  const localCartItems = useAppSelector((state) => state.cartItems.cartItems)
+  const cartItems = currentUser ? currentUser.cartItems : localCartItems
+  const localSubtotal = useAppSelector((state) => state.cartItems.subtotal)
+  const userCartSubTotal = useAppSelector((state) => state.currentUser.userCartSubTotal)
+  const subtotal = currentUser ? userCartSubTotal : localSubtotal
 
-  const handleSubtotal = () => {
-    dispatch(calcCartSubtotal())
-  }
-
-  useEffect(() => {
-    handleSubtotal()
-  }, [cartItems])
-
-  useEffect(() => {
-    dispatch(getCartItems())
-  }, [])
 
   return (
-    <div className='cart-dropDown-container'>
+  <div className='cart-dropDown-container'>
       <div className='cart-dropDown-list'>
         {cartItems.map((item) => (
           <div
