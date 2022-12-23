@@ -8,7 +8,8 @@ import { updateUserLiked } from '../../features/slices/currentUserSlice'
 const LikeIcon: FC<{ product: IProduct }> = ({ product }) => {
   const [isLiked, setIsLiked] = useState(false)
   const currentUser = useAppSelector(state => state.currentUser.currentUser)
-  const favorites = currentUser ? currentUser.favoriteItems : useAppSelector((state) => state.favoriteItems.favoriteItems)
+  const localFavorites = useAppSelector((state) => state.favoriteItems.favoriteItems)
+  const favorites = currentUser ? currentUser.favoriteItems : localFavorites
   const dispatch = useAppDispatch()
 
   useEffect(() => {

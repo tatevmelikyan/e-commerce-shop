@@ -1,9 +1,13 @@
-import { auth } from './auth';
-import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
-import { IUser } from './../features/slices/types';
 import { ISubdepartment } from '../features/slices/subdepartmentsSlice'
 import { IProduct } from './../pages/productPage/productPage'
-import { collection, doc, getDocs, query, where, getDoc, updateDoc, setDoc } from 'firebase/firestore'
+import {
+  collection,
+  doc,
+  getDocs,
+  query,
+  where,
+  getDoc,
+} from 'firebase/firestore'
 import { db } from './config'
 
 export interface IDepartment {
@@ -104,7 +108,6 @@ const getSubdepartmentsWithCategoriesByDepartment = async (departmentId: string)
 const getProductById = async (productId: string) => {
   const productRef = doc(db, 'products', productId)
   const productSnap = await getDoc(productRef)
-  console.log(productSnap, 'product snap');
   return { ...productSnap.data(), id: productSnap.id }
 }
 
@@ -129,9 +132,6 @@ const getProductsByCategory = async (categoryId: string) => {
   return products
 }
 
-
-
-
 export {
   getAllProducts,
   getAllDepartments,
@@ -139,6 +139,4 @@ export {
   getProductById,
   getProductsByCategory,
   getAllCategories,
-
-  
 }

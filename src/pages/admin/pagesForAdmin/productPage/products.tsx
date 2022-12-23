@@ -1,48 +1,63 @@
 import { useEffect, useState } from 'react'
-import {FaEdit} from 'react-icons/fa'
-import {MdDelete} from 'react-icons/md'
+import { FaEdit } from 'react-icons/fa'
+import { MdDelete } from 'react-icons/md'
 
 import { useAppSelector, useAppDispatch } from '../../../../app/hooks'
 import CategoriesToFilter from './filterByCategory/categoriesToFilter'
-import { fetchAllProducts, fetchProductsByCategory } from '../../../../features/slices/productsSlice'
+import {
+  fetchAllProducts,
+  fetchProductsByCategory,
+} from '../../../../features/slices/productsSlice'
 import { fetchedCategories } from '../../../../features/slices/categoriesSlice'
 import { ZoomTheImgae } from './zoomTheImage/zoomTheImgae'
+import { LoadMoreBtn } from '../../../../features/loadMoreBtn/loadMoreBtn'
 
 import './styles.css'
 
-
 const Products = function () {
-  const products = useAppSelector(state => state.products.products)
-  const [selected, setSelected] = useState('All Products')
-  const [zoomed,setZoomed] = useState(false)
-  const [src,setSrc] = useState('')
+  const products = useAppSelector((state) => state.products.products)
+  const needLoad = useAppSelector((state) => state.products.needLoad)
+  const [categoryId, setSelected] = useState('All Products')
+  const [zoomed, setZoomed] = useState(false)
+  const [pages, setPages] = useState(10)
+  const [src, setSrc] = useState('')
   const dispatch = useAppDispatch()
 
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(fetchedCategories())
-  },[])
-  
+    console.log(products, 'products')
+  }, [])
 
   useEffect(() => {
-    if(selected === 'All Products') {
-      console.log('in if');  
-      dispatch(fetchAllProducts())
+    if (categoryId === 'All Products') {
+      console.log('in if')
+      dispatch(fetchAllProducts(pages))
     } else {
-      dispatch(fetchProductsByCategory(selected))
+      dispatch(fetchProductsByCategory({ pages, categoryId }))
     }
-  }, [selected])
+  }, [categoryId, pages])
 
   const changeCategory = (category: string) => {
     setSelected(category)
+    setPages(10)
+  }
+  const handlePages = () => {
+    setPages(pages + 10)
   }
 
   return (
     <div>
-       <div>
-     {zoomed&&<ZoomTheImgae imgUrl={src} zoomed={zoomed} setZoomed={setZoomed}/>}
-     </div>
+      <div>
+        {zoomed && (
+          <ZoomTheImgae
+            imgUrl={src}
+            zoomed={zoomed}
+            setZoomed={setZoomed}
+          />
+        )}
+      </div>
       <CategoriesToFilter
-        selected={selected}
+        selected={categoryId}
         changeCategory={changeCategory}
       />
       <table className='productPage'>
@@ -64,7 +79,7 @@ const Products = function () {
                   <img
                     className='photoInTable'
                     src={product.imageUrls[0]}
-                    onClick={()=>{
+                    onClick={() => {
                       setZoomed(!zoomed)
                       setSrc(product.imageUrls[0])
                     }}
@@ -84,6 +99,7 @@ const Products = function () {
           })}
         </tbody>
       </table>
+      {needLoad && <LoadMoreBtn handlePagination={handlePages} />}
     </div>
   )
 }
