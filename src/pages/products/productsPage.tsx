@@ -6,6 +6,7 @@ import { useEffect } from 'react'
 import './styles.css'
 import SortBy from './sortBy'
 import ProductsUI from './productsUI'
+import {Skeleton} from '../../features/skeletons'
 
 const ProductsPage: React.FC = () => {
   const { categoryId } = useParams()
@@ -23,7 +24,10 @@ const ProductsPage: React.FC = () => {
   return (
     <div className='products-container'>
       <SortBy />
-      <ProductsUI products={products} />
+      {productsStatus===('loading'||'idle')?[...new Array(8)].map((e,ind)=><div className='product' key={ind}>
+        <Skeleton/>
+      </div>)
+      :<ProductsUI products={products} />}
     </div>
   )
 }

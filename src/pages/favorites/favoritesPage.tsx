@@ -5,6 +5,7 @@ import ProductsUI from '../products/productsUI'
 import { getLikedProducts, clearLikedItems } from '../../features/slices/favoritesSlice'
 import NoFavorites from './noFavorites'
 import './styles.css'
+import './favoritesMedia.css'
 import { updateUserLiked } from '../../features/slices/currentUserSlice'
 
 
@@ -34,7 +35,7 @@ const FavoritesPage: React.FC = () => {
        favorites.length?
        <div className='favoritePage'>
        <div className='favoriteHeader'>
-       <h1 >Your Favorite Items</h1>
+       <h1 className='favorites-h1'>Your Favorite Items</h1>
        <div className= 'clearFavoritesContainer'>
         <button onClick={handleClearAllFavorites}>Clear All Favorites</button>
        </div>

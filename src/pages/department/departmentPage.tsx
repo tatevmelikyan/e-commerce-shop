@@ -1,16 +1,18 @@
 import './styles.css'
+import './departmentMedia.css'
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
-  import {
-    fetchSubdepartments,
-    selectSubdepartmentsByDepartment,
-    selectSubdepartmentsError,
-    selectSubdepartmentsStatus,
-  } from '../../features/slices/subdepartmentsSlice'
+import {
+  fetchSubdepartments,
+  selectSubdepartmentsByDepartment,
+  selectSubdepartmentsError,
+  selectSubdepartmentsStatus,
+} from '../../features/slices/subdepartmentsSlice'
 
 import { selectDepartment } from '../../features/slices/departmentsSlice'
+import { SubDepartmentsSkeleton, SubDepartmentsImageSkeleton } from '../../features/skeletons'
 
 const DepartmentPage: React.FC = () => {
   const dispatch = useAppDispatch()
@@ -68,16 +70,33 @@ const DepartmentPage: React.FC = () => {
         <div className='department-name-container'>
           <h2 className='department-name'>{department?.name}</h2>
         </div>
-        <img
-          className='department-image'
-          src={department?.imageUrl}
-          alt={department?.name}
-        />
-        <div className='content'>{renderedSubdepartments}</div>
+        {subdepartmentsStatus === 'loading' ? (
+          <SubDepartmentsImageSkeleton />
+        ) : (
+          <img
+            className='department-image'
+            src={department?.imageUrl}
+            alt={department?.name}
+          />
+        )}
+
+        {subdepartmentsStatus === 'loading' ? (
+          <div className='categorySkeleton'>
+            {[...new Array(8)].map((_, ind) => (
+              <div
+                className='category'
+                key={ind}
+              >
+                <SubDepartmentsSkeleton />
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className='content'>{renderedSubdepartments}</div>
+        )}
       </div>
     </div>
   )
 }
 
 export default DepartmentPage
-
