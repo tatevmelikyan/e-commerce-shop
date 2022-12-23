@@ -1,5 +1,5 @@
 .customer-nav {
-    width: 130px;
+    width: 150px;
     text-align: center;
 }
 
@@ -9,6 +9,7 @@
     list-style-type: none;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .customer-nav ul li {
@@ -17,6 +18,7 @@
 
 .customer-nav ul li:last-child {
     font-size: 25px;
+    padding-top: 5px;
 }
 
 .customer-nav a {
@@ -109,11 +111,4 @@ color: black;
 
 .viewToCart button:hover {
     font-size: 15px;
-}
-
-.customer-nav ul{
-    padding-right: 30px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 }

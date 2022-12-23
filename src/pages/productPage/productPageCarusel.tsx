@@ -10,7 +10,10 @@ import { TransformWrapper,TransformComponent } from 'react-zoom-pan-pinch'
 
 
 const ProductPageCarusel:React.FC<{slideContent:IProduct}> = ({slideContent}) => {
+  
   return (
+    
+
     <div className='slider-container-prodPage'>
       <Swiper
         modules={[Navigation, Pagination]}
@@ -26,7 +29,7 @@ const ProductPageCarusel:React.FC<{slideContent:IProduct}> = ({slideContent}) =>
               <div className='slide-item-productePage'>
                 <TransformWrapper>
                   <TransformComponent>
-                  <img
+                    <img
                     className='productPageImg'
                     src={item}
                     alt='product'
@@ -44,6 +47,7 @@ const ProductPageCarusel:React.FC<{slideContent:IProduct}> = ({slideContent}) =>
       </Swiper>
    
     </div>
+    
   )
 }
 
