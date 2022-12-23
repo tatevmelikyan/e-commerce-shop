@@ -3,28 +3,35 @@ import { FaCartPlus } from 'react-icons/fa'
 import { useNavigate } from 'react-router'
 import { Link } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
-import { getCartItems,calcCartSubtotal } from '../slices/cartSlice'
+import { calcCartSubtotal } from '../slices/cartSlice'
+import { calcUserCartSubtotal } from '../slices/currentUserSlice'
 
-const CartDropdown = () => {
+const CartDropdown: React.FC = () => {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
-  const cartItems = useAppSelector((state) => state.cartItems.cartItems)
-  const subtotal = useAppSelector((state) => state.cartItems.subtotal)
+  const currentUser = useAppSelector((state) => state.currentUser.currentUser)
+  const localCartItems = useAppSelector((state) => state.cartItems.cartItems)
+  const cartItems = currentUser ? currentUser.cartItems : localCartItems
+  const localSubtotal = useAppSelector((state) => state.cartItems.subtotal)
+  const userCartSubTotal = useAppSelector((state) => state.currentUser.userCartSubTotal)
+  const subtotal = currentUser ? userCartSubTotal : localSubtotal
 
-  const handleSubtotal = () => {
-    dispatch(calcCartSubtotal())
-  }
 
   useEffect(() => {
     handleSubtotal()
   }, [cartItems])
 
-  useEffect(() => {
-    dispatch(getCartItems())
-  }, [])
+  const handleSubtotal = () => {
+    if(currentUser) {
+      dispatch(calcUserCartSubtotal())
+    } else {
+      dispatch(calcCartSubtotal())
+    }
+  }
+
 
   return (
-    <div className='cart-dropDown-container'>
+  <div className='cart-dropDown-container'>
       <div className='cart-dropDown-list'>
         {!cartItems.length?<div>
           <p>Your shopping cart is empty.</p>

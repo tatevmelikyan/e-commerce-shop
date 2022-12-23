@@ -12,33 +12,59 @@ import {
 } from '../../features/slices/cartSlice'
 import { IProduct } from '../productPage/productPage'
 import { Link } from 'react-router-dom'
-import { CiSquareRemove } from 'react-icons/ci'
+import {CiSquareRemove} from 'react-icons/ci'
+import { calcUserCartSubtotal, updateUserCartItems } from '../../features/slices/currentUserSlice'
+
+
 
 const ShoppingCartPage = () => {
-  const cartItems = useAppSelector((state) => state.cartItems.cartItems)
-  const subtotal = useAppSelector((state) => state.cartItems.subtotal)
   const dispatch = useAppDispatch()
+  const currentUser = useAppSelector(state => state.currentUser.currentUser)
+  const localCartItems = useAppSelector(state => state.cartItems.cartItems)
+  const localSubtotal = useAppSelector(state => state.cartItems.subtotal)
+  const userCartSubtotal = useAppSelector(state => state.currentUser.userCartSubTotal)
+  const subtotal = currentUser ? userCartSubtotal : localSubtotal
+  const cartItems = currentUser ? currentUser.cartItems : localCartItems
 
-  const handleMinusQty = (product: IProduct) => {
-    dispatch(removeQtyFromCartItem(product))
+useEffect(() => {
+  handleSubtotal()
+}, [cartItems])
+
+
+  const handleMinusQty = (product: IProduct ) => {
+    if(currentUser) {
+      dispatch(updateUserCartItems({product, actionType: 'removeQty'}))
+    } else {
+      dispatch(removeQtyFromCartItem(product))
+    }
   }
 
   const handleAddQty = (product: IProduct) => {
-    dispatch(addQtyToCartItem(product))
+    if(currentUser) {
+      dispatch(updateUserCartItems({product, actionType: 'addQty'}))
+    } else {
+      dispatch(addQtyToCartItem(product))
+    }
   }
 
   const handleRemoveItem = (product: IProduct) => {
-    dispatch(removeCartItem(product))
+    if(currentUser) {
+      dispatch(updateUserCartItems({product, actionType: 'removeFromCart'}))
+    } else {
+      dispatch(removeCartItem(product))
+    }
   }
 
   const handleSubtotal = () => {
-    dispatch(calcCartSubtotal())
+    if(currentUser) {
+      dispatch(calcUserCartSubtotal())
+    } else {
+      dispatch(calcCartSubtotal())
+    }
   }
 
-  useEffect(() => {
-    handleSubtotal()
-  }, [cartItems])
 
+  
   return (
     <div>
       <h3 className='shopping-cart-header'>SHOPPING CART</h3>
