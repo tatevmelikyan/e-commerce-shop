@@ -1,6 +1,13 @@
 import { ISubdepartment } from '../features/slices/subdepartmentsSlice'
 import { IProduct } from './../pages/productPage/productPage'
-import { collection, doc, getDocs, query, where, getDoc, updateDoc } from 'firebase/firestore'
+import {
+  collection,
+  doc,
+  getDocs,
+  query,
+  where,
+  getDoc,
+} from 'firebase/firestore'
 import { db } from './config'
 
 export interface IDepartment {
@@ -124,32 +131,6 @@ const getProductsByCategory = async (categoryId: string) => {
 
   return products
 }
-
-// const getSortedProductsByCategory = async(sortOrder: any) => {
-// const productsRef = collection(db, 'products')
-// const q = query(productsRef, where('categoryId', '==', category), orderBy('price',sortOrder))
-
-// const qSnapshot = await getDocs(q)
-// console.log(qSnapshot,'kkkkkkkkkkkkkkkk');
-
-//   const products:IProduct[] = qSnapshot.docs.map(snap=>{
-//     console.log('map');
-
-//     return {
-//       id:snap.id,
-//       title:snap.data().title,
-//       price:snap.data().price,
-//       description:snap.data().description,
-//       details:snap.data().details,
-//       imageUrls:snap.data().imageUrls,
-//       inStock:snap.data().inStock,
-//       categoryId: category.id,
-//     }
-//   })
-//   console.log(products, 'order products  ::::');
-
-//   return products
-// }
 
 export {
   getAllProducts,
