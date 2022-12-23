@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useState } from 'react'
 import './styles.css'
 import { BsSearch } from 'react-icons/bs'
 import { useNavigate } from 'react-router'
