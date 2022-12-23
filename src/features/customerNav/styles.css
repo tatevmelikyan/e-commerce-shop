@@ -67,6 +67,20 @@ color: black;
     overflow-y: auto;
 }
 
+.cart-dropDown-list p{
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.cart-dropDown-list p a{
+    color: rgb(32, 32, 107);
+}
+
+.no_cartItem_Icon{
+    color: lightslategray;
+    font-size: 50px;
+}
+
 .cart-dropDown-button{
     width: 100%;
     height: 30px;

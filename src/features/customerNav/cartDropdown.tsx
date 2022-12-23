@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
+import { FaCartPlus } from 'react-icons/fa'
 import { useNavigate } from 'react-router'
+import { Link } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { getCartItems,calcCartSubtotal } from '../slices/cartSlice'
-
-
 
 const CartDropdown = () => {
   const navigate = useNavigate()
@@ -26,7 +26,14 @@ const CartDropdown = () => {
   return (
     <div className='cart-dropDown-container'>
       <div className='cart-dropDown-list'>
-        {cartItems.map((item) => (
+        {!cartItems.length?<div>
+          <p>Your shopping cart is empty.</p>
+          <div className='no_cartItem_Icon'><FaCartPlus /></div>
+  <p style={{textAlign:'center'}}>
+Your shopping cart is empty.
+ If you have an account, <Link to='/account/signIn'>Sign In</Link> to see items added on earlier visits.
+  </p>
+ </div>: cartItems.map((item) => (
           <div
             onClick={() => navigate(`/products/${item.product.id}`)}
             className='dropDownListItem'
