@@ -13,6 +13,7 @@ export const fetchProductsByCategory = createAsyncThunk<
     categoryId: string
   }
 >('products/fetchProducts', async ({ pages, categoryId }) => {
+  //@ts-ignore
   const products = await getProductsByCategory(categoryId)
   return { products, pages }
 })
