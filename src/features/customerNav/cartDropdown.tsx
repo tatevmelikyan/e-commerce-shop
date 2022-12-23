@@ -1,16 +1,31 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { useNavigate } from 'react-router'
-import { useAppSelector } from '../../app/hooks'
-import { ICartItem } from '../../pages/cart/addToCart'
+import { useAppDispatch, useAppSelector } from '../../app/hooks'
+import { calcCartSubtotal } from '../slices/cartSlice'
+import { calcUserCartSubtotal } from '../slices/currentUserSlice'
 
 const CartDropdown: React.FC = () => {
   const navigate = useNavigate()
+  const dispatch = useAppDispatch()
   const currentUser = useAppSelector((state) => state.currentUser.currentUser)
   const localCartItems = useAppSelector((state) => state.cartItems.cartItems)
   const cartItems = currentUser ? currentUser.cartItems : localCartItems
   const localSubtotal = useAppSelector((state) => state.cartItems.subtotal)
   const userCartSubTotal = useAppSelector((state) => state.currentUser.userCartSubTotal)
   const subtotal = currentUser ? userCartSubTotal : localSubtotal
+
+
+  useEffect(() => {
+    handleSubtotal()
+  }, [cartItems])
+
+  const handleSubtotal = () => {
+    if(currentUser) {
+      dispatch(calcUserCartSubtotal())
+    } else {
+      dispatch(calcCartSubtotal())
+    }
+  }
 
 
   return (
