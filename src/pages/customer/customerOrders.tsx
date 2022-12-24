@@ -1,8 +1,13 @@
 import React from 'react'
 import {MdOutlineKeyboardArrowRight} from 'react-icons/md'
 import { Link } from 'react-router-dom'
+import { useAppSelector } from '../../app/hooks'
 
 const CustomerOrders = () => {
+    const currentUserOrders = useAppSelector(state => state.currentUser.currentUser?.orders)
+    console.log(currentUserOrders, 'orders');
+    
+
     const orders = [
         {
             number: 12334,
@@ -17,9 +22,10 @@ const CustomerOrders = () => {
     ]
   return (
     <div className='customer-orders-page'>
-        <h2>My purchases</h2>
+        <h2>My Purchases</h2>
         <div className='customer-orders-container'>
            {
+            currentUserOrders ?
             orders.map(order => {
                 return (
                    <Link to={`/account/orders/purchase/${order.number}`} key={order.number}>
@@ -48,6 +54,8 @@ const CustomerOrders = () => {
                    </Link>
                 )
             })
+            :
+            <p>Hmm.. Looks like you haven&apos;t placed any orders yet.</p>
            }
         </div>
     </div>

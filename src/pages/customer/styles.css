@@ -184,3 +184,88 @@
 .customer-order-item img {
     width: 100%;
 }
+
+
+
+/* Order details css */
+
+.order-details-wrapper h4{
+    display: inline-block;
+    margin: 0;
+    padding: 10px 0;
+}
+
+.order-number-date-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.order-number-date-container div {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.order-number-date-container span {
+    font-size: 14px;
+}
+
+.order-number-date-container .order-number {
+    text-decoration: underline;
+}
+
+
+.order-details-container {
+    margin-top: 20px;
+    min-height: 200px;
+    background-color: white;
+}
+
+.order-details-container {
+    font-size: 14px;
+}
+
+.order-timeline {
+    padding: 0 20px;
+    list-style-type: none;
+}
+
+.order-timeline .timeline-icon {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #00853d;
+    font-size: 35px;
+}
+
+.order-timeline .timeline-icon::after {
+    content: '';
+    height: 20px;
+    border-left: 2px solid black;
+    
+}
+
+.order-timeline li {
+    display: flex;
+   padding: 5px 0;
+}
+
+.timeline-content-wrapper {
+    padding-left: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.order-timeline li .order-timeline-item-title {
+    padding: 5px 0;
+}
+
+.timeline-content-wrapper p {
+    margin: 0;
+    padding-top: 8px;
+    color: #6b6b6b;
+    font-size: 14px;
+}
