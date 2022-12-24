@@ -226,15 +226,34 @@
 }
 
 .summary-container {
+  height: 140px;
+  font-size: 14px;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
 }
 
+.summary-container div {
+  display: flex;
+  justify-content: space-between;
+  color: rgb(100, 100, 100);
+}
+
+.summary-container span {
+  color: black;
+}
+
+.summary-container .apply-discount {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 .checkout {
+  padding: 20px 0;
   width: 100%;
   display: flex;
-  position: absolute;
-  bottom: 20px;
+  /* position: absolute;
+  bottom: 0; */
   justify-content: center;
 }
 
@@ -251,4 +270,11 @@
 
 .checkout-btn:hover {
   transform: scale(1.05);
+}
+
+
+.accepted-payments ul {
+  list-style-type: none;
+  display: flex;
+  gap: 20px;
 }

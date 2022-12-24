@@ -3,7 +3,12 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import NoCartItems from './noCartItems'
 import './shoppingCart.css'
 import './shoppingCartMedia.css'
-import { AiFillPlusSquare, AiFillMinusSquare } from 'react-icons/ai'
+import {RiVisaLine} from 'react-icons/ri'
+import { ReactComponent  as MastercardLogo } from '../../assets/mastercardLogo.svg'
+import { ReactComponent  as VisaLogo } from '../../assets/Visa_Inc.-Logo.wine.svg'
+
+
+
 import {
   addQtyToCartItem,
   calcCartSubtotal,
@@ -117,11 +122,26 @@ useEffect(() => {
             <div className='cart-summary'>
               <h3>order summary</h3>
               <div className='summary-container'>
-                Subtotal:
-                <span>${subtotal.toLocaleString()}</span>
+                <div>Discount
+                  <span className='apply-discount'>Apply discount</span>
+                </div>
+                <div>Delivery
+                  <span>FREE</span>
+                </div>
+               <div className='summary-subtotal'> Subtotal:
+                <span>${subtotal.toLocaleString()}</span></div>
               </div>
               <div className='checkout'>
                 <button className='checkout-btn'>checkout now</button>
+              </div>
+              <div className='accepted-payments-container'>
+                <span>We accept</span>
+                <div className='accepted-payments'>
+                  <ul>
+                    <li><span><VisaLogo width={50} height='auto' title='Visa'/></span></li>
+                    <li><span><MastercardLogo width={50} height='auto' title='Mastercard' /></span></li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
