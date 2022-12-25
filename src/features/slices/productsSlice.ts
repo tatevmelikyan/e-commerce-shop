@@ -49,7 +49,7 @@ export interface ProductsState {
   products: IProduct[]
   pages: number
   needLoad: boolean
-  mathedProductsCount: number
+  matchedProductsCount: number
   status: 'idle' | 'loading' | 'succeeded' | 'failed'
   error: null | undefined | string
 }
@@ -58,7 +58,7 @@ const initialState: ProductsState = {
   products: [],
   pages: 10,
   needLoad: true,
-  mathedProductsCount: 0,
+  matchedProductsCount: 0,
   status: 'idle',
   error: null,
 }
@@ -113,7 +113,7 @@ const productsSlice = createSlice({
             .toLowerCase()
             .includes(keyword.replace(/\s/g, '').toLowerCase())
         })
-        state.mathedProductsCount = state.products.length
+        state.matchedProductsCount = state.products.length
         const original = state.products.length
         state.products = state.products.splice(0, pages)
         if (original === state.products.length) {

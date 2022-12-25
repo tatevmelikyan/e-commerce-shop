@@ -3,10 +3,6 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import NoCartItems from './noCartItems'
 import './shoppingCart.css'
 import './shoppingCartMedia.css'
-import {RiVisaLine} from 'react-icons/ri'
-import { ReactComponent  as MastercardLogo } from '../../assets/mastercardLogo.svg'
-import { ReactComponent  as VisaLogo } from '../../assets/Visa_Inc.-Logo.wine.svg'
-
 
 
 import {
@@ -16,60 +12,67 @@ import {
   removeQtyFromCartItem,
 } from '../../features/slices/cartSlice'
 import { IProduct } from '../productPage/productPage'
-import { Link } from 'react-router-dom'
-import {CiSquareRemove} from 'react-icons/ci'
+import { Link, useNavigate } from 'react-router-dom'
+import { AiOutlineDelete } from 'react-icons/ai'
 import { calcUserCartSubtotal, updateUserCartItems } from '../../features/slices/currentUserSlice'
-
-
+import CartSummary from './cartSummary'
 
 const ShoppingCartPage = () => {
+  const navigate = useNavigate()
   const dispatch = useAppDispatch()
-  const currentUser = useAppSelector(state => state.currentUser.currentUser)
-  const localCartItems = useAppSelector(state => state.cartItems.cartItems)
-  const localSubtotal = useAppSelector(state => state.cartItems.subtotal)
-  const userCartSubtotal = useAppSelector(state => state.currentUser.userCartSubTotal)
-  const subtotal = currentUser ? userCartSubtotal : localSubtotal
+  const currentUser = useAppSelector((state) => state.currentUser.currentUser)
+  const localCartItems = useAppSelector((state) => state.cartItems.cartItems)
+  
   const cartItems = currentUser ? currentUser.cartItems : localCartItems
+  const submitButtonName = currentUser ? 'continue to checkout' : 'sign in to check out'
 
-useEffect(() => {
-  handleSubtotal()
-}, [cartItems])
+  useEffect(() => {
+    handleSubtotal()
+  }, [cartItems])
 
-
-  const handleMinusQty = (product: IProduct ) => {
-    if(currentUser) {
-      dispatch(updateUserCartItems({product, actionType: 'removeQty'}))
+  const handleMinusQty = (product: IProduct) => {
+    if (currentUser) {
+      dispatch(updateUserCartItems({ product, actionType: 'removeQty' }))
     } else {
       dispatch(removeQtyFromCartItem(product))
     }
   }
 
   const handleAddQty = (product: IProduct) => {
-    if(currentUser) {
-      dispatch(updateUserCartItems({product, actionType: 'addQty'}))
+    if (currentUser) {
+      dispatch(updateUserCartItems({ product, actionType: 'addQty' }))
     } else {
       dispatch(addQtyToCartItem(product))
     }
   }
 
   const handleRemoveItem = (product: IProduct) => {
-    if(currentUser) {
-      dispatch(updateUserCartItems({product, actionType: 'removeFromCart'}))
+    if (currentUser) {
+      dispatch(updateUserCartItems({ product, actionType: 'removeFromCart' }))
     } else {
       dispatch(removeCartItem(product))
     }
   }
 
   const handleSubtotal = () => {
-    if(currentUser) {
+    if (currentUser) {
       dispatch(calcUserCartSubtotal())
     } else {
       dispatch(calcCartSubtotal())
     }
   }
 
+  const handleCheckout = () => {    
+    if(currentUser) {
+      navigate('/checkout')
+    } else {
+      navigate('/account/signIn')
+    }
+  }
+
 
   
+
   return (
     <div>
       <h3 className='shopping-cart-header'>SHOPPING CART</h3>
@@ -111,40 +114,16 @@ useEffect(() => {
                   </div>
                   <div className='remove-cart-item'>
                     <button onClick={() => handleRemoveItem(item.product)}>
-                      <CiSquareRemove />
+                      <AiOutlineDelete />
                     </button>
                   </div>
                 </div>
               )
             })}
           </div>
-          <div className='cart-summary-wrapper'>
-            <div className='cart-summary'>
-              <h3>order summary</h3>
-              <div className='summary-container'>
-                <div>Discount
-                  <span className='apply-discount'>Apply discount</span>
-                </div>
-                <div>Delivery
-                  <span>FREE</span>
-                </div>
-               <div className='summary-subtotal'> Subtotal:
-                <span>${subtotal.toLocaleString()}</span></div>
-              </div>
-              <div className='checkout'>
-                <button className='checkout-btn'>checkout now</button>
-              </div>
-              <div className='accepted-payments-container'>
-                <span>We accept</span>
-                <div className='accepted-payments'>
-                  <ul>
-                    <li><span><VisaLogo width={50} height='auto' title='Visa'/></span></li>
-                    <li><span><MastercardLogo width={50} height='auto' title='Mastercard' /></span></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
+         <div className='cart-summary-wrapper'>
+           <CartSummary submitFunction={handleCheckout} submitButtonName={submitButtonName} />
+         </div>
         </div>
       ) : (
         <NoCartItems />

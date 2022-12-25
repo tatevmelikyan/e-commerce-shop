@@ -29,11 +29,6 @@ const CustomerAccountSidebar: React.FC = () => {
   }, [])
 
   const menuItems = [
-    // {
-    //     path: '/account',
-    //     name: 'My account',
-    //     icon: <VscAccount />
-    // },
     {
         path: '/account/orders',
         name: 'My orders',
