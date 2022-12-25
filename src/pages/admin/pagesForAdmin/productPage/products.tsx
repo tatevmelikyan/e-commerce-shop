@@ -11,7 +11,6 @@ import {
 import { fetchedCategories } from '../../../../features/slices/categoriesSlice'
 import { ZoomTheImgae } from './zoomTheImage/zoomTheImgae'
 import { LoadMoreBtn } from '../../../../features/loadMoreBtn/loadMoreBtn'
-
 import './styles.css'
 
 const Products = function () {
@@ -25,13 +24,12 @@ const Products = function () {
 
   useEffect(() => {
     dispatch(fetchedCategories())
-    console.log(products, 'products')
   }, [])
 
   useEffect(() => {
     if (categoryId === 'All Products') {
       console.log('in if')
-      dispatch(fetchAllProducts(pages))
+      dispatch(fetchAllProducts({pages}))
     } else {
       dispatch(fetchProductsByCategory({ pages, categoryId }))
     }
@@ -45,9 +43,10 @@ const Products = function () {
     setPages(pages + 10)
   }
 
+
   return (
     <div>
-      <div>
+     <div>
         {zoomed && (
           <ZoomTheImgae
             imgUrl={src}

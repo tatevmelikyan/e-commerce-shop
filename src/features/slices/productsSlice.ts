@@ -37,9 +37,17 @@ export const fetchProductsForSearch = createAsyncThunk<
   },
 )
 
-export const fetchAllProducts = createAsyncThunk(
+export const fetchAllProducts = createAsyncThunk <
+{
+  pages: number
+  products: IProduct[]
+},
+{
+  pages:number
+}
+>(
   'allProducts/fetchedProducts',
-  async (pages: number) => {
+  async ({pages}) => {
     const products = await getAllProducts()
     return { products, pages }
   },
@@ -65,13 +73,27 @@ const initialState: ProductsState = {
 
 interface ISortAction {
   type: string
-  payload: TOrder
+  payload: TOrder 
 }
 
 const productsSlice = createSlice({
   name: 'products',
   initialState,
   reducers: {
+    // searchProduct(state,action: ISortAction) {
+    //   const copy = state.products
+
+    //   if(action.payload.length>1) {
+    //     state.products = state.products.filter(product=>{
+    //       return product.title
+    //         .replace(/\s/g, '')
+    //         .toLowerCase()
+    //         .includes(action.payload.trim().replace(/\s/g, '').toLowerCase())
+    //     })
+    //   } else {
+    //     state.products = copy
+    //   }
+    //},
     sortByPrice(state, action: ISortAction) {
       if (action.payload === 'asc') {
         state.products = state.products.sort((a, b) => a.price - b.price)
@@ -90,7 +112,6 @@ const productsSlice = createSlice({
       .addCase(fetchProductsByCategory.fulfilled, (state, action) => {
         state.status = 'succeeded'
         const { pages, products } = action.payload
-
         state.products = products.sort((a, b) => a.title.localeCompare(b.title))
         console.log(state.products.length, products.length)
         const original = state.products.length
