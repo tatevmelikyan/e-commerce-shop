@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { FaEdit } from 'react-icons/fa'
 import { MdDelete } from 'react-icons/md'
 
+
 import { useAppSelector, useAppDispatch } from '../../../../app/hooks'
 import CategoriesToFilter from './filterByCategory/categoriesToFilter'
 import {
@@ -10,27 +11,38 @@ import {
 } from '../../../../features/slices/productsSlice'
 import { fetchedCategories } from '../../../../features/slices/categoriesSlice'
 import { ZoomTheImgae } from './zoomTheImage/zoomTheImgae'
+import { deleteProduct } from '../../../../firebase/queries'
+import { EditProduct } from '../editProduct'
+import './styles.css'
+import AdminPage from '../../adminPage'
+import { IProduct } from '../../../productPage/productPage'
+
 import { LoadMoreBtn } from '../../../../features/loadMoreBtn/loadMoreBtn'
 
 import './styles.css'
 
 const Products = function () {
+  const [open, setOpen] = useState(false)
+
   const products = useAppSelector((state) => state.products.products)
   const needLoad = useAppSelector((state) => state.products.needLoad)
   const [categoryId, setSelected] = useState('All Products')
   const [zoomed, setZoomed] = useState(false)
   const [pages, setPages] = useState(10)
+  const [editedProduct, setEditedProduct] = useState<IProduct>()
   const [src, setSrc] = useState('')
   const dispatch = useAppDispatch()
 
+ 
   useEffect(() => {
     dispatch(fetchedCategories())
     console.log(products, 'products')
   }, [])
 
+
+
   useEffect(() => {
     if (categoryId === 'All Products') {
-      console.log('in if')
       dispatch(fetchAllProducts(pages))
     } else {
       dispatch(fetchProductsByCategory({ pages, categoryId }))
@@ -44,9 +56,17 @@ const Products = function () {
   const handlePages = () => {
     setPages(pages + 10)
   }
+  const productHandler = () => {
+    setOpen(!open)
+  }
+  
+  
 
   return (
     <div>
+      <div className='AdminPage'>
+        <AdminPage />
+      </div>
       <div>
         {zoomed && (
           <ZoomTheImgae
@@ -56,6 +76,7 @@ const Products = function () {
           />
         )}
       </div>
+
       <CategoriesToFilter
         selected={categoryId}
         changeCategory={changeCategory}
@@ -89,16 +110,34 @@ const Products = function () {
                 <td className='productTD'>{product.inStock}</td>
                 <td className='productTD'>{product.price}$</td>
                 <td className='icons'>
-                  <FaEdit />
+                  <FaEdit
+                    onClick={() => {
+                      
+                      
+                      return productHandler(), setEditedProduct(product)
+                    }}
+                  />
                 </td>
                 <td className='icons'>
-                  <MdDelete />
+                  <MdDelete
+                    onClick={() => {
+                      deleteProduct(product.id)
+                      dispatch(fetchAllProducts(pages))
+                    }}
+                  />
                 </td>
               </tr>
             )
           })}
         </tbody>
       </table>
+      {open && (
+        <EditProduct
+          editedProduct={editedProduct}
+          open={open}
+          setOpen={setOpen}
+        />
+      )}
       {needLoad && <LoadMoreBtn handlePagination={handlePages} />}
     </div>
   )
