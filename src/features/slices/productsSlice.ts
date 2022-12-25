@@ -92,7 +92,6 @@ const productsSlice = createSlice({
         const { pages, products } = action.payload
 
         state.products = products.sort((a, b) => a.title.localeCompare(b.title))
-        console.log(state.products.length, products.length)
         const original = state.products.length
         state.products = state.products.splice(0, pages)
         if (original === state.products.length) {
