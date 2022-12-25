@@ -99,7 +99,6 @@ const productsSlice = createSlice({
         state.status = 'succeeded'
         const { pages, products } = action.payload
         state.products = products.sort((a, b) => a.title.localeCompare(b.title))
-        console.log(state.products.length, products.length)
         const original = state.products.length
         state.products = state.products.splice(0, pages)
         if (original === state.products.length) {
@@ -112,7 +111,11 @@ const productsSlice = createSlice({
         state.status = 'failed'
         state.error = action.error.message
       })
+      .addCase(fetchProductsForSearch.pending, (state) => {
+        state.status = 'loading'
+      })
       .addCase(fetchProductsForSearch.fulfilled, (state, action) => {
+        state.status = 'succeeded'
         const { products, keyword, pages } = action.payload
         state.products = products.filter((product) => {
           return product.title
@@ -120,6 +123,7 @@ const productsSlice = createSlice({
             .toLowerCase()
             .includes(keyword.replace(/\s/g, '').toLowerCase())
         })
+        
         state.mathedProductsCount = state.products.length
         const original = state.products.length
         state.products = state.products.splice(0, pages)
@@ -128,6 +132,10 @@ const productsSlice = createSlice({
         } else {
           state.needLoad = true
         }
+      })
+      .addCase(fetchProductsForSearch.rejected, (state, action) => {
+        state.status = 'failed'
+        state.error = action.error.message
       })
       .addCase(fetchAllProducts.fulfilled, (state, action) => {
         state.status = 'succeeded'

@@ -1,7 +1,19 @@
 import { ISubdepartment } from '../features/slices/subdepartmentsSlice'
 import { IProduct } from './../pages/productPage/productPage'
-import { collection, doc, getDocs, query, where, getDoc } from 'firebase/firestore'
+import {
+  collection,
+  doc,
+  getDocs,
+  query,
+  where,
+  getDoc,
+  getFirestore,
+  addDoc,
+  setDoc,
+  deleteDoc
+} from 'firebase/firestore'
 import { db } from './config'
+import { IObject } from '../pages/admin/pagesForAdmin/productPage/addProduct/addProduct'
 
 export interface IDepartment {
   id: string
@@ -17,6 +29,37 @@ export interface IUsers {
   name: string
   uid: string
 }
+
+
+const deleteProduct = (id:string)=>{
+  const db = getFirestore();
+
+const docRef =  doc(db, 'products', id);
+
+ deleteDoc(docRef)
+.then(() => {
+    alert('Entire Document has been deleted successfully.')
+})
+.catch(error => {
+    alert(error);
+})
+}
+
+
+
+
+const postProducts= async (obj:IObject)=>{
+ 
+ 
+const docRef = await addDoc(collection(db, 'products'), obj);
+ 
+}
+
+const editProducts = async(obj:IObject,id:string)=>{
+ const docRef= setDoc(doc(db,'products',id),obj,{merge:true})
+}
+
+
 
 const getAllProducts = async () => {
   const docs = await getDocs(collection(db, 'products'))
@@ -157,4 +200,7 @@ export {
   getProductById,
   getProductsByCategory,
   getAllCategories,
+  deleteProduct,
+  editProducts,
+  postProducts
 }

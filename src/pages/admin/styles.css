@@ -67,3 +67,101 @@
  .items div{
   margin: 10px;
  }
+
+ .inputContainer{
+ 
+  margin-left: 30%;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.inputContainer >input{
+  display: flex;
+ width: 200px;
+ height: 24px;
+ text-align: center;
+ align-items: center;
+ margin: 10px;
+
+
+}
+
+.divImage{
+ 
+  display: flex;
+ 
+}
+.divImage .image{
+ display: inline;
+  text-align: center;
+  border: 1px solid black;
+  width: 72px;
+  height: 72px;
+  margin-left: 10px;
+}
+
+
+.addPosts{
+  width: 25%;
+  height: 30px;
+  margin:10px auto;
+  border: 1px solid rebeccapurple;
+}
+.addPosts:hover{
+border: grey;
+background-color:green;
+color: #010101;
+
+}
+
+.addProductBot{
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid black;
+  background-color: inherit;
+  color: black;
+  cursor: pointer;
+}
+
+.addProductBot:hover {
+  border: lightblue;
+  background-color: blue;
+  color: lightblue;
+}
+.editButton{
+  width: 25%;
+  height: 30px;
+  margin:10px auto;
+  border: 1px solid rebeccapurple;
+}
+.editButton:hover{
+  background-color: antiquewhite;
+}
+
+.popContainer{
+  min-height: 400px;
+  min-width: 500px;
+  background-color: antiquewhite;
+}
+.yesClick{
+  width: 80px;
+ height: 30px;
+ margin-left: 35%;
+}
+.yesClick:hover{
+  background-color: green;
+}
+.noClick{
+  width: 80px;
+  height: 30px;
+ margin-left: 2%;
+}
+.noClick:hover{
+  background-color: red;
+}
+.popContainer>p{
+  margin-top: 40px;
+  margin-bottom: 80px;
+  margin-left: 20%
+}
