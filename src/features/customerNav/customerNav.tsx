@@ -12,8 +12,7 @@ const CustomerNav: React.FC = () => {
   const currentUser = useAppSelector((state) => state.currentUser.currentUser)
   const favoriteItemsCount = useAppSelector((state) => state.favoriteItems.favoriteItems).length
   const cartItemsCount = useAppSelector((state) => state.cartItems.cartItems).length
-  const isLogin = useAppSelector((state) => state.currentUser.status)
-  
+
   return (
     <nav className='customer-nav'>
       <ul>
@@ -23,16 +22,14 @@ const CustomerNav: React.FC = () => {
           </Link>
           <UserDropdown />
         </li>
-        <li className='text'>
-       {isLogin==='succeeded'? 'My Account':'Sign In'}
-        </li>
+        <li className='text'>{currentUser ? 'My Account' : 'Sign In'}</li>
         <li className='favoritesCount'>
           <Link to={'/favorites'}>
             <FaHeart />
           </Link>
         </li>
         <li className='text'>
-        Favorites({favoriteItemsCount})
+          Favorites({currentUser ? currentUser.favoriteItems.length : favoriteItemsCount})
         </li>
         <li className='cart-link'>
           <Link to={'/shoppingcart'}>
@@ -40,7 +37,9 @@ const CustomerNav: React.FC = () => {
           </Link>
           <CartDropdown />
         </li>
-        <li className='text shoppingCartCount'>Shopping Cart({cartItemsCount})</li>
+        <li className='text shoppingCartCount'>
+          Shopping Cart({currentUser ? currentUser.cartItems.length : cartItemsCount})
+        </li>
       </ul>
     </nav>
   )
