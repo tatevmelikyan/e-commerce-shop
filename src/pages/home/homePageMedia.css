@@ -1,0 +1,40 @@
+@media screen and (max-width: 900px) {
+ 
+  .main-video-container{
+        height: auto
+  }
+  .main-video-container video{
+    object-fit: contain;
+  }
+  .text-shop {
+    gap: 20px;
+  }
+  .text-shop span {
+    font-size: 30px;
+  }
+  .text-shop button {
+    height: 36px;
+    padding: 0 18px;
+  }
+}
+
+
+@media screen and (max-width: 600px) {
+    .text-shop {
+        gap: 10px;
+        margin-right: 10px;
+      }
+      .text-shop span {
+        font-size: 20px;
+      }
+      .text-shop button {
+        height: 36px;
+        padding: 0 18px;
+      }
+}
+
+@media screen and (max-width: 400px) {
+    .text-shop span {
+        font-size: 15px;
+      }
+}

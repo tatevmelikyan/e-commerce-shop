@@ -27,3 +27,7 @@ table {
     position: absolute;
     right: 20px;
 }
+.load{
+    display: flex;
+    justify-content: center;
+}

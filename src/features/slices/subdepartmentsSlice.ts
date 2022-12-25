@@ -41,7 +41,7 @@ const subdepartmentsSlice = createSlice({
       })
       .addCase(fetchSubdepartments.fulfilled, (state, action) => {
         state.status = 'succeeded'
-        state.subdepartments = action.payload
+        state.subdepartments = action.payload.sort((a, b) => a.name.localeCompare(b.name))
       })
       .addCase(fetchSubdepartments.rejected, (state, action) => {
         state.status = 'failed'
@@ -52,7 +52,6 @@ const subdepartmentsSlice = createSlice({
 
 export default subdepartmentsSlice.reducer
 
-export const selectSubdepartmentsByDepartment = (state: RootState) =>
-  state.subdepartments.subdepartments
+export const selectSubdepartmentsByDepartment = (state: RootState) =>state.subdepartments.subdepartments
 export const selectSubdepartmentsStatus = (state: RootState) => state.subdepartments.status
 export const selectSubdepartmentsError = (state: RootState) => state.subdepartments.error

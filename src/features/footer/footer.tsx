@@ -5,6 +5,7 @@ import ContactUs from './contuctUs/contuctUs'
 import Follows from './follows/follows'
 
 import './footer.css'
+import './footerMedia.css'
 
 const Footer: React.FC = () => {
   const navigate = useNavigate()
@@ -12,6 +13,7 @@ const Footer: React.FC = () => {
   return (
     <div className='footerContainer'>
       <div className='footer'>
+        <div className="futter-container">
         <ul className='footer-column'>
           <li className='footer-heading'>About US</li>
           <li
@@ -27,8 +29,11 @@ const Footer: React.FC = () => {
             Location
           </li>
         </ul>
+        {/* <div className='footer-bottom-box'> */}
         <ContactUs />
         <Follows />
+        {/* </div> */}
+        </div>
         <div className='footer-bottom'>
           <p>© 2022 SAVILLA, Inc. All Rights Reserved.</p>
         </div>

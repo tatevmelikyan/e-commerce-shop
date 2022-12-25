@@ -1,3 +1,15 @@
+@media screen and (max-width: 1250px) {
+  .text{
+    display: none;
+  }
+  .brand-logo{
+    padding-left: 0;
+  }
+  .customer-nav{
+    width: 130px;
+  }
+}
+
 @media screen and (max-width: 900px) {
   .menu_counteyner {
     display: block;
@@ -22,8 +34,19 @@
 
   .customer-nav-container-media {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     padding: 10px;
+    border-bottom: 1px solid rgb(233, 233, 233) ;
+
+  }
+
+  .customer-nav-container-media .customer-nav{
+    width: 200px;
+    padding-left: 60px;
+  }
+
+  .customer-nav-container-media .customer-nav:hover .user-dropdown,.cart-dropdown{
+   display: none;
   }
 
   .search-media {
@@ -59,10 +82,10 @@
     width: 300px;
     height: 600px;
     position: absolute;
-    left: -85%;
+    left: -100%;
     transition: 0.5s;
     background-color: white;
-    z-index: 1;
+    z-index: 101;
     overflow: hidden;
     border: 1px solid #e6e3de;
   }
@@ -75,12 +98,12 @@
     left: -150px;
     transition: 0.5s;
     background-color: white;
-    z-index: 1;
+    z-index: 101;
     overflow: hidden;
   }
 
   .line {
-    width: 40px;
+    width: 30px;
     height: 2px;
     background-color: black;
     transition: 0.5s;
@@ -115,7 +138,7 @@
   }
 
   .line2 {
-    width: 40px;
+    width: 30px;
     height: 2px;
     background-color: black;
     transition: 0.5s;
@@ -127,29 +150,57 @@
   }
 
   .department_media {
-    padding: 20px;
     width: 100%;
     background-color: white;
     position: absolute;
     display: flex;
     flex-direction: column;
-    padding-left: 70px;
     list-style-type: none;
-    gap: 20px;
+    gap: 0px;
   }
 
-  .department_media li a {
-    text-decoration: none;
+  .department_media div {
+    border-bottom: 1px solid rgb(212, 212, 212);
+    padding: 10px;
+    padding-left: 90px;
     color: black;
   }
 
-  .department_media li a:hover {
-    color: blue;
+  .department_media div:hover{
+    text-decoration: underline;
+  }
+
+
+  .divOverleyActive{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    z-index: 100;
+  }
+
+  .divOverley{
+    display: none;
+    
+  }
+
+  .department_media li a {
+    color: black;
+    text-decoration: none;
+    letter-spacing: 2px;
+    font-size: 17px;
   }
 }
 
 
 @media screen and (max-width: 600px) {
+  .customer-nav-container-media .customer-nav{
+    padding-left: 0;
+  }
+
+  .department_media div{
+    padding-left: 50px;
+  }
+
     .brand-logo a{
         font-size: 35px;
         letter-spacing: 4px;

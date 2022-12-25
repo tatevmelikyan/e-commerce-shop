@@ -1,54 +1,67 @@
 import React, { useEffect } from 'react'
+import { FaCartPlus } from 'react-icons/fa'
 import { useNavigate } from 'react-router'
+import { Link } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
-import { ICartItem } from '../../pages/cart/addToCart'
-import { getCartItems } from '../slices/cartSlice'
+import { calcCartSubtotal } from '../slices/cartSlice'
+import { calcUserCartSubtotal } from '../slices/currentUserSlice'
 
-const CartDropdown = () => {
-
+const CartDropdown: React.FC = () => {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
-  const cartItems = useAppSelector(state => state.cartItems.cartItems)
-  const subtotal = useAppSelector(state => state.cartItems.subtotal)
+  const currentUser = useAppSelector((state) => state.currentUser.currentUser)
+  const localCartItems = useAppSelector((state) => state.cartItems.cartItems)
+  const cartItems = currentUser ? currentUser.cartItems : localCartItems
+  const localSubtotal = useAppSelector((state) => state.cartItems.subtotal)
+  const userCartSubTotal = useAppSelector((state) => state.currentUser.userCartSubTotal)
+  const subtotal = currentUser ? userCartSubTotal : localSubtotal
 
 
   useEffect(() => {
-    dispatch(getCartItems())
-  }, [])
+    handleSubtotal()
+  }, [cartItems])
+
+  const handleSubtotal = () => {
+    if(currentUser) {
+      dispatch(calcUserCartSubtotal())
+    } else {
+      dispatch(calcCartSubtotal())
+    }
+  }
+
 
   return (
-  <div className='cart-dropdown'>
-    <div className='table-container'>
-     {
-      <table>
-        <thead>
-        </thead>
-        <tbody>
-          {
-            cartItems?.map((item:ICartItem)=><tr
-              className='cartTableTr' 
-              key={Math.random()}
-              onClick = {()=>navigate(`/products/${item.product.id}`)}
-              >
-              <td><img className='cartDropdownImg' src={item.product.imageUrls[0]} alt="" /></td>
-              <td></td>
-              <td>{item.product.title}</td>
-              <td>${item.product.price}</td>
-              <td>x</td>
-              <td className='productCount'> {item.qty}</td>
-            </tr>)
-          }
-        </tbody>
-      </table>
-     }
-    
-     <div className='viewToCart'>
-      <div>Subtotal: ${subtotal.toLocaleString()}</div>
-       <button onClick={()=>navigate('/shoppingcart')}>VIEW CART</button>
-     </div>
-     </div>
-  </div>
-     
+  <div className='cart-dropDown-container'>
+      <div className='cart-dropDown-list'>
+        {!cartItems.length?<div>
+          <p>Your shopping cart is empty.</p>
+          <div className='no_cartItem_Icon'><FaCartPlus /></div>
+  <p style={{textAlign:'center'}}>
+Your shopping cart is empty.
+ If you have an account, <Link to='/account/signIn'>Sign In</Link> to see items added on earlier visits.
+  </p>
+ </div>: cartItems.map((item) => (
+          <div
+            onClick={() => navigate(`/products/${item.product.id}`)}
+            className='dropDownListItem'
+            key={Math.random()}
+          >
+            <img
+              src={item.product.imageUrls[0]}
+              alt=''
+            />
+            <span className='dropDownListItemTitle'>{item.product.title}</span>
+            <span className='dropDownListItemPrice'>
+              ${item.product.price} x {item.qty}
+            </span>
+          </div>
+        ))}
+      </div>
+      <div className='cart-dropDown-button'>
+        <div>Subtotal: ${subtotal.toLocaleString()}</div>
+        <button onClick={() => navigate('/shoppingcart')}>VIEW CART</button>
+      </div>
+    </div>
   )
 }
 

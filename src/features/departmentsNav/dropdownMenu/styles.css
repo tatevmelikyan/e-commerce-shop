@@ -1,25 +1,20 @@
 .dropdown-menu {
-  display: flex;
-  justify-content: center;
-  width: 100vw !important;
+  width: 100%;
   position: absolute;
-  margin-top: 1px;
-  top: 100%;
-  left: -1.2%;
-  background-color: white;
-  box-shadow: 0 2px 4px 0px rgba(0, 0, 0, 0.393);
   opacity: 0;
-  transition: opacity 150ms ease-in-out, transform 180ms ease-in-out;
-  transform: translateY(-10px);
+  background-color: white;
+  top: 100%;
+  left: 0;
+  box-shadow: 0 2px 4px 0px rgba(0, 0, 0, 0.393);
   visibility: hidden;
   transition-delay: .2s;
+  margin-top: 1px;
+  display: flex;
+  justify-content: center;
 }
-
-
 
 .department-list-item:hover .dropdown-menu {
   opacity: 1;
-  transform: translateY(0);
   visibility: visible;
 }
 

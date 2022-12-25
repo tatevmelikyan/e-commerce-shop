@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { FaEdit } from 'react-icons/fa'
 import { MdDelete } from 'react-icons/md'
 
+
 import { useAppSelector, useAppDispatch } from '../../../../app/hooks'
 import CategoriesToFilter from './filterByCategory/categoriesToFilter'
 import {
@@ -15,29 +16,45 @@ import { EditProduct } from '../editProduct'
 import './styles.css'
 import AdminPage from '../../adminPage'
 import { IProduct } from '../../../productPage/productPage'
+
+import { LoadMoreBtn } from '../../../../features/loadMoreBtn/loadMoreBtn'
+
+import './styles.css'
+
 const Products = function () {
-  const products = useAppSelector((state) => state.products.products)
   const [open, setOpen] = useState(false)
-  const [selected, setSelected] = useState('All Products')
+
+  const products = useAppSelector((state) => state.products.products)
+  const needLoad = useAppSelector((state) => state.products.needLoad)
+  const [categoryId, setSelected] = useState('All Products')
   const [zoomed, setZoomed] = useState(false)
+  const [pages, setPages] = useState(10)
   const [editedProduct, setEditedProduct] = useState<IProduct>()
   const [src, setSrc] = useState('')
   const dispatch = useAppDispatch()
 
+ 
   useEffect(() => {
     dispatch(fetchedCategories())
+    console.log(products, 'products')
   }, [])
 
+
+
   useEffect(() => {
-    if (selected === 'All Products') {
-      dispatch(fetchAllProducts())
+    if (categoryId === 'All Products') {
+      dispatch(fetchAllProducts(pages))
     } else {
-      dispatch(fetchProductsByCategory(selected))
+      dispatch(fetchProductsByCategory({ pages, categoryId }))
     }
-  }, [selected])
+  }, [categoryId, pages])
 
   const changeCategory = (category: string) => {
     setSelected(category)
+    setPages(10)
+  }
+  const handlePages = () => {
+    setPages(pages + 10)
   }
   const productHandler = () => {
     setOpen(!open)
@@ -61,7 +78,7 @@ const Products = function () {
       </div>
 
       <CategoriesToFilter
-        selected={selected}
+        selected={categoryId}
         changeCategory={changeCategory}
       />
       <table className='productPage'>
@@ -105,7 +122,7 @@ const Products = function () {
                   <MdDelete
                     onClick={() => {
                       deleteProduct(product.id)
-                      dispatch(fetchAllProducts())
+                      dispatch(fetchAllProducts(pages))
                     }}
                   />
                 </td>
@@ -121,6 +138,7 @@ const Products = function () {
           setOpen={setOpen}
         />
       )}
+      {needLoad && <LoadMoreBtn handlePagination={handlePages} />}
     </div>
   )
 }
