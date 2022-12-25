@@ -17,14 +17,24 @@ const SearchResults: React.FC = () => {
   const matchedProducts = useAppSelector((state) => state.products.products)
   const matchedProductsCount = useAppSelector((state) => state.products.mathedProductsCount)
   const needLoad = useAppSelector((state) => state.products.needLoad)
-  const [isSearchLoading, setIsSearchLoading] = useState(true)
+  const [isSearchLoading, setIsSearchLoading] = useState(false)
+  const productsStatus = useAppSelector(state => state.products.status)
 
   useEffect(() => {
     if (keyword) {
       dispatch(fetchProductsForSearch({ pages, keyword }))
-      setIsSearchLoading(false)
     }
   }, [keyword, pages])
+
+  // useEffect(()=>{
+  //   console.log(productsStatus, 'status');
+    
+  //   if(productsStatus==='loading'){
+  //     setIsSearchLoading(true)
+  //   } else if(productsStatus === 'succeeded') {
+  //     setIsSearchLoading(false)
+  //   }
+  // },[productsStatus])
 
   const handlePagination = () => {
     setPages(pages + 16)
@@ -32,7 +42,7 @@ const SearchResults: React.FC = () => {
 
   return (
     <div className='search-results'>
-      {isSearchLoading ? (
+      {productsStatus === 'loading'  ? (
         <div className='loadingSpinner'>
           <BounceLoader color='red' />
         </div>

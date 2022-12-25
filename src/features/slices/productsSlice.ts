@@ -104,7 +104,11 @@ const productsSlice = createSlice({
         state.status = 'failed'
         state.error = action.error.message
       })
+      .addCase(fetchProductsForSearch.pending, (state) => {
+        state.status = 'loading'
+      })
       .addCase(fetchProductsForSearch.fulfilled, (state, action) => {
+        state.status = 'succeeded'
         const { products, keyword, pages } = action.payload
         state.products = products.filter((product) => {
           return product.title
@@ -112,6 +116,7 @@ const productsSlice = createSlice({
             .toLowerCase()
             .includes(keyword.replace(/\s/g, '').toLowerCase())
         })
+        
         state.mathedProductsCount = state.products.length
         const original = state.products.length
         state.products = state.products.splice(0, pages)
@@ -120,6 +125,10 @@ const productsSlice = createSlice({
         } else {
           state.needLoad = true
         }
+      })
+      .addCase(fetchProductsForSearch.rejected, (state, action) => {
+        state.status = 'failed'
+        state.error = action.error.message
       })
       .addCase(fetchAllProducts.fulfilled, (state, action) => {
         state.status = 'succeeded'

@@ -5,59 +5,111 @@
     width: 100%;
     height: 100vh;
     position: relative;
+    /* border: 1px solid black */
 }
 
-.main-video-container video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+iframe{
+    width: 99.7%;
+   height: 100vh;
+   margin-top: -15px;
+   object-fit: cover;
+   /* border: 1px solid black; */
 }
 
 .video-ad-container {
     width: 100%;
     height: 100%;
-    top: 0;
+    top: 26px;
     justify-content: center;
     display: flex;
-    flex-direction: column;
-    align-items: flex-end;
+    align-items: center;
     position: absolute;
 }
 
 .text-shop {
-    margin-right: 100px;
     display: flex;
-    flex-direction: column;
-    gap: 40px;
-}
-
-.text-shop span {
-    color: white;
-    font-family: 'Dancing Script', cursive;
-    font-size: 40px;
-    font-weight: 400;
-    letter-spacing: 7px;
 }
 
 .text-shop button {
-    align-self: flex-start;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border: none;
     border-radius: 0;
     color: #000000;
-    background-color: #ffffffa3;
+    background-color: #ffffff;
     font-family: proxima-nova,Arial,sans-serif;
-    font-size: 12px;
+    font-size: 16px;
     font-weight: 600;
-    height: 38px;
     letter-spacing: 1px;
     line-height: 38px;
     padding: 0 25px;
+    padding-top: 3px;
     text-transform: uppercase;
-    width: auto;
+    width: 300px;
+    height: 55px;
     white-space: nowrap;
     cursor: pointer;
 }
 
 .text-shop button:hover {
-    background-color: #ffffffed;
+    background-color: #e7e7e7;
 }
+
+.homePageDep{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    /* height: 100vh; */
+}
+
+.homePageDepTop{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.homePageDepTopImg{
+    width: 420px;
+    height: 440px;
+    border-radius: 8px;
+}
+
+.homePageDepTopImg img{
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.homePageDepBottom{
+    width: 100%;
+    height: 110vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.homePageDepBottom img{
+    width: 100%;
+    height: 100%;
+}
+
+.homePageDepBottom p{
+    position: absolute;
+    width: 100%;
+    font-size: 35px;
+    font-family: serif;
+    letter-spacing: 1px;
+    top: 0%;
+    text-align: center;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.76);
+}
+
+
+
