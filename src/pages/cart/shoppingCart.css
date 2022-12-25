@@ -212,10 +212,11 @@
 }
 
 .cart-summary {
-  position: relative;
-  min-height: 300px;
-  border: 1px solid rgb(161, 161, 161);
-  padding: 0 20px 20px 20px;
+    position: sticky;
+    top: 158px;
+    min-height: 300px;
+    border: 1px solid rgb(161, 161, 161);
+    padding: 0 20px 20px 20px;
 }
 
 .cart-summary h3 {

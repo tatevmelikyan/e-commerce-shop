@@ -1,3 +1,15 @@
+@media screen and (max-width: 1250px) {
+  .text{
+    display: none;
+  }
+  .brand-logo{
+    padding-left: 0;
+  }
+  .customer-nav{
+    width: 130px;
+  }
+}
+
 @media screen and (max-width: 900px) {
   .menu_counteyner {
     display: block;
