@@ -2,6 +2,7 @@ import { ISubdepartment } from '../features/slices/subdepartmentsSlice'
 import { IProduct } from './../pages/productPage/productPage'
 import { collection, doc, getDocs, query, where, getDoc,deleteDoc ,getFirestore,addDoc,setDoc} from 'firebase/firestore'
 import { db } from './config'
+import { IObject } from '../pages/admin/addProduct'
 
 export interface IDepartment {
   id: string
@@ -28,14 +29,14 @@ const docRef =  doc(db, 'products', id);
 
 
 
-const postProducts= async (obj:IProduct)=>{
+const postProducts= async (obj:IObject)=>{
  
  
 const docRef = await addDoc(collection(db, 'products'), obj);
  
 }
 
-const editProducts = async(obj:IProduct,id:string)=>{
+const editProducts = async(obj:IObject,id:string)=>{
  const docRef= setDoc(doc(db,'products',id),obj,{merge:true})
 }
 

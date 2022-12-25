@@ -7,14 +7,14 @@ import AddToCart from '../cart/addToCart'
 import { useAppDispatch } from '../../app/hooks'
 import { updateRecentlyViewedItems } from '../../features/slices/recentlyViewedSlice'
 import ProductPageCarusel from './productPageCarusel'
-import { TransformWrapper,TransformComponent } from 'react-zoom-pan-pinch'
+
 
 
 export interface IProduct {
   categoryId?: string
   description: string
   details: string[]
-  id: string
+  id : string
   imageUrls: string[]
   price: number
   title: string

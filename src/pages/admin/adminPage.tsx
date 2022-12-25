@@ -15,7 +15,7 @@ const AdminPage = () => {
     <div>
     
       
-      <button onClick={productHandler} >Add a product</button>
+      <button className='addProductBot' onClick={productHandler} >Add a product</button>
       {open && <AddProduct open={open}setOpen={setOpen}/>}
     </div>
   )

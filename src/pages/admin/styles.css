@@ -79,13 +79,73 @@
 .divImage .image{
  display: inline;
   text-align: center;
-  /* line-height: 75px;
-  font-size: 30px; */
+  border: 1px solid black;
   width: 72px;
   height: 72px;
+  margin-left: 10px;
 }
 
-.addBooton{
-  width: 20%;
+
+.addPosts{
+  width: 25%;
+  height: 30px;
   margin:10px auto;
+  border: 1px solid rebeccapurple;
+}
+.addPosts:hover{
+border: grey;
+background-color:green;
+color: #010101;
+
+}
+
+.addProductBot{
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid black;
+  background-color: inherit;
+  color: black;
+  cursor: pointer;
+}
+
+.addProductBot:hover {
+  border: lightblue;
+  background-color: blue;
+  color: lightblue;
+}
+.editButton{
+  width: 25%;
+  height: 30px;
+  margin:10px auto;
+  border: 1px solid rebeccapurple;
+}
+.editButton:hover{
+  background-color: antiquewhite;
+}
+
+.popContainer{
+  min-height: 400px;
+  min-width: 500px;
+  background-color: antiquewhite;
+}
+.yesClick{
+  width: 80px;
+ height: 30px;
+ margin-left: 35%;
+}
+.yesClick:hover{
+  background-color: green;
+}
+.noClick{
+  width: 80px;
+  height: 30px;
+ margin-left: 2%;
+}
+.noClick:hover{
+  background-color: red;
+}
+.popContainer>p{
+  margin-top: 40px;
+  margin-bottom: 80px;
+  margin-left: 20%
 }

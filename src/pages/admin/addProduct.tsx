@@ -1,69 +1,111 @@
 import React from 'react'
-import { deleteProduct, postProducts, editProducts } from '../../firebase/queries'
+import { postProducts } from '../../firebase/queries'
 import './styles.css'
 import '../admin/pagesForAdmin/productPage/zoomTheImage/zoomTheImgae'
 import { IoMdClose } from 'react-icons/io'
 import { useState, useEffect } from 'react'
 import type { BaseSyntheticEvent } from 'react'
 
-
 interface Event<T = EventTarget> {
   target: T
-  
-} 
+}
 export interface IOpen {
   editedProduct?: any
-  
   open: boolean
   setOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
+
+export interface IObject {
+  categoryId: string
+  description: string
+  details: string[]
+  inStock: number
+  price: number
+  title: string
+  imageUrls: string[]
+}
+
+const imageTypeRegex = /image\/(png|jpg|jpeg)/gm
 export default function AddProduct({ open, setOpen }: IOpen) {
-  const [images, setImages] = useState([])
-  const [imageUrls, setImageUrls] = useState<string[]>([])
-  const [categoryId, setKategoryId] = useState('')
+  const [imageFiles, setImageFiles] = useState([])
+  const [images, setImages] = useState<string[]>([])
+  const [categoryId, setCategoryId] = useState('')
   const [description, setDescription] = useState('')
   const [details, setDetails] = useState<string[]>([])
-  const [inStock, setInstock] = useState<number>(0)
-  const [price, setPrice] = useState<number>(0)
+  const [inStock, setInStock] = useState<string>('')
+  const [price, setPrice] = useState<string>('')
   const [title, setTitle] = useState('')
-  const objectModel = {
+
+  const objectModel: IObject = {
     categoryId: categoryId,
     description: description,
     details: details,
     inStock: +inStock,
     price: +price,
     title: title,
-    imageUrls: imageUrls,
+    imageUrls: images,
   }
-  useEffect(() => {
-    if (images.length < 1) return
 
-    const newImageUrls: string[] = []
+  const changeHandler = (e: BaseSyntheticEvent) => {
+    const { files } = e.target
+    const validImageFiles: any = []
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i]
 
-    for (const [key, value] of Object.entries(images)) {
-      newImageUrls.push(URL.createObjectURL(value))
+      if (file.type.match(imageTypeRegex)) {
+        validImageFiles.push(file)
+      }
     }
-
-    setImageUrls(newImageUrls)
-  }, [images])
-
-  function onImageChange(e: BaseSyntheticEvent) {
-    setImages(e.target.files)
+    if (validImageFiles.length) {
+      setImageFiles(validImageFiles)
+      return
+    }
+    alert('Selected images are not of valid type!')
   }
+
+  useEffect(() => {
+    const newImages: any = [],
+      fileReaders: FileReader[] = []
+
+    if (imageFiles.length) {
+      imageFiles.forEach((file) => {
+        const fileReader = new FileReader()
+        fileReaders.push(fileReader)
+
+        fileReader.onload = () => {
+          if (fileReader.result) {
+            newImages.push(fileReader.result)
+          }
+          if (newImages.length === imageFiles.length) {
+            setImages(newImages)
+          }
+        }
+        fileReader.readAsDataURL(file)
+      })
+    }
+    return () => {
+      fileReaders.forEach((fileReader) => {
+        if (fileReader.readyState === 1) {
+          fileReader.abort()
+        }
+      })
+    }
+  }, [imageFiles])
+
   const addCategoryId = (e: Event<HTMLInputElement>) => {
-    setKategoryId(e.target.value)
+    setCategoryId(e.target.value)
   }
   const addDescription = (e: Event<HTMLInputElement>) => {
     setDescription(e.target.value)
   }
-  const addDetailes = (e: Event<HTMLInputElement>) => {
+  const addDetails = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDetails([e.target.value])
   }
-  const addInstock = (e: Event<HTMLInputElement>) => {
-    setInstock((e.target as any).value as number)
+  const addInStock = (e: Event<HTMLInputElement>) => {
+    setInStock(e.target.value)
   }
-  const addPrice = (e: Event<HTMLInputElement>) => {
-    setPrice((e.target as any).value as number)
+  const addPrice = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPrice(e.target.value)
   }
   const addTitle = (e: Event<HTMLInputElement>) => {
     setTitle(e.target.value)
@@ -74,10 +116,14 @@ export default function AddProduct({ open, setOpen }: IOpen) {
   }
 
   const post = async () => {
-    // @ts-ignore
     await postProducts(objectModel)
   }
-  
+  const addPosts = () => {
+    stateValues()
+      ? (post(), setOpen(!open), alert('Successfully added product'))
+      : alert('All input fields must be filled in to add a product')
+  }
+
 
   return (
     <div className='popUp'>
@@ -109,19 +155,19 @@ export default function AddProduct({ open, setOpen }: IOpen) {
             value={details}
             type='text'
             placeholder='details'
-            onChange={addDetailes}
+            onChange={addDetails}
           />
 
           <input
             type='number'
             placeholder='inStock'
-            onChange={addInstock}
+            onChange={(e) => addInStock(e)}
           />
 
           <input
             type='number'
             placeholder='price'
-            onChange={addPrice}
+            onChange={(e) => addPrice(e)}
           />
 
           <input
@@ -132,42 +178,30 @@ export default function AddProduct({ open, setOpen }: IOpen) {
 
           <input
             type='file'
+            id='file'
+            onChange={changeHandler}
+            accept='image/png, image/jpg, image/jpeg'
             multiple
-            accept=' image/*'
-            onChange={onImageChange}
           />
-           <div
-                className='divImage'
-                
-              >
-          {imageUrls.map((image) => {
-            console.log(imageUrls);
-            
-            return (
-             
-                <img key={image}
+          <div className='divImage'>
+            {images.map((image) => {
+              return (
+                <img
+                  key={image}
                   className='image'
                   src={image}
                 />
-             
-            )
-          })}
-           </div>
-
-         
+              )
+            })}
+          </div>
         </div>
         <button
-          className='addBooton'
-            onClick={() => {
-              stateValues()
-                ? (post(), setOpen(!open), alert('Successfully added product'))
-                : alert('invalid input')
-            }}
-          >
-            add posts
-          </button>
+          className='addPosts'
+          onClick={addPosts}
+        >
+          Add posts
+        </button>
       </div>
     </div>
   )
 }
-
