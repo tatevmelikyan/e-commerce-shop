@@ -1,13 +1,6 @@
 import { ISubdepartment } from '../features/slices/subdepartmentsSlice'
 import { IProduct } from './../pages/productPage/productPage'
-import {
-  collection,
-  doc,
-  getDocs,
-  query,
-  where,
-  getDoc,
-} from 'firebase/firestore'
+import { collection, doc, getDocs, query, where, getDoc } from 'firebase/firestore'
 import { db } from './config'
 
 export interface IDepartment {
@@ -17,12 +10,12 @@ export interface IDepartment {
   subdepartments: ISubdepartment[]
 }
 export interface IUsers {
-  id:string
-  cartItems: IProduct []
-  email:string
-  favoriteItems:IProduct []
-  name:string
-  uid:string
+  id: string
+  cartItems: IProduct[]
+  email: string
+  favoriteItems: IProduct[]
+  name: string
+  uid: string
 }
 
 const getAllProducts = async () => {
@@ -141,16 +134,16 @@ const getProductsByCategory = async (categoryId: string) => {
 }
 
 const getAllUsers = async () => {
-  const docs = await getDocs(collection(db,'users'))
-  const users: IUsers[]=[]
-  docs.forEach(doc=>{
+  const docs = await getDocs(collection(db, 'users'))
+  const users: IUsers[] = []
+  docs.forEach((doc) => {
     users.push({
-      name:doc.data().name,
-      id:doc.id,
-      cartItems:doc.data().cartItems,
-      favoriteItems:doc.data().favoriteItems,
-      email:doc.data().email,
-      uid:doc.data().uid
+      name: doc.data().name,
+      id: doc.id,
+      cartItems: doc.data().cartItems,
+      favoriteItems: doc.data().favoriteItems,
+      email: doc.data().email,
+      uid: doc.data().uid,
     })
   })
   return users

@@ -5,15 +5,15 @@ import { IUsers } from '../../firebase/queries'
 
 export const fetchUsers = createAsyncThunk<
   {
-    users: IUsers[],
-    pages:number
+    users: IUsers[]
+    pages: number
   },
   {
-    pages:number
+    pages: number
   }
->('users/fetchUsers', async ({pages}) => {
+>('users/fetchUsers', async ({ pages }) => {
   const users = await getAllUsers()
-  return {users,pages}
+  return { users, pages }
 })
 
 export interface UsersState {
@@ -52,8 +52,7 @@ const usersToDisplaySlice = createSlice({
         state.users = state.users.splice(0, action.payload.pages)
         if (original === state.users.length) {
           state.needLoad = false
-          console.log(original, state.users.length, 'in if');
-          
+          console.log(original, state.users.length, 'in if')
         } else {
           state.needLoad = true
         }
