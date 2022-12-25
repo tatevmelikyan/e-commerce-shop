@@ -16,6 +16,14 @@ export interface IDepartment {
   imageUrl: string
   subdepartments: ISubdepartment[]
 }
+export interface IUsers {
+  id:string
+  cartItems: IProduct []
+  email:string
+  favoriteItems:IProduct []
+  name:string
+  uid:string
+}
 
 const getAllProducts = async () => {
   const docs = await getDocs(collection(db, 'products'))
@@ -132,9 +140,26 @@ const getProductsByCategory = async (categoryId: string) => {
   return products
 }
 
+const getAllUsers = async () => {
+  const docs = await getDocs(collection(db,'users'))
+  const users: IUsers[]=[]
+  docs.forEach(doc=>{
+    users.push({
+      name:doc.data().name,
+      id:doc.id,
+      cartItems:doc.data().cartItems,
+      favoriteItems:doc.data().favoriteItems,
+      email:doc.data().email,
+      uid:doc.data().uid
+    })
+  })
+  return users
+}
+
 export {
   getAllProducts,
   getAllDepartments,
+  getAllUsers,
   getSubdepartmentsWithCategoriesByDepartment,
   getProductById,
   getProductsByCategory,

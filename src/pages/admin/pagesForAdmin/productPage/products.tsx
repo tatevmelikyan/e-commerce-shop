@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { FaEdit } from 'react-icons/fa'
-import { MdDelete } from 'react-icons/md'
+import { RiDeleteBin6Line } from 'react-icons/ri'
 
 import { useAppSelector, useAppDispatch } from '../../../../app/hooks'
 import CategoriesToFilter from './filterByCategory/categoriesToFilter'
@@ -91,7 +91,7 @@ const Products = function () {
                   <FaEdit />
                 </td>
                 <td className='icons'>
-                  <MdDelete />
+                  <RiDeleteBin6Line />
                 </td>
               </tr>
             )

@@ -80,20 +80,6 @@ const productsSlice = createSlice({
   name: 'products',
   initialState,
   reducers: {
-    // searchProduct(state,action: ISortAction) {
-    //   const copy = state.products
-
-    //   if(action.payload.length>1) {
-    //     state.products = state.products.filter(product=>{
-    //       return product.title
-    //         .replace(/\s/g, '')
-    //         .toLowerCase()
-    //         .includes(action.payload.trim().replace(/\s/g, '').toLowerCase())
-    //     })
-    //   } else {
-    //     state.products = copy
-    //   }
-    //},
     sortByPrice(state, action: ISortAction) {
       if (action.payload === 'asc') {
         state.products = state.products.sort((a, b) => a.price - b.price)
