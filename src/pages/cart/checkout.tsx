@@ -1,12 +1,30 @@
-import React, { useState } from 'react'
-import { useAppSelector } from '../../app/hooks'
+import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router'
+import { toast } from 'react-toastify'
+import { useAppDispatch, useAppSelector } from '../../app/hooks'
+import { placeOrder } from '../../features/slices/ordersSlice'
+import { IAddressInfo } from '../../features/slices/types'
+import { deleteUserCart } from '../../firebase/auth'
 import CardForm from './cardForm'
 import CartSummary from './cartSummary'
+import { ICardForm } from './types'
 
 const Checkout = () => {
-  const currentUser = useAppSelector((state) => state.currentUser.currentUser)
+    const dispatch = useAppDispatch()
+    const navigate = useNavigate()
+    const currentUser = useAppSelector(state => state.currentUser.currentUser)
+//   const ordersStatus = useAppSelector(state => state.customerOrders.status)
 
-  const [shippingAddressInfo, setShippingAddressInfo] = useState({
+  interface IAddressForm {
+    fullName: string;
+    address: string;
+    apt: string;
+    city: string;
+    zip: string;
+    phone: string
+  }
+
+  const [shippingAddressInfo, setShippingAddressInfo] = useState<IAddressForm>({
     fullName: '',
     address: '',
     apt: '',
@@ -14,7 +32,7 @@ const Checkout = () => {
     zip: '',
     phone: '',
   })
-  const [billingAddressInfo, setBillingAddressInfo] = useState({
+  const [billingAddressInfo, setBillingAddressInfo] = useState<IAddressForm>({
     fullName: '',
     address: '',
     apt: '',
@@ -25,8 +43,47 @@ const Checkout = () => {
   const [isSameAddress, setIsSameAddress] = useState(true)
 
 
+  const areInputsFilled = () => {
+    const isShippingFormFilled = Object.values(shippingAddressInfo).every(field => field.trim().length > 0)
+    const isBillingFormFilled = isSameAddress ? true : Object.values(billingAddressInfo).every(field => field.trim().length > 0)
+    // const isCardFormFilled = Object.keys(cardInfo).every(field => field.trim().length > 0)
+    return isShippingFormFilled && isBillingFormFilled
+  }
+
   const handleCompletePurchase = () => {
-    //call order placement
+    if(areInputsFilled()) {
+        let billingInfo
+        const shippingInfo: IAddressInfo = {
+            fullName: shippingAddressInfo.fullName,
+            address: shippingAddressInfo.address,
+            apt: shippingAddressInfo.apt,
+            city: shippingAddressInfo.city,
+            zip: +shippingAddressInfo.zip,
+            phone: +shippingAddressInfo.phone
+        }
+        if(isSameAddress) {
+       billingInfo = shippingInfo
+        } else {
+            billingInfo = {
+                fullName: billingAddressInfo.fullName,
+                address: billingAddressInfo.address,
+                apt: billingAddressInfo.apt,
+                city: billingAddressInfo.city,
+                zip: +billingAddressInfo.zip,
+                phone: +billingAddressInfo.phone
+            }
+        }
+        dispatch(placeOrder({shippingInfo, billingInfo}))
+        navigate('/checkout/success')
+      if(currentUser) {
+        deleteUserCart(currentUser?.uid).then(() => {
+          console.log('cart cleared');
+        })
+      }
+    } else {
+        toast.error('Please fill out the form')
+    }
+   
   }
   
 
@@ -109,7 +166,7 @@ const Checkout = () => {
                   placeholder={field.placeholder}
                   value={billingAddressInfo[field.value as keyof typeof billingAddressInfo]}
                   onChange={(e) =>
-                    setShippingAddressInfo((prev) => {
+                    setBillingAddressInfo((prev) => {
                       return { ...prev, [field.value]: e.target.value }
                     })
                   }

@@ -1,8 +1,9 @@
 import { ICartItem } from './../../pages/cart/addToCart';
 import { IProduct } from './../../pages/productPage/productPage';
 
-interface ICustomerOrder {
-    number: number;
+export interface ICustomerOrder {
+    orderNumber: number;
+    userId: string;
     status: 'Order received' | 'Processed' | 'Shipped' | 'Delivered';
     date: string;
     subtotal: number;
@@ -16,7 +17,6 @@ export interface IUser {
   cartItems: ICartItem[];
   favoriteItems: IProduct[];
   addresses?: string[];
-  orders?: ICustomerOrder[];
 }
 
 
@@ -25,6 +25,17 @@ export interface IUserArgs {
   password: string,
   name: string
 }
+
+
+export interface IAddressInfo {
+  fullName: string;
+  address: string;
+  apt: string;
+  city: string;
+  zip: number;
+  phone: number;
+}
+
 
 export type TUpdateCartAction = 'addToCart' | 'removeFromCart' | 'addQty' | 'removeQty' 
 export type TUpdateFavoritesAction = 'like-dislike' | 'clearAll'

@@ -7,8 +7,14 @@ import {
   query,
   where,
   getDoc,
+  setDoc,
+  addDoc,
 } from 'firebase/firestore'
 import { db } from './config'
+import { nanoid } from '@reduxjs/toolkit'
+import { FirebaseError } from 'firebase/app'
+import { IAddressInfo, ICustomerOrder } from '../features/slices/types'
+import { ICartItem } from '../pages/cart/addToCart'
 
 export interface IDepartment {
   id: string
@@ -132,6 +138,22 @@ const getProductsByCategory = async (categoryId: string) => {
   return products
 }
 
+
+
+const postCustomerOrder = async(userId: string, items: ICartItem[], subtotal: number, shippingInfo: IAddressInfo, billingInfo: IAddressInfo) => {
+  const orderRef = await addDoc(collection(db, 'orders'), {
+      orderNumber: Math.floor(100000000 + Math.random() * 900000000),
+      userId,
+      items,
+      subtotal, 
+      date: new Date().toLocaleDateString('en-GB'),
+      status: 'Order received'
+  });
+    const orderSnap = await getDoc(orderRef)
+    return orderSnap.data() as ICustomerOrder
+}
+
+
 export {
   getAllProducts,
   getAllDepartments,
@@ -139,4 +161,6 @@ export {
   getProductById,
   getProductsByCategory,
   getAllCategories,
+
+  postCustomerOrder
 }

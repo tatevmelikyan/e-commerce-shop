@@ -1,6 +1,6 @@
 import React, { ReactNode, useEffect } from 'react'
 import { Outlet, useNavigate } from 'react-router'
-import { useAppSelector } from '../../app/hooks'
+import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { auth } from '../../firebase/auth'
 import './styles.css'
 
@@ -11,6 +11,7 @@ import {FiSettings} from 'react-icons/fi'
 import {MdOutlineKeyboardArrowRight} from 'react-icons/md'
 import {TbAddressBook} from 'react-icons/tb'
 import { Link, NavLink } from 'react-router-dom'
+import { signOutUser } from '../../features/slices/currentUserSlice'
 
 
 
@@ -18,6 +19,7 @@ import { Link, NavLink } from 'react-router-dom'
 const CustomerAccountSidebar: React.FC = () => {
   const currentUser = useAppSelector((state) => state.currentUser.currentUser)
   const navigate = useNavigate()
+  const dispatch = useAppDispatch()
 
   useEffect(() => {
     if(!currentUser) {
@@ -44,12 +46,11 @@ const CustomerAccountSidebar: React.FC = () => {
         name: 'Account settings',
         icon: <FiSettings />
     },
-    {
-        path: '/account/signOut',
-        name: 'Sign out',
-        icon: <VscSignOut />
-    },
 ]
+
+const handleSignOut = () => {
+  dispatch(signOutUser())
+}
 
   return (
     <div className='customer-page'>
@@ -70,6 +71,15 @@ const CustomerAccountSidebar: React.FC = () => {
             )
           })
         }
+        <div className='customer-sidebar-item'>
+                <NavLink to='/account/signOut' onClick={handleSignOut}>
+                <VscSignOut />
+                  <span>Sign out</span>
+                  <span className='customer-sidebar-arrow'>
+                  <MdOutlineKeyboardArrowRight />
+                  </span>
+                </NavLink>
+              </div>
       </aside>
       </div>
       <div className='main-page-container'>

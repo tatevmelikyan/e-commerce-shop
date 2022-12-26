@@ -1,17 +1,11 @@
 import React, { useState } from 'react'
 import Cards, { Focused } from 'react-credit-cards'
 import 'react-credit-cards/es/styles-compiled.css'
+import { ICardForm } from './types'
 
-interface ICardInfo {
-  number: number
-  name: string
-  expiry: number
-  cvc: number
-  focus: boolean
-}
 
 const CardForm = () => {
-  const [cardInfo, setCardInfo] = useState({
+  const [cardInfo, setCardInfo] = useState<ICardForm>({
     number: '',
     name: '',
     expiry: '',

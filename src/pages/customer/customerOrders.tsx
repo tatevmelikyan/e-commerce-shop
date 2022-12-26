@@ -4,36 +4,35 @@ import { Link } from 'react-router-dom'
 import { useAppSelector } from '../../app/hooks'
 
 const CustomerOrders = () => {
-    const currentUserOrders = useAppSelector(state => state.currentUser.currentUser?.orders)
-    console.log(currentUserOrders, 'orders');
+    const currentUserOrders = useAppSelector(state => state.currentUser.orders)
+    // const orders = [
+    //     {
+    //         number: 12334,
+    //         status: 'Delivered',
+    //         date: new Date(),
+    //         subtotal: 100,
+    //         items: [{
+    //             product: {id: '1',imageUrls: ['https://assets.pbimgs.com/pbimgs/rk/images/dp/wcm/202239/0089/faux-frosted-christmas-tree-xl.jpg'], title: 'Christmas Tree'},
+    //             qty: 1
+    //         }]
+    //     }
+    // ]
+    console.log(currentUserOrders, 'current u o');
     
-
-    const orders = [
-        {
-            number: 12334,
-            status: 'Delivered',
-            date: new Date(),
-            subtotal: 100,
-            items: [{
-                product: {id: '1',imageUrls: ['https://assets.pbimgs.com/pbimgs/rk/images/dp/wcm/202239/0089/faux-frosted-christmas-tree-xl.jpg'], title: 'Christmas Tree'},
-                qty: 1
-            }]
-        }
-    ]
   return (
     <div className='customer-orders-page'>
         <h2>My Purchases</h2>
         <div className='customer-orders-container'>
            {
             currentUserOrders ?
-            orders.map(order => {
+            currentUserOrders.map(order => {
                 return (
-                   <Link to={`/account/orders/purchase/${order.number}`} key={order.number}>
+                   <Link to={`/account/orders/purchase/${order.orderNumber}`} key={order.orderNumber}>
                      <div  className='customer-order'>
                          <h3>{order.status}</h3>
                          <div className='qty-date-subtotal'>
                          <span>{order.items.length} {order.items.length > 1 ? 'items' : 'item'}</span>
-                             <span>{order.date.toLocaleDateString('en-GB')}</span>
+                             <span>{order.date}</span>
                              <span>${order.subtotal.toLocaleString()}</span>
                          </div>
                          <div className='items-arrow'>

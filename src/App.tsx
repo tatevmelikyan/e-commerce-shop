@@ -35,6 +35,7 @@ import CustomerAccount from './pages/customer/customerAccount';
 import CustomerAddresses from './pages/customer/customerAddresses';
 import OrderDetails from './pages/customer/orderDetails';
 import Checkout from './pages/cart/checkout';
+import SuccessPage from './pages/cart/successPage';
 
 function App() {
 
@@ -69,6 +70,7 @@ function App() {
            <Route path='/account/settings' element={<CustomerSettings/>}/>
         </Route>
         <Route path='/checkout' element={<Checkout />}/>
+        <Route path='/checkout/success' element={<SuccessPage />}/>
         <Route path='/account/signIn' element={<SignIn />}/>
         <Route path='/account/signUp' element={<SignUp />}/>
         <Route path='/account/signOut' element={<SignedOut />}/>

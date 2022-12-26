@@ -337,3 +337,33 @@ gap: 20px;
 .order-summary-wrapper {
   width: 40%;
 }
+
+
+
+/* success page css */
+
+.success-page {
+  min-height: 400px;
+  background-color: rgb(241, 241, 241);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.success-page p {
+  padding: 5px;
+  margin: 0;
+}
+
+.success-page a {
+  margin: 20px;
+  text-decoration: none;
+  color: white;
+  background-color: black;
+  padding: 10px;
+}
+
+.success-page a:hover {
+  background-color: rgb(65, 65, 65);
+}
