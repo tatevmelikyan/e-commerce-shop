@@ -149,3 +149,16 @@ color: #010101;
   margin-bottom: 80px;
   margin-left: 20%
 }
+
+
+
+
+.admin-home {
+  display: flex;
+  justify-content: center;
+}
+
+.admin-home div {
+  padding: 50px;
+  width: 400px;
+}
