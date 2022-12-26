@@ -1,7 +1,7 @@
 import React from 'react'
-import { postProducts } from '../../firebase/queries'
-import './styles.css'
-import '../admin/pagesForAdmin/productPage/zoomTheImage/zoomTheImgae'
+import { postProducts } from '../../../../../firebase/queries'
+import '../../../styles.css'
+import '../zoomTheImage/zoomTheImgae'
 import { IoMdClose } from 'react-icons/io'
 import { useState, useEffect } from 'react'
 import type { BaseSyntheticEvent } from 'react'
@@ -124,7 +124,6 @@ export default function AddProduct({ open, setOpen }: IOpen) {
       : alert('All input fields must be filled in to add a product')
   }
 
-
   return (
     <div className='popUp'>
       <div className='container'>
@@ -138,45 +137,55 @@ export default function AddProduct({ open, setOpen }: IOpen) {
         </i>
 
         <div className='inputContainer'>
-          <input
+
+        <input
+            value={title}
+            className='inputContainer'
             type='text'
-            placeholder='categoryId'
+            placeholder='Enter the name of the product'
+            onChange={addTitle}
+          />
+          
+          <input
+            value={categoryId}
+            type='text'
+            placeholder='Enter category of the product'
             onChange={addCategoryId}
           />
 
           <input
+            className='inputContainer'
             value={description}
             type='text'
-            placeholder='description'
+            placeholder='Enter the description'
             onChange={addDescription}
           />
 
           <input
+            className='inputContainer'
             value={details}
             type='text'
-            placeholder='details'
+            placeholder='Enter the details'
             onChange={addDetails}
           />
 
           <input
+            value={inStock}
+            className='inputContainer'
             type='number'
-            placeholder='inStock'
+            placeholder='Enter the quantity'
             onChange={(e) => addInStock(e)}
           />
 
           <input
+            value={price}
+            className='inputContainer'
             type='number'
-            placeholder='price'
+            placeholder='Enter the price'
             onChange={(e) => addPrice(e)}
           />
-
           <input
-            type='text'
-            placeholder='title'
-            onChange={addTitle}
-          />
-
-          <input
+            className='inputContainer'
             type='file'
             id='file'
             onChange={changeHandler}

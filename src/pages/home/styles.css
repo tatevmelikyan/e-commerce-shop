@@ -102,13 +102,13 @@ iframe{
 .homePageDepBottom p{
     position: absolute;
     width: 100%;
-    font-size: 35px;
+    font-size: 45px;
     font-family: serif;
     letter-spacing: 1px;
     top: 0%;
     text-align: center;
     font-weight: 400;
-    color: rgba(0, 0, 0, 0.76);
+    color: grey;
 }
 
 

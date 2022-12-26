@@ -151,25 +151,50 @@
 
   .department_media {
     width: 100%;
+    height: 75vh;
     background-color: white;
     position: absolute;
     display: flex;
     flex-direction: column;
     list-style-type: none;
     gap: 0px;
+    overflow-y: auto;
+    z-index: 1;
   }
 
-  .department_media div {
+  .mediaDep {
     border-bottom: 1px solid rgb(212, 212, 212);
     padding: 10px;
     padding-left: 90px;
     color: black;
+    position: relative;
   }
 
-  .department_media div:hover{
+  .mediaDep:hover{
     text-decoration: underline;
   }
 
+  .mediaDep span{
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+  }
+
+  .mediaSubDep{
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    background-color: rgb(240, 240, 240);
+  }
+
+  .mediaSubDepartment{
+    margin: 8px;
+    cursor: pointer;
+  }
+
+  .mediaSubDepartment:hover{
+    text-decoration: underline 2px;
+  }
 
   .divOverleyActive{
     position: absolute;
@@ -197,7 +222,7 @@
     padding-left: 0;
   }
 
-  .department_media div{
+  .mediaDep{
     padding-left: 50px;
   }
 

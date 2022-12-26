@@ -1,7 +1,9 @@
 import React from 'react'
 import '.././styles.css'
-import { FaUser, FaBoxes, FaTruckLoading } from 'react-icons/fa'
+import { BsTruck } from 'react-icons/bs'
 import { useNavigate } from 'react-router'
+import {BsBoxSeam} from 'react-icons/bs'
+import {FiUsers} from 'react-icons/fi'
 
 const SideBarDepartments = function () {
   const navigate = useNavigate()
@@ -10,19 +12,19 @@ const SideBarDepartments = function () {
     <div className='listedDeps'>
       <div className='items' onClick={()=>navigate('/account/admin/products')}>
         <div>
-          <FaBoxes />
+          <BsBoxSeam />
         </div>
         <div> Products </div>
       </div>
       <div className='items' onClick={()=>navigate('/account/admin/users')}>
         <div>
-          <FaUser />
+          <FiUsers />
         </div>
         <div> Users</div>
       </div>
       <div className='items' onClick={()=>navigate('/account/admin/orders')}>
         <div>
-          <FaTruckLoading />
+          <BsTruck />
         </div>
         <div>Orders</div>
       </div>

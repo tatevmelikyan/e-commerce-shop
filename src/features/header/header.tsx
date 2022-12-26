@@ -9,10 +9,20 @@ import SearchField from '../search/searchField'
 import { BsSearch } from 'react-icons/bs'
 import { useAppSelector } from '../../app/hooks'
 import { selectAllDepartments } from '../slices/departmentsSlice'
+import DepNavMedia from './depNavMedia'
+import { IDepartment } from '../../firebase/queries'
 
 const Header = () => {
   const [toggleClass, setToggleClass] = useState(false)
   const [isSearch,setIsSearch] = useState(false)
+  const [isShow,setIsShow] = useState(false)
+  const [subDep,setSubDep] = useState<IDepartment>()
+
+  const handleSpan = (e:IDepartment) => {
+    setIsShow(!isShow)
+    setSubDep(e)
+  }
+
 
   const departments = useAppSelector((state) => selectAllDepartments(state))
 
@@ -45,13 +55,20 @@ const Header = () => {
                 <CustomerNav />
               </div>
               <div className='department_media'>
-                {departments.map((department) => (
-                  <div key={department.id}>
+                {departments.map((department:IDepartment) => (
+                  <div className='mediaDep' key={department.id}>
                   <li>
                     <NavLink className='depName' to={`/${department.id}`}>{department.name}</NavLink>
+                    <span onClick={()=>handleSpan(department)}>{'>'}</span>
                   </li>
+                  <div className='mediaSubDep'>  
+                  {
+                   subDep?.id===department.id?<DepNavMedia department = {subDep}/>:null
+                  }  
+                  </div>
                   </div>
                 ))}
+                 
               </div>
             </div>
           </div>

@@ -37,9 +37,17 @@ export const fetchProductsForSearch = createAsyncThunk<
   },
 )
 
-export const fetchAllProducts = createAsyncThunk(
+export const fetchAllProducts = createAsyncThunk <
+{
+  pages: number
+  products: IProduct[]
+},
+{
+  pages:number
+}
+>(
   'allProducts/fetchedProducts',
-  async (pages: number) => {
+  async ({pages}) => {
     const products = await getAllProducts()
     return { products, pages }
   },
@@ -65,7 +73,7 @@ const initialState: ProductsState = {
 
 interface ISortAction {
   type: string
-  payload: TOrder
+  payload: TOrder 
 }
 
 const productsSlice = createSlice({
@@ -90,7 +98,6 @@ const productsSlice = createSlice({
       .addCase(fetchProductsByCategory.fulfilled, (state, action) => {
         state.status = 'succeeded'
         const { pages, products } = action.payload
-
         state.products = products.sort((a, b) => a.title.localeCompare(b.title))
         const original = state.products.length
         state.products = state.products.splice(0, pages)

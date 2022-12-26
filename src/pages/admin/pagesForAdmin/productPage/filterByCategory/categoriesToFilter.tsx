@@ -18,7 +18,7 @@ export default function CategoriesToFilter({ selected, changeCategory }: IChangi
   const categories = useAppSelector((state) => state.allCategories.allCategories)
 
   return (
-    <div
+    <span
       className='filterByCategory'>
       <label htmlFor='filter'>
         <span>Filter By </span>
@@ -40,6 +40,6 @@ export default function CategoriesToFilter({ selected, changeCategory }: IChangi
           ))}
         </select>
       </label>
-    </div>
+    </span>
   )
 }
