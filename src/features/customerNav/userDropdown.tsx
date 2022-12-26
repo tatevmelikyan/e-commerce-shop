@@ -19,11 +19,11 @@ const UserDropdown = () => {
   }
   return (
     <div className='user-dropdown'>
-      <div>
+      <div className='sign-in-out-button'>
         {currentUser ? (
           <button onClick={handleSignOut}>Sign Out</button>
         ) : (
-          <button onClick={handleSignIn}>Sign In/Create Account</button>
+          <button onClick={handleSignIn}>Sign In / Create Account</button>
         )}
       </div>
     </div>
