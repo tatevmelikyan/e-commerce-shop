@@ -10,7 +10,8 @@ import { useAppSelector } from '../../app/hooks'
 
 import {AiOutlineUser} from 'react-icons/ai'
 import {TfiHeart} from 'react-icons/tfi'
-import {CiShoppingCart, CiUser} from 'react-icons/ci'
+import {CiUser} from 'react-icons/ci'
+import {BsCart2} from 'react-icons/bs'
 
 const CustomerNav: React.FC = () => {
   const currentUser = useAppSelector((state) => state.currentUser.currentUser)
@@ -37,7 +38,7 @@ const CustomerNav: React.FC = () => {
         </li>
         <li className='cart-link'>
           <Link to={'/shoppingcart'}>
-            <CiShoppingCart size={28} />
+            <BsCart2 size={25} />
           </Link>
           <CartDropdown />
         </li>

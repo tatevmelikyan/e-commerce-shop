@@ -178,7 +178,7 @@
 }
 
 .cart-icon {
-  color: lightslategray;
+  color: rgba(0, 0, 0, 0.199);
   font-size: 100px;
 }
 
@@ -187,6 +187,7 @@
 }
 
 .cart-sign-in-btn {
+  border: none;
   background-color: black;
   color: white;
   padding: 5px 20px;
@@ -196,7 +197,7 @@
 }
 
 .cart-sign-in-btn:hover {
-  transform: scale(1.25);
+ background-color: rgb(55, 55, 55);
 }
 
 .sign-in-text {
