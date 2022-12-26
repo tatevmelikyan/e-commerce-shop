@@ -66,10 +66,9 @@
 .cart-item-grid {
   margin: 20px;
   padding: 20px;
-  /* width: 50%; */
   display: grid;
   grid-template-columns: 2fr 1fr 1fr 50px;
-  border-bottom: 1px solid rgb(215, 215, 215);
+  box-shadow: 0px 0px 3px #cccccc8a;
   background-color: white;
   gap: 20px;
 }
@@ -78,7 +77,6 @@
   background-color: whitesmoke;
   margin: 20px;
   padding: 20px;
-  /* width: 50%; */
   display: grid;
   grid-template-columns: 2fr 1fr 1fr 50px;
   gap: 20px;
@@ -180,7 +178,7 @@
 }
 
 .cart-icon {
-  color: lightslategray;
+  color: rgba(0, 0, 0, 0.199);
   font-size: 100px;
 }
 
@@ -189,6 +187,7 @@
 }
 
 .cart-sign-in-btn {
+  border: none;
   background-color: black;
   color: white;
   padding: 5px 20px;
@@ -198,7 +197,7 @@
 }
 
 .cart-sign-in-btn:hover {
-  transform: scale(1.25);
+ background-color: rgb(55, 55, 55);
 }
 
 .sign-in-text {
@@ -208,14 +207,17 @@
 /*Order summary css*/
 
 .cart-summary-wrapper {
+  width: 80%;
   padding-right: 50px;
 }
 
 .cart-summary {
+    width: 100%;
     position: sticky;
     top: 158px;
-    min-height: 300px;
-    border: 1px solid rgb(161, 161, 161);
+    height: 400px;
+    background-color: white;
+    box-shadow: 0px 0px 3px #cccccc8a;
     padding: 0 20px 20px 20px;
 }
 
@@ -226,15 +228,32 @@
 }
 
 .summary-container {
+  height: 140px;
+  font-size: 14px;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
 }
 
+.summary-container div {
+  display: flex;
+  justify-content: space-between;
+  color: rgb(100, 100, 100);
+}
+
+.summary-container span {
+  color: black;
+}
+
+.summary-container .apply-discount {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 .checkout {
+  padding: 20px 0;
   width: 100%;
   display: flex;
-  position: absolute;
-  bottom: 20px;
   justify-content: center;
 }
 
@@ -251,4 +270,101 @@
 
 .checkout-btn:hover {
   transform: scale(1.05);
+}
+
+
+.accepted-payments ul {
+  list-style-type: none;
+  display: flex;
+  gap: 20px;
+}
+
+
+/* checkout form css */
+
+.checkout-page {
+  padding: 20px;
+  background-color: rgb(241, 241, 241);
+  display: flex;
+  justify-content: center;
+}
+
+
+.checkout-page .form {
+width: 70%;
+display: flex;
+gap: 100px;
+}
+
+.checkout-form-container {
+  width: 60%;
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.shipping-form, .billing-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.shipping-form input, .billing-form input {
+  border: 1px solid rgb(195, 195, 195);
+  padding: 12px;
+  font-size: 18px;
+}
+
+
+
+/* Card form css */ 
+.card-form-wrapper {
+  margin-top: 50px;
+  display: flex;
+  gap: 30px;
+}
+.card-form-container form{
+display: flex;
+flex-direction: column;
+gap: 20px;
+}
+
+.card-form-container form input {
+  width: 200px;
+  padding: 12px;
+  font-size: 16px;
+}
+
+.order-summary-wrapper {
+  width: 40%;
+}
+
+
+
+/* success page css */
+
+.success-page {
+  min-height: 400px;
+  background-color: rgb(241, 241, 241);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.success-page p {
+  padding: 5px;
+  margin: 0;
+}
+
+.success-page a {
+  margin: 20px;
+  text-decoration: none;
+  color: white;
+  background-color: black;
+  padding: 10px;
+}
+
+.success-page a:hover {
+  background-color: rgb(65, 65, 65);
 }

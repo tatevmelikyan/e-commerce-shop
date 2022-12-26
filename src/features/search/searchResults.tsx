@@ -15,7 +15,7 @@ const SearchResults: React.FC = () => {
   const { keyword } = useParams()
   const dispatch = useAppDispatch()
   const matchedProducts = useAppSelector((state) => state.products.products)
-  const matchedProductsCount = useAppSelector((state) => state.products.mathedProductsCount)
+  const matchedProductsCount = useAppSelector((state) => state.products.matchedProductsCount)
   const needLoad = useAppSelector((state) => state.products.needLoad)
   const [isSearchLoading, setIsSearchLoading] = useState(false)
   const productsStatus = useAppSelector(state => state.products.status)

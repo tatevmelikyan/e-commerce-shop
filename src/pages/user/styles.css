@@ -75,3 +75,17 @@ flex-direction: column;
         width: 150px;
     }
 }
+
+
+.signed-out-page {
+    margin: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.signed-out-page a {
+    color: black;
+}

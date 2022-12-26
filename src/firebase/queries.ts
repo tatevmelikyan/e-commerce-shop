@@ -7,12 +7,13 @@ import {
   query,
   where,
   getDoc,
-  getFirestore,
   addDoc,
   setDoc,
   deleteDoc
 } from 'firebase/firestore'
 import { db } from './config'
+import { IAddressInfo, ICustomerOrder } from '../features/slices/types'
+import { ICartItem } from '../pages/cart/addToCart'
 import { IObject } from '../pages/admin/addProduct'
 
 export interface IDepartment {
@@ -24,8 +25,6 @@ export interface IDepartment {
 
 
 const deleteProduct = (id:string)=>{
-  const db = getFirestore();
-
 const docRef =  doc(db, 'products', id);
 
  deleteDoc(docRef)
@@ -41,10 +40,7 @@ const docRef =  doc(db, 'products', id);
 
 
 const postProducts= async (obj:IObject)=>{
- 
- 
 const docRef = await addDoc(collection(db, 'products'), obj);
- 
 }
 
 const editProducts = async(obj:IObject,id:string)=>{
@@ -168,6 +164,22 @@ const getProductsByCategory = async (categoryId: string) => {
   return products
 }
 
+
+
+const postCustomerOrder = async(userId: string, items: ICartItem[], subtotal: number, shippingInfo: IAddressInfo, billingInfo: IAddressInfo) => {
+  const orderRef = await addDoc(collection(db, 'orders'), {
+      orderNumber: Math.floor(100000000 + Math.random() * 900000000),
+      userId,
+      items,
+      subtotal, 
+      date: new Date().toLocaleDateString('en-GB'),
+      status: 'Order received'
+  });
+    const orderSnap = await getDoc(orderRef)
+    return orderSnap.data() as ICustomerOrder
+}
+
+
 export {
   getAllProducts,
   getAllDepartments,
@@ -175,6 +187,8 @@ export {
   getProductById,
   getProductsByCategory,
   getAllCategories,
+
+  postCustomerOrder,
   deleteProduct,
   editProducts,
   postProducts
