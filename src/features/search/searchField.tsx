@@ -19,6 +19,7 @@ const SearchField: React.FC = () => {
 
     let recentSearchesArr = []
 
+
     if (recentSearches) {
       recentSearchesArr = JSON.parse(recentSearches)
     }

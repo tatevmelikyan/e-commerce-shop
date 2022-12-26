@@ -12,6 +12,7 @@ table {
 .photoInTable{
     height: 70px;
     width: 70px;
+    cursor: pointer;
 }
 .productTD{
     width: 150px;
@@ -22,6 +23,7 @@ table {
     color: black;
     height: 20px;
     width: 20px;
+    cursor: pointer;
 }
 .AdminPage{
     position: absolute;

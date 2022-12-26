@@ -1,8 +1,8 @@
 import React from 'react'
 import { IoMdClose } from 'react-icons/io'
-import { IOpen } from '../addProduct'
+import { IOpen } from '../addProduct/addProduct'
 import { useState, useEffect } from 'react'
-import { editProducts } from '../../../firebase/queries'
+import { editProducts } from '../../../../../firebase/queries'
 import type { BaseSyntheticEvent } from 'react'
 
 const imageTypeRegex = /image\/(png|jpg|jpeg)/gm
@@ -163,14 +163,16 @@ export const EditProduct = ({ editedProduct, open, setOpen }: IOpen) => {
             <div className='divImage'>
               {images?.map((image, i) => {
                 return (
-                  <img
+                  <div className='deleteImgDiv' key={image}> 
+                  <span>X</span> 
+                    <img
                     onClick={() => {
                       deleteImages(i)
                     }}
-                    key={image}
                     className='image'
                     src={image}
-                  />
+                  /> 
+                   </div>
                 )
               })}
             </div>
@@ -192,7 +194,7 @@ export const EditProduct = ({ editedProduct, open, setOpen }: IOpen) => {
             className='yesClick'
             onClick={handleEdit}
           >
-            yes
+            Yes
           </button>
           <button
             className='noClick'

@@ -12,9 +12,11 @@ import {
   deleteDoc
 } from 'firebase/firestore'
 import { db } from './config'
+import { IObject } from '../pages/admin/pagesForAdmin/productPage/addProduct/addProduct'
 import { IAddressInfo, ICustomerOrder } from '../features/slices/types'
 import { ICartItem } from '../pages/cart/addToCart'
-import { IObject } from '../pages/admin/addProduct'
+import { string } from 'yargs'
+import { userInfo } from 'os'
 
 export interface IDepartment {
   id: string
@@ -22,7 +24,24 @@ export interface IDepartment {
   imageUrl: string
   subdepartments: ISubdepartment[]
 }
+export interface IUsers {
+  id: string
+  cartItems: IProduct[]
+  email: string
+  favoriteItems: IProduct[]
+  name: string
+  uid: string
+}
 
+export interface IOrders {
+  id: string
+  date: string
+  items: IProduct[]
+  orderNumber: number
+  status: string
+  subtotal:number
+  userId: string
+}
 
 const deleteProduct = (id:string)=>{
 const docRef =  doc(db, 'products', id);
@@ -164,6 +183,40 @@ const getProductsByCategory = async (categoryId: string) => {
   return products
 }
 
+const getAllUsers = async () => {
+  const docs = await getDocs(collection(db, 'users'))
+  const users: IUsers[] = []
+  docs.forEach((doc) => {
+    users.push({
+      name: doc.data().name,
+      id: doc.id,
+      cartItems: doc.data().cartItems,
+      favoriteItems: doc.data().favoriteItems,
+      email: doc.data().email,
+      uid: doc.data().uid,
+    })
+  })
+  return users
+}
+
+
+const getAllOrders = async () => {
+  const docs = await getDocs(collection(db,'orders'))
+  const allOrders: IOrders[]=[]
+  docs.forEach(doc=>{
+    allOrders.push({
+      id: doc.id,
+      date: doc.data().date,
+      items: doc.data().items,
+      orderNumber: doc.data().orderNumber,
+      status: doc.data().status,
+      subtotal:doc.data().subtotal,
+      userId: doc.data().userId
+    })
+  })
+  return allOrders
+}
+
 
 
 const postCustomerOrder = async(userId: string, items: ICartItem[], subtotal: number, shippingInfo: IAddressInfo, billingInfo: IAddressInfo) => {
@@ -183,6 +236,7 @@ const postCustomerOrder = async(userId: string, items: ICartItem[], subtotal: nu
 export {
   getAllProducts,
   getAllDepartments,
+  getAllUsers,
   getSubdepartmentsWithCategoriesByDepartment,
   getProductById,
   getProductsByCategory,
@@ -191,5 +245,6 @@ export {
   postCustomerOrder,
   deleteProduct,
   editProducts,
-  postProducts
+  postProducts,
+  getAllOrders
 }

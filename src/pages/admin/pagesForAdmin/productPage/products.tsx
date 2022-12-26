@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { FaEdit } from 'react-icons/fa'
-import { MdDelete } from 'react-icons/md'
-
+import { RiDeleteBin6Line } from 'react-icons/ri'
 
 import { useAppSelector, useAppDispatch } from '../../../../app/hooks'
 import CategoriesToFilter from './filterByCategory/categoriesToFilter'
@@ -12,13 +11,12 @@ import {
 import { fetchedCategories } from '../../../../features/slices/categoriesSlice'
 import { ZoomTheImgae } from './zoomTheImage/zoomTheImgae'
 import { deleteProduct } from '../../../../firebase/queries'
-import { EditProduct } from '../editProduct'
+import { EditProduct } from './editProducts/editProduct'
 import './styles.css'
-import AdminPage from '../../adminPage'
+import AddProductBtn from './addProduct/addProductBtn'
 import { IProduct } from '../../../productPage/productPage'
 
 import { LoadMoreBtn } from '../../../../features/loadMoreBtn/loadMoreBtn'
-
 import './styles.css'
 
 const Products = function () {
@@ -36,14 +34,13 @@ const Products = function () {
  
   useEffect(() => {
     dispatch(fetchedCategories())
-    console.log(products, 'products')
   }, [])
 
 
 
   useEffect(() => {
     if (categoryId === 'All Products') {
-      dispatch(fetchAllProducts(pages))
+      dispatch(fetchAllProducts({pages}))
     } else {
       dispatch(fetchProductsByCategory({ pages, categoryId }))
     }
@@ -65,7 +62,7 @@ const Products = function () {
   return (
     <div>
       <div className='AdminPage'>
-        <AdminPage />
+        <AddProductBtn />
       </div>
       <div>
         {zoomed && (
@@ -119,12 +116,7 @@ const Products = function () {
                   />
                 </td>
                 <td className='icons'>
-                  <MdDelete
-                    onClick={() => {
-                      deleteProduct(product.id)
-                      dispatch(fetchAllProducts(pages))
-                    }}
-                  />
+                  <RiDeleteBin6Line />
                 </td>
               </tr>
             )
