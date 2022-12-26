@@ -13,10 +13,6 @@
     transition: 0.5s;
     visibility: hidden;
 }
-/* .sideNav:hover{
-  opacity: 1;
-} */
-
 .arrow{
   position: fixed;
   top: 380px;
@@ -69,11 +65,9 @@
  }
 
  .inputContainer{
- 
-  margin-left: 30%;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 50px;
 }
 
 .inputContainer >input{
@@ -103,31 +97,42 @@
 
 
 .addPosts{
-  width: 25%;
-  height: 30px;
-  margin:10px auto;
-  border: 1px solid rebeccapurple;
+  width: 200px;
+  height: 40px;
+  border: 1px solid rgb(206, 206, 206);
+  padding: 8px 0px;
+  font-weight: 400;
+  font-size: 16px; 
+  background: black;
+  color: white;
+  cursor: pointer;
+  margin:130px auto;
 }
+
 .addPosts:hover{
-border: grey;
-background-color:green;
-color: #010101;
-
+  font-size: 17px;
 }
-
+.addBtnDiv{
+  position: relative;
+  top: 100px;
+  left: 890px;
+  cursor: pointer;
+}
 .addProductBot{
-  height: 30px;
-  border-radius: 5px;
-  border: 1px solid black;
-  background-color: inherit;
-  color: black;
+  width: 200px;
+  height: 40px;
+  border: 1px solid rgb(206, 206, 206);
+  padding: 8px 0px;
+  font-weight: 400;
+  font-size: 16px; 
+  background: black;
+  color: white;
   cursor: pointer;
 }
 
 .addProductBot:hover {
-  border: lightblue;
-  background-color: blue;
-  color: lightblue;
+  font-size: 17px;
+  transition: .5s;
 }
 .editButton{
   width: 25%;
@@ -164,4 +169,17 @@ color: #010101;
   margin-top: 40px;
   margin-bottom: 80px;
   margin-left: 20%
+}
+
+.inputContainer{
+  justify-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.divImage{
+  justify-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 10px;
 }

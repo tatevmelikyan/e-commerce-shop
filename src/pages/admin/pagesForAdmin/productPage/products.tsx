@@ -13,7 +13,7 @@ import { ZoomTheImgae } from './zoomTheImage/zoomTheImgae'
 import { deleteProduct } from '../../../../firebase/queries'
 import { EditProduct } from './editProducts/editProduct'
 import './styles.css'
-import AdminPage from '../../adminPage'
+import AddProductBtn from './addProduct/addProductBtn'
 import { IProduct } from '../../../productPage/productPage'
 
 import { LoadMoreBtn } from '../../../../features/loadMoreBtn/loadMoreBtn'
@@ -62,7 +62,7 @@ const Products = function () {
   return (
     <div>
       <div className='AdminPage'>
-        <AdminPage />
+        <AddProductBtn />
       </div>
       <div>
         {zoomed && (

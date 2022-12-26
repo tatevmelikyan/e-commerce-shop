@@ -9,7 +9,7 @@ import ProductsPage from './pages/products/productsPage'
 import Location from './pages/location/location'
 import AboutUs from './pages/aboutUs/aboutUs'
 import CustomerAccountPage from './pages/customer/customerAccountPage'
-import AdminPage from './pages/admin/adminPage'
+import AdminPage from './pages/admin/pagesForAdmin/productPage/addProduct/addProductBtn'
 import FavoritesPage from './pages/favorites/favoritesPage'
 import ShoppingCartPage from './pages/cart/shoppingCartPage'
 import NotFound from './pages/notFound/NotFound';

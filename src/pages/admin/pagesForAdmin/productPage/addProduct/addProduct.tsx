@@ -1,6 +1,6 @@
 import React from 'react'
 import { postProducts } from '../../../../../firebase/queries'
-import './styles.css'
+import '../../../styles.css'
 import '../zoomTheImage/zoomTheImgae'
 import { IoMdClose } from 'react-icons/io'
 import { useState, useEffect } from 'react'
@@ -124,7 +124,6 @@ export default function AddProduct({ open, setOpen }: IOpen) {
       : alert('All input fields must be filled in to add a product')
   }
 
-
   return (
     <div className='popUp'>
       <div className='container'>
@@ -139,12 +138,14 @@ export default function AddProduct({ open, setOpen }: IOpen) {
 
         <div className='inputContainer'>
           <input
+            value={categoryId}
             type='text'
             placeholder='categoryId'
             onChange={addCategoryId}
           />
 
           <input
+            className='inputContainer'
             value={description}
             type='text'
             placeholder='description'
@@ -152,6 +153,7 @@ export default function AddProduct({ open, setOpen }: IOpen) {
           />
 
           <input
+            className='inputContainer'
             value={details}
             type='text'
             placeholder='details'
@@ -159,24 +161,31 @@ export default function AddProduct({ open, setOpen }: IOpen) {
           />
 
           <input
+            value={inStock}
+            className='inputContainer'
             type='number'
             placeholder='inStock'
             onChange={(e) => addInStock(e)}
           />
 
           <input
+            value={price}
+            className='inputContainer'
             type='number'
             placeholder='price'
             onChange={(e) => addPrice(e)}
           />
 
           <input
+            value={title}
+            className='inputContainer'
             type='text'
             placeholder='title'
             onChange={addTitle}
           />
 
           <input
+            className='inputContainer'
             type='file'
             id='file'
             onChange={changeHandler}

@@ -1,5 +1,7 @@
 
 .filterByCategory {
+    position: inherit;
+    right: 735px;
     top: 60px;
     width: 100%;
     display: flex;
@@ -31,7 +33,7 @@
     background-position: center;
     background-size: cover;
     padding: 10px;
-    color: #e6e3de;
+    color: #252525;
     position: absolute;
     top: 0;
     right: 50px;
