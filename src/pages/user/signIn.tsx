@@ -33,10 +33,12 @@ const SignIn: React.FC = () => {
     e.preventDefault()
     dispatch(signInUser({ email: fields.email, password: fields.password }))
   }
-
+  
+  
   return (
+    // userStatus === 'loading' ? <LoadingPage />:
     <div className='sign-form-page'>
-      {userStatus === 'loading' && <LoadingPage />}
+      
       <div className='sign-form-header'>
         <h2>Sign In</h2>
         Sign in to your account to see your favorite items and items in your cart.

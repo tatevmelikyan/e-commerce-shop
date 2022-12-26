@@ -1,17 +1,22 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import { useNavigate } from 'react-router'
-//@ts-ignore
-// import vid from '../../assets/pexels-tima-miroshnichenko-5834599.mp4'
 import './styles.css'
 import './homePageMedia.css'
+import { SubDepartmentsImageSkeleton } from '../../features/skeletons'
 
 const HomePage = () => {
   const navigate = useNavigate()
+  const [isLoading,setIsloading] = useState(true)
+  useEffect(()=>{
+    setTimeout(() => {
+      setIsloading(false)
+    }, 4000);
+  },[])
+  
   return (
     <div>
       <div className='main-video-container'>
-        {/* <video src={vid} muted autoPlay loop></video> */}
-        <iframe src="https://player.vimeo.com/video/755323125/?h=0a19c8bc86&loop=1&background=1&autoplay=true"></iframe>
+      <iframe src="https://player.vimeo.com/video/755323125/?h=0a19c8bc86&loop=1&background=1&autoplay=true"></iframe>
         <div className='video-ad-container'>
           <div className='text-shop'>
             <button onClick={() => navigate('/holidays')}>SHOP NOW</button>
