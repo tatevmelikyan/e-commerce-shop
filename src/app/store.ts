@@ -9,6 +9,8 @@ import categoriesForAdminSlice from '../features/slices/categoriesSlice'
 import cartItemsReducer from '../features/slices/cartSlice'
 import currentUserReducer from '../features/slices/currentUserSlice'
 import usersToDisplaySlice from '../features/slices/usersSlice'
+import customerOrdersReducer from '../features/slices/ordersSlice'
+
 
 export const store = configureStore({
   reducer: {
@@ -20,7 +22,8 @@ export const store = configureStore({
     favoriteItems: favoritesReducer,
     cartItems: cartItemsReducer,
     currentUser: currentUserReducer,
-    users:usersToDisplaySlice
+    users:usersToDisplaySlice,
+    customerOrders: customerOrdersReducer
   }
   })
 

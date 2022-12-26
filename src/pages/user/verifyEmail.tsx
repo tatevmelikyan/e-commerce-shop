@@ -64,7 +64,7 @@ const VerifyEmail: React.FC = () => {
           <span className='check-email-message'>
             Please check your email to verify your account.
           </span>
-          <span>Didn&apos;t get the email? </span>
+          <span>Didn&apos;t get the email? It may take a few minutes. Be sure to check your junk or spam folder.</span>
           <button
             onClick={handleResendBtn}
             className='resend-btn'

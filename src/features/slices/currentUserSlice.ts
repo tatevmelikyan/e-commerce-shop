@@ -10,21 +10,23 @@ import {
 } from './../../firebase/auth'
 import { signOut } from 'firebase/auth'
 import { RootState } from './../../app/store'
-import { IUser, IUserArgs, TUpdateCartAction, TUpdateFavoritesAction } from './types'
+import { ICustomerOrder, IUser, IUserArgs, TUpdateCartAction, TUpdateFavoritesAction } from './types'
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { clearCartItems } from './cartSlice'
 import { clearLikedItems } from './favoritesSlice'
 
 interface UserState {
-  currentUser: null | IUser
-  userCartSubTotal: number
-  status: 'idle' | 'loading' | 'succeeded' | 'failed'
-  error: null | undefined | string
+  currentUser: null | IUser;
+  userCartSubTotal: number;
+  orders: ICustomerOrder[] | null;
+  status: 'idle' | 'loading' | 'succeeded' | 'failed';
+  error: null | undefined | string;
 }
 
 const initialState: UserState = {
   currentUser: null,
   userCartSubTotal: 0,
+  orders: null,
   status: 'idle',
   error: null,
 }
@@ -62,7 +64,7 @@ export const signOutUser = createAsyncThunk('currentUser/signOut', async (_, { d
 
 export const getCurrentUser = createAsyncThunk('currentUser/getCurrentUser', async () => {
   if (auth.currentUser) {
-    return (await getUserById(auth.currentUser.uid)) as IUser
+    return (await getUserById(auth.currentUser.uid))
   } else return null
 })
 
@@ -130,7 +132,10 @@ const currentUserSlice = createSlice({
         state.currentUser = null
       })
       .addCase(getCurrentUser.fulfilled, (state, action) => {
-        state.currentUser = action.payload
+       if(action.payload) {
+        state.currentUser = action.payload.user
+        state.orders = action.payload.orders
+       }
       })
       .addCase(updateUserLiked.fulfilled, (state, action) => {
         if (state.currentUser) {

@@ -59,7 +59,8 @@ const ProductPage: React.FC = () => {
             <p className='product-discription-text'>{isLoading?<ProductDescription/>: product?.description}</p>
             <p className='product-details'>Details</p>
             <p className='product-details-text'>
-              {isLoading?<ProductDetails/>: product?.details.map((detail) => (
+             <ul>
+             {isLoading?<ProductDetails/>: product?.details.map((detail) => (
                 <li
                   key={Math.random()}
                   className='details-arr'
@@ -67,6 +68,7 @@ const ProductPage: React.FC = () => {
                   {detail}
                 </li>
               ))}
+             </ul>
             </p>
           </div>
         </div>

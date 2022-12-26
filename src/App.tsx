@@ -8,7 +8,7 @@ import DepartmentPage from './pages/department/departmentPage'
 import ProductsPage from './pages/products/productsPage'
 import Location from './pages/location/location'
 import AboutUs from './pages/aboutUs/aboutUs'
-import CustomerAccountPage from './pages/customer/customerAccountPage'
+import CustomerAccountSidebar from './pages/customer/customerAccountSidebar'
 import AdminPage from './pages/admin/pagesForAdmin/productPage/addProduct/addProductBtn'
 import FavoritesPage from './pages/favorites/favoritesPage'
 import ShoppingCartPage from './pages/cart/shoppingCartPage'
@@ -29,6 +29,13 @@ import { onAuthStateChanged } from '@firebase/auth';
 import { auth } from './firebase/auth';
 
 import 'react-toastify/dist/ReactToastify.css'
+import CustomerOrders from './pages/customer/customerOrders';
+import CustomerSettings from './pages/customer/customerSettings';
+import CustomerAccount from './pages/customer/customerAccount';
+import CustomerAddresses from './pages/customer/customerAddresses';
+import OrderDetails from './pages/customer/orderDetails';
+import Checkout from './pages/cart/checkout';
+import SuccessPage from './pages/cart/successPage';
 
 function App() {
 
@@ -55,7 +62,15 @@ function App() {
         <Route path='/products/:productId' element={<ProductPage/>}/>
         <Route path= '/location' element={<Location/>}/>
         <Route path='/about' element={<AboutUs/>}/>
-        <Route path='/account' element={<CustomerAccountPage />} />
+        <Route path='/account' element={<CustomerAccountSidebar />}>
+           <Route index element={<CustomerAccount/>}/>
+           <Route path='/account/orders' element={<CustomerOrders/>}/>
+           <Route path='/account/orders/purchase/:number' element={<OrderDetails/>}/>
+           <Route path='/account/addresses' element={<CustomerAddresses/>}/>
+           <Route path='/account/settings' element={<CustomerSettings/>}/>
+        </Route>
+        <Route path='/checkout' element={<Checkout />}/>
+        <Route path='/checkout/success' element={<SuccessPage />}/>
         <Route path='/account/signIn' element={<SignIn />}/>
         <Route path='/account/signUp' element={<SignUp />}/>
         <Route path='/account/signOut' element={<SignedOut />}/>

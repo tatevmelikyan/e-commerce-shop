@@ -1,7 +1,7 @@
 import { ICartItem } from './../pages/cart/addToCart'
 import { IProduct } from './../pages/productPage/productPage'
-import { IUser, TUpdateCartAction, TUpdateFavoritesAction } from './../features/slices/types'
-import { setDoc, doc, getDoc, updateDoc } from 'firebase/firestore'
+import { ICustomerOrder, IUser, TUpdateCartAction, TUpdateFavoritesAction } from './../features/slices/types'
+import { setDoc, doc, getDoc, updateDoc, query, collection, where, getDocs, deleteField } from 'firebase/firestore'
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -45,15 +45,50 @@ const createNewUser = async (
     })
 }
 
+
+const getOrderByNumber = async(number: number) => {
+  const ordersRef = collection(db, 'orders');
+  const q = query(ordersRef, where('orderNumber', '==', number));
+  const querySnapshot = await getDocs(q);
+ const orderArr = querySnapshot.docs.map((doc) => {
+return doc.data()
+});
+
+return orderArr[0] as ICustomerOrder
+}
+
+
+const getUserOrders = async(uid: string) => {
+  const q = query(collection(db, 'orders'), where('userId', '==', uid))
+
+  const qSnapshot = await getDocs(q)
+
+  const orders: ICustomerOrder[] = qSnapshot.docs.map((snap) => {
+    return {
+     userId: snap.data().userId,
+     status: snap.data().status,
+     orderNumber: snap.data().orderNumber,
+     date: snap.data().date,
+     subtotal: snap.data().subtotal,
+     items: snap.data().items
+    }
+  })
+  return orders.length ? orders : null
+}
+
 const getUserById = async (id: string) => {
   const userRef = doc(db, 'users', id)
   const userSnap = await getDoc(userRef)
-  return userSnap.data() as IUser
+  const user = userSnap.data() as IUser
+  
+  const orders = await getUserOrders(id)
+ 
+  return {user, orders}
 }
 
 const updateUserItems = async (id: string, favoriteItems: IProduct[], cartItems: ICartItem[]) => {
   const userRef = doc(db, 'users', id)
-  const user = await getUserById(id)
+  const {user} = await getUserById(id)
 
   cartItems.forEach((item) => {
     const userCartItem = user.cartItems.find((userItem) => userItem.product.id === item.product.id)
@@ -85,7 +120,8 @@ const signIn = async (
 ) => {
   const userCred = await signInWithEmailAndPassword(auth, email, password)
   await updateUserItems(userCred.user.uid, favoriteItems, cartItems)
-  return await getUserById(userCred.user.uid)
+  const {user} = await getUserById(userCred.user.uid)
+  return user
 }
 
 const updateUserFavorites = async (
@@ -94,7 +130,7 @@ const updateUserFavorites = async (
   likedItem: IProduct,
 ) => {
   const userRef = doc(db, 'users', id)
-  const user = await getUserById(id)
+  const {user} = await getUserById(id)
   switch (actionType) {
     case 'like-dislike':
       {
@@ -117,13 +153,13 @@ const updateUserFavorites = async (
   await updateDoc(userRef, {
     favoriteItems: user.favoriteItems,
   })
-
-  return await getUserById(id)
+const {user: updatedUser} = await getUserById(id)
+  return updatedUser
 }
 
 const updateUserCart = async (id: string, product: IProduct, actionType: TUpdateCartAction) => {
   const userRef = doc(db, 'users', id)
-  const user = await getUserById(id)
+  const {user} = await getUserById(id)
   const userCartItem = user.cartItems.find((cartItem) => cartItem.product.id === product.id)
   switch (actionType) {
     case 'addToCart':
@@ -142,7 +178,7 @@ const updateUserCart = async (id: string, product: IProduct, actionType: TUpdate
       break
     case 'addQty':
       {
-        if (userCartItem && userCartItem.product.inStock >= 1) {
+        if (userCartItem && userCartItem.product.inStock - userCartItem.qty + 1 >= 1) {
           userCartItem.qty++
         }
       }
@@ -156,7 +192,17 @@ const updateUserCart = async (id: string, product: IProduct, actionType: TUpdate
   await updateDoc(userRef, {
     cartItems: user.cartItems,
   })
-  return await getUserById(id)
+  const {user: updatedUser} = await getUserById(id)
+  return updatedUser
 }
 
-export { createNewUser, signIn, getUserById, updateUserFavorites, updateUserCart }
+
+
+const deleteUserCart = async(uid: string) => {
+  const userRef = doc(db, 'users', uid);
+  await updateDoc(userRef, {
+    cartItems: []
+});
+}
+
+export { createNewUser, signIn, getUserById, updateUserFavorites, updateUserCart, getOrderByNumber, deleteUserCart }

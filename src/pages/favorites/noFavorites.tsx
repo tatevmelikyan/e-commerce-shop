@@ -8,7 +8,7 @@ const NoFavorites: React.FC = () => {
         <h1>You don&apos;t have favorite items yet {':('}</h1> 
         <p>See something you like? Keep track of</p>
         <p>your favorite items and inspiration by selecting the heart icon.</p>
-        <h2> You Might Like </h2>
+        {/* <h2> You Might Like </h2> */}
         </div>
   )
 }
