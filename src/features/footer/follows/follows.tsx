@@ -13,14 +13,14 @@ const Follows: React.FC = () => {
           <h3>Follow Us</h3>
           <ul>
             <li>
-              <a href='https://www.facebook.com/Shamshyancom.media' target='_blank' rel='noopener noreferrer'>
+              <a href='https://www.facebook.com/lacasa.homeluxury/' target='_blank' rel='noopener noreferrer'>
                 <i className='media-icon'>
                   <FaFacebook />
                 </i>
               </a>
             </li>
             <li>
-              <a href='https://www.instagram.com/p/CNbvnE9AEhE/' target='_blank' rel='noopener noreferrer'>
+              <a href='https://www.instagram.com/la.casa.decor/' target='_blank' rel='noopener noreferrer'>
                 <i className='media-icon'>
                   <FaInstagram />
                 </i>
