@@ -7,14 +7,14 @@ import {
   query,
   where,
   getDoc,
-  setDoc,
   addDoc,
+  setDoc,
+  deleteDoc
 } from 'firebase/firestore'
 import { db } from './config'
-import { nanoid } from '@reduxjs/toolkit'
-import { FirebaseError } from 'firebase/app'
 import { IAddressInfo, ICustomerOrder } from '../features/slices/types'
 import { ICartItem } from '../pages/cart/addToCart'
+import { IObject } from '../pages/admin/addProduct'
 
 export interface IDepartment {
   id: string
@@ -22,6 +22,32 @@ export interface IDepartment {
   imageUrl: string
   subdepartments: ISubdepartment[]
 }
+
+
+const deleteProduct = (id:string)=>{
+const docRef =  doc(db, 'products', id);
+
+ deleteDoc(docRef)
+.then(() => {
+    alert('Entire Document has been deleted successfully.')
+})
+.catch(error => {
+    alert(error);
+})
+}
+
+
+
+
+const postProducts= async (obj:IObject)=>{
+const docRef = await addDoc(collection(db, 'products'), obj);
+}
+
+const editProducts = async(obj:IObject,id:string)=>{
+ const docRef= setDoc(doc(db,'products',id),obj,{merge:true})
+}
+
+
 
 const getAllProducts = async () => {
   const docs = await getDocs(collection(db, 'products'))
@@ -162,5 +188,8 @@ export {
   getProductsByCategory,
   getAllCategories,
 
-  postCustomerOrder
+  postCustomerOrder,
+  deleteProduct,
+  editProducts,
+  postProducts
 }

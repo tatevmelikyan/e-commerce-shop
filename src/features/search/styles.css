@@ -99,6 +99,10 @@
     align-items: center;
 }
 
+.loadingSpinner{
+    display: flex;
+    justify-content: center;
+}
 
 .no-results-heading {
     text-align: center;

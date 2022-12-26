@@ -13,7 +13,7 @@ export interface IProduct {
   categoryId?: string
   description: string
   details: string[]
-  id: string
+  id : string
   imageUrls: string[]
   price: number
   title: string

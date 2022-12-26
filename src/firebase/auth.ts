@@ -201,7 +201,7 @@ const updateUserCart = async (id: string, product: IProduct, actionType: TUpdate
 const deleteUserCart = async(uid: string) => {
   const userRef = doc(db, 'users', uid);
   await updateDoc(userRef, {
-    cartItems: deleteField()
+    cartItems: []
 });
 }
 

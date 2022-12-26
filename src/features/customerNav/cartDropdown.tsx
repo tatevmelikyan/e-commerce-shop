@@ -36,8 +36,7 @@ const CartDropdown: React.FC = () => {
         {!cartItems.length?<div>
           <p>Your shopping cart is empty.</p>
           <div className='no_cartItem_Icon'><FaCartPlus /></div>
-  <p style={{textAlign:'center'}}>
-Your shopping cart is empty.
+  <p>
  If you have an account, <Link to='/account/signIn'>Sign In</Link> to see items added on earlier visits.
   </p>
  </div>: cartItems.map((item) => (
@@ -58,7 +57,7 @@ Your shopping cart is empty.
         ))}
       </div>
       <div className='cart-dropDown-button'>
-        <div>Subtotal: ${subtotal.toLocaleString()}</div>
+        <span>Subtotal: ${subtotal.toLocaleString()}</span>
         <button onClick={() => navigate('/shoppingcart')}>VIEW CART</button>
       </div>
     </div>

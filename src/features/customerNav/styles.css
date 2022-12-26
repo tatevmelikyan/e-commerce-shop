@@ -75,8 +75,7 @@ color: black;
 }
 
 .cart-dropDown-list p{
-    font-size: 18px;
-    font-weight: 600;
+    font-size: 16px;
 }
 
 .cart-dropDown-list p a{
@@ -103,6 +102,10 @@ color: black;
     background-color: black;
     letter-spacing: 1px;
     cursor: pointer;
+}
+
+.cart-dropDown-button span {
+    font-size: 20px;
 }
 
 .dropDownListItem{
