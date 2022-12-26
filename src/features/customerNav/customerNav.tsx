@@ -1,28 +1,28 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './styles.css'
 import { Link } from 'react-router-dom'
 
-import { FaUserAlt, FaHeart } from 'react-icons/fa'
-import { HiShoppingCart } from 'react-icons/hi'
 import CartDropdown from './cartDropdown'
 import UserDropdown from './userDropdown'
 import { useAppSelector } from '../../app/hooks'
 
-import {AiOutlineUser} from 'react-icons/ai'
 import {TfiHeart} from 'react-icons/tfi'
 import {CiUser} from 'react-icons/ci'
 import {BsCart2} from 'react-icons/bs'
+
 
 const CustomerNav: React.FC = () => {
   const currentUser = useAppSelector((state) => state.currentUser.currentUser)
   const favoriteItemsCount = useAppSelector((state) => state.favoriteItems.favoriteItems).length
   const cartItemsCount = useAppSelector((state) => state.cartItems.cartItems).length
+ const isAdmin = useAppSelector(state => state.currentUser.isAdmin)
+console.log(isAdmin, 'isAdmin');
 
   return (
     <nav className='customer-nav'>
       <ul>
         <li className='user-link'>
-          <Link to={`/account${currentUser ? '' : '/signIn'}`}>
+          <Link to={`/account${isAdmin ? '/admin' : currentUser ? '' : '/signIn'}`}>
             <CiUser size={28} />
           </Link>
           <UserDropdown />

@@ -13,7 +13,6 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <div className='App-wrapper'>
       <Header />
-      <SideBar/>
       <div className='all-content'>{children}</div>
       <RecentlyViewed />
       <Footer />

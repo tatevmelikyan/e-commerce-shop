@@ -14,20 +14,21 @@ const SignIn: React.FC = () => {
   const userStatus = useAppSelector((state) => state.currentUser.status)
   const userError = useAppSelector((state) => state.currentUser.error)
   const currentUser = useAppSelector((state) => state.currentUser.currentUser)
+const isAdmin = useAppSelector(state => state.currentUser.isAdmin)
 
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
 
   useEffect(() => {
     if (currentUser) {
-      navigate('/account')
+        navigate(`/account${isAdmin ? '/admin' : ''}`)  
     }
     if (userStatus === 'failed') {
       toast.error(userError)
     } else if (userStatus === 'succeeded') {
-      navigate('/account')
+      navigate(`/account${isAdmin ? '/admin' : ''}`)  
     }
-  }, [userStatus, currentUser])
+  }, [userStatus, currentUser, isAdmin])
 
   const handleSignIn = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()

@@ -19,6 +19,7 @@ interface UserState {
   currentUser: null | IUser;
   userCartSubTotal: number;
   orders: ICustomerOrder[] | null;
+  isAdmin: boolean;
   status: 'idle' | 'loading' | 'succeeded' | 'failed';
   error: null | undefined | string;
 }
@@ -27,6 +28,7 @@ const initialState: UserState = {
   currentUser: null,
   userCartSubTotal: 0,
   orders: null,
+  isAdmin: false,
   status: 'idle',
   error: null,
 }
@@ -130,9 +132,13 @@ const currentUserSlice = createSlice({
       .addCase(signOutUser.fulfilled, (state) => {
         state.status = 'idle'
         state.currentUser = null
+        state.isAdmin = false
       })
       .addCase(getCurrentUser.fulfilled, (state, action) => {
        if(action.payload) {
+        if(action.payload.user.email === 'an.mkhitaryann@gmail.com') {
+          state.isAdmin = true
+        }
         state.currentUser = action.payload.user
         state.orders = action.payload.orders
        }

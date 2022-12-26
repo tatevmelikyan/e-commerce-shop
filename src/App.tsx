@@ -36,6 +36,8 @@ import CustomerAddresses from './pages/customer/customerAddresses';
 import OrderDetails from './pages/customer/orderDetails';
 import Checkout from './pages/cart/checkout';
 import SuccessPage from './pages/cart/successPage';
+import AdminHome from './pages/admin/adminHome';
+import SideBar from './pages/admin/adminSidebar/sideBar';
 
 function App() {
 
@@ -75,10 +77,12 @@ function App() {
         <Route path='/account/signUp' element={<SignUp />}/>
         <Route path='/account/signOut' element={<SignedOut />}/>
         <Route path='/account/verifyEmail' element={<VerifyEmail />}/>
-        <Route path='/account/admin'element={<AdminPage />} />
-        <Route path='/account/admin/products'element={<Products />} />
+        <Route path='/account/admin'element={<SideBar />}>
+          <Route index element={<AdminHome/>}/>
+          <Route path='/account/admin/products'element={<Products />} />
         <Route path='/account/admin/users'element={<Users />} />
-        <Route path='/account/admin/orders'element={<Orders/>} />        
+        <Route path='/account/admin/orders'element={<Orders/>} />       
+        </Route>
         <Route path='/favorites' element={<FavoritesPage />}/>
         <Route path='/shoppingcart' element={<ShoppingCartPage />}/>
         <Route path='/search/:keyword' element={<SearchResults/>}></Route>

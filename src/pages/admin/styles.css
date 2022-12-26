@@ -189,6 +189,18 @@
   margin-left: 20%
 }
 
+
+
+
+.admin-home {
+  display: flex;
+  justify-content: center;
+}
+
+.admin-home div {
+  padding: 50px;
+  width: 400px;
+}
 .inputContainer{
   justify-items: center;
   display: grid;
