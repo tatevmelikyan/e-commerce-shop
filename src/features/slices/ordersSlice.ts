@@ -3,6 +3,8 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { postCustomerOrder } from '../../firebase/queries';
 import { RootState } from '../../app/store';
 import { getOrderByNumber } from '../../firebase/auth';
+import { async } from 'q';
+import { getAllOrders } from '../../firebase/queries';
 
 interface IOrdersState {
   orders: ICustomerOrder[];

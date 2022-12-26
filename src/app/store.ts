@@ -10,6 +10,7 @@ import cartItemsReducer from '../features/slices/cartSlice'
 import currentUserReducer from '../features/slices/currentUserSlice'
 import usersToDisplaySlice from '../features/slices/usersSlice'
 import customerOrdersReducer from '../features/slices/ordersSlice'
+import allOrdersSlice from '../features/slices/allOrdersSlice'
 
 
 export const store = configureStore({
@@ -23,7 +24,8 @@ export const store = configureStore({
     cartItems: cartItemsReducer,
     currentUser: currentUserReducer,
     users:usersToDisplaySlice,
-    customerOrders: customerOrdersReducer
+    customerOrders: customerOrdersReducer,
+    allOrders: allOrdersSlice
   }
   })
 

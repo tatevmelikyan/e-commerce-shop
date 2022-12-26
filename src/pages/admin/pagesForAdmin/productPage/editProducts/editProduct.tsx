@@ -163,14 +163,16 @@ export const EditProduct = ({ editedProduct, open, setOpen }: IOpen) => {
             <div className='divImage'>
               {images?.map((image, i) => {
                 return (
-                  <img
+                  <div className='deleteImgDiv' key={image}> 
+                  <span>X</span> 
+                    <img
                     onClick={() => {
                       deleteImages(i)
                     }}
-                    key={image}
                     className='image'
                     src={image}
-                  />
+                  /> 
+                   </div>
                 )
               })}
             </div>
@@ -192,7 +194,7 @@ export const EditProduct = ({ editedProduct, open, setOpen }: IOpen) => {
             className='yesClick'
             onClick={handleEdit}
           >
-            yes
+            Yes
           </button>
           <button
             className='noClick'

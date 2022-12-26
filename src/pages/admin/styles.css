@@ -117,14 +117,12 @@
 }
 .addBtnDiv{
   position: relative;
-  /* top: 100px;
-  left: 890px; */
   cursor: pointer;
 }
 .addProductBot{
   position: absolute;
   top: 60px;
-  left: 890px;
+  right:250px;
   width: 200px;
   height: 40px;
   border: 1px solid rgb(206, 206, 206);
@@ -156,7 +154,7 @@
   left: 30%;
 }
 .editButton:hover{
-  background-color: antiquewhite;
+  font-size: 17px;
 }
 
 .popContainer{
@@ -168,17 +166,22 @@
   width: 80px;
  height: 30px;
  margin-left: 35%;
+ background-color: aliceblue;
+
 }
 .yesClick:hover{
-  background-color: green;
+  background-color: black;
+  color: white;
 }
 .noClick{
   width: 80px;
   height: 30px;
  margin-left: 2%;
+ background-color: aliceblue;
 }
 .noClick:hover{
-  background-color: red;
+  background-color: black;
+  color: white;
 }
 .popContainer>p{
   margin-top: 40px;
@@ -199,4 +202,15 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 10px;
+}
+
+.deleteImgDiv{
+  position: relative;
+}
+
+.deleteImgDiv>span{
+    position: absolute;
+    top: 2px;
+    right: 5px;
+    cursor: pointer;
 }

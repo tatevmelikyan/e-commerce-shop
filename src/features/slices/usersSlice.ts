@@ -61,7 +61,7 @@ const usersToDisplaySlice = createSlice({
         state.status = 'failed'
         state.error = action.error.message
       })
-  },
+  }
 })
 
 export default usersToDisplaySlice.reducer

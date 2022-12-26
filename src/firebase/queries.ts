@@ -15,6 +15,8 @@ import { db } from './config'
 import { IObject } from '../pages/admin/pagesForAdmin/productPage/addProduct/addProduct'
 import { IAddressInfo, ICustomerOrder } from '../features/slices/types'
 import { ICartItem } from '../pages/cart/addToCart'
+import { string } from 'yargs'
+import { userInfo } from 'os'
 
 export interface IDepartment {
   id: string
@@ -31,6 +33,15 @@ export interface IUsers {
   uid: string
 }
 
+export interface IOrders {
+  id: string
+  date: string
+  items: IProduct[]
+  orderNumber: number
+  status: string
+  subtotal:number
+  userId: string
+}
 
 const deleteProduct = (id:string)=>{
 const docRef =  doc(db, 'products', id);
@@ -189,6 +200,23 @@ const getAllUsers = async () => {
 }
 
 
+const getAllOrders = async () => {
+  const docs = await getDocs(collection(db,'orders'))
+  const allOrders: IOrders[]=[]
+  docs.forEach(doc=>{
+    allOrders.push({
+      id: doc.id,
+      date: doc.data().date,
+      items: doc.data().items,
+      orderNumber: doc.data().orderNumber,
+      status: doc.data().status,
+      subtotal:doc.data().subtotal,
+      userId: doc.data().userId
+    })
+  })
+  return allOrders
+}
+
 
 
 const postCustomerOrder = async(userId: string, items: ICartItem[], subtotal: number, shippingInfo: IAddressInfo, billingInfo: IAddressInfo) => {
@@ -217,5 +245,6 @@ export {
   postCustomerOrder,
   deleteProduct,
   editProducts,
-  postProducts
+  postProducts,
+  getAllOrders
 }
