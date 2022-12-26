@@ -137,10 +137,19 @@ export default function AddProduct({ open, setOpen }: IOpen) {
         </i>
 
         <div className='inputContainer'>
+
+        <input
+            value={title}
+            className='inputContainer'
+            type='text'
+            placeholder='Enter the name of the product'
+            onChange={addTitle}
+          />
+          
           <input
             value={categoryId}
             type='text'
-            placeholder='categoryId'
+            placeholder='Enter category of the product'
             onChange={addCategoryId}
           />
 
@@ -148,7 +157,7 @@ export default function AddProduct({ open, setOpen }: IOpen) {
             className='inputContainer'
             value={description}
             type='text'
-            placeholder='description'
+            placeholder='Enter the description'
             onChange={addDescription}
           />
 
@@ -156,7 +165,7 @@ export default function AddProduct({ open, setOpen }: IOpen) {
             className='inputContainer'
             value={details}
             type='text'
-            placeholder='details'
+            placeholder='Enter the details'
             onChange={addDetails}
           />
 
@@ -164,7 +173,7 @@ export default function AddProduct({ open, setOpen }: IOpen) {
             value={inStock}
             className='inputContainer'
             type='number'
-            placeholder='inStock'
+            placeholder='Enter the quantity'
             onChange={(e) => addInStock(e)}
           />
 
@@ -172,18 +181,9 @@ export default function AddProduct({ open, setOpen }: IOpen) {
             value={price}
             className='inputContainer'
             type='number'
-            placeholder='price'
+            placeholder='Enter the price'
             onChange={(e) => addPrice(e)}
           />
-
-          <input
-            value={title}
-            className='inputContainer'
-            type='text'
-            placeholder='title'
-            onChange={addTitle}
-          />
-
           <input
             className='inputContainer'
             type='file'
