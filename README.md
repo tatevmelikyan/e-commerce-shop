@@ -46,6 +46,7 @@ You will also see any lint errors in the console.
 * Hovsep Atajanyan https://github.com/Atajanyan
 * Zhanna Grigoryan https://github.com/ZhannaGrigoryan
 * Arman Margaryan https://github.com/ArmanMargaryan92
+* Davit Atashkaryan https://github.com/atashkaryan
 
 
 ## Acknowledgements
