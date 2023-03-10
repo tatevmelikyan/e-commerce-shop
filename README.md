@@ -1,8 +1,29 @@
-# Getting Started with Create React App
+![C'est la Home logo](/src/assets/banner_image.png)
+# C'est la Home
+https://cestlahome.web.app/
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a team project for a Frontend Bootcamp program. Our team built an E-commerce website using React, Typescript, Redux Toolkit for state management, and Firebase for backend. Our goal was to create a website that provides a seamless and intuitive shopping experience for customers, with a focus on high-quality design and functionality.
 
-## Available Scripts
+## Features
+* **User authentication:** Customers can create an account, log in, and view their order history.
+* **Product catalog:** Customers can browse a range of products and filter by category, price, and other attributes.
+* **Product details:** Customers can view detailed information about products, including images and descriptions.
+* **Shopping cart:** Customers can add products to their cart and view the total price of their order.
+* **Favorites:** Customers can mark products as favorites, view them in a separate section of the website, and remove products from their favorites.
+* **Checkout:** Customers can enter their shipping and payment information and place their order.
+* **Admin panel:** Store owners can log in and manage products, orders, and customer information.
+* **Responsive design:** The website is designed to be responsive and accessible on various screen sizes and devices.
+
+## Technologies Used
+* **React:** A popular front-end library for building user interfaces.
+* **Typescript:** A typed superset of Javascript that helps catch errors early and improve code readability.
+* **Redux Toolkit:** A library for efficient and easy-to-use state management in React applications.
+* **Firebase:** A cloud-based platform for building web and mobile applications, including authentication, database, and hosting services.
+
+## Getting Started
+To view the live version of the project, visit https://cestlahome.web.app/
+
+To get started with the project, follow these steps:
 
 In the project directory, you can run:
 
@@ -18,33 +39,14 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Contributors
+* Tatev Melikyan (team lead) https://github.com/tatevmelikyan
+* Anna Mkhitaryan https://github.com/Anett98
+* Hovsep Atajanyan https://github.com/Atajanyan
+* Zhanna Grigoryan https://github.com/ZhannaGrigoryan
+* Arman Margaryan https://github.com/ArmanMargaryan92
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Acknowledgements
+We would like to thank Armenian Code Academy for providing us with the comprehensive Bootcamp program and our instructors for helping us acquire the necessary skills to build this project. 
